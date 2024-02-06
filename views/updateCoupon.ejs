@@ -1,0 +1,46 @@
+<!-- updateProduct.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Coupon</title>
+  <link rel="stylesheet" href="/css/adminCSS/updateCoupon.css">
+  <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a href="/adminHome">
+    <div class="logo">
+      <img src="/images/admin.png" alt="Avatar" class="avatar">
+      <h2 class="smart">HAANI</h2>
+    </div>
+  </a>
+<div class="content">
+  <h1>Update Coupon</h1>
+
+  <% if (coupon) { %>
+    <form action="/updateCoupon/<%= coupon._id %>" method="POST">
+      <label for="couponCode">Coupon Code:</label>
+      <input type="text" id="couponCode" name="couponCode" value="<%= coupon.couponCode %>" required>
+
+      <label for="discount">Discount:</label>
+      <input type="text" id="discount" name="discount" value="<%= coupon.discount %>" required>
+
+      <label for="conditions">Discount Conditions:</label>
+      <input type="text" id="conditions" name="conditions" value="<%= coupon.conditions %>" required>
+
+      <label for="expiry">Expiry:</label>
+      <input type="text" id="expiry" name="expiry" value="<%= coupon.expiry %>" required>
+
+      <button type="submit">Update Product</button>
+    </form>
+  <% } else { %>
+    <p>Coupon not found.</p>
+  <% } %>
+  <br>
+  <a href="/addCoupon"><i class="fa-solid fa-arrow-left"></i> &nbsp; Go Back to Coupon Lists</a>
+</div>
+ 
+</body>
+</html>

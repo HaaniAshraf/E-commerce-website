@@ -1,0 +1,68 @@
+<!-- addCoupon.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Coupon</title>
+  <link rel="stylesheet" href="css/adminCSS/addCoupon.css">
+</head>
+<body>
+  <a href="/adminHome">
+    <div class="logo">
+      <img src="/images/admin.png" alt="Avatar" class="avatar">
+      <h2 class="smart">HAANI</h2>
+    </div>
+  </a>
+
+  <div class="content">
+
+    <div class="left">
+
+      <h1>Coupons</h1>
+      <ul>
+        <% coupons.forEach(coupon => { %>
+          <li>
+            <span>Coupon Code: <b><%= coupon.couponCode %></b> </span>
+            <span>Discount : <%= coupon.discount %></span>
+            <span>Discount Condition: <%= coupon.conditions %></span>
+            <span>Expiry Date: <%= coupon.expiry %></span>
+            <div class="btns">
+              <a href="/updateCoupon/<%= coupon._id %>">
+                <button class="update">Update</button>
+              </a>
+                <form action="/deleteCoupon/<%= coupon._id %>" method="post" onsubmit="return confirm('Are you sure you want to delete this coupon?')">
+                <button type="submit" class="delete">Delete</button>
+              </form> 
+            </div>               
+            </li>
+        <% }); %>
+      </ul>
+    
+    </div>
+    
+    <div class="right">
+      <h1>Add Coupon</h1>
+      <form action="/addCoupon" method="post" class="formright">
+        <label for="couponCode">Coupon Code:</label>
+        <input type="text" id="couponCode" name="couponCode" required>
+    
+        <label for="discount">Discount:</label>
+        <input type="text" id="discount" name="discount" required>
+    
+        <label for="conditions">Discount Conditions:</label>
+        <input type="text" id="conditions" name="conditions" required>
+    
+        <label for="expiry">Expiry Date:</label>
+        <input type="text" id="expiry" name="expiry" required>
+    
+        <button type="submit" class="add">Add Coupon</button>
+      </form>
+    </div>
+    
+  
+  </div>
+ 
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/mainCSS/login.css">
+</head>
+<body>
+    <form action="/login" method="post">
+
+        <div class="left">
+            <img class="logo" src="images/cartlogo.png" alt="">
+            <div class="SHOPON">
+                <span class="shop">&nbsp;SHOP</span>
+                <span class="on">ON</span>
+            </div>
+                    </div>
+  
+        <h3>LOGIN</h3>
+  
+        <label for="email">Email</label>
+        <input type="text" placeholder="xyz@gmail.com" id="email" name="email">
+  
+        <label for="password">Password</label>
+        <input type="password" placeholder="********" id="password" name="password">
+  
+        <% if (error) { %>
+          <p style="color: rgb(235, 80, 80);margin-top: 8px;"><%= error %></p>
+        <% } %>
+  
+        <button type="submit">Log In</button>
+  
+        <div class="down">
+          <div class="signup">Dont have an account? <a href="/signup">Sign-up</a> </div>     
+         </div>
+      </form>
+      <script src="js/extras.js"></script>
+</body>
+</html>

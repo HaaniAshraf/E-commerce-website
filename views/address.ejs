@@ -1,0 +1,52 @@
+
+<%- include('mainHeader.ejs') %>
+
+<%- include('profileHeader.ejs') %>
+<body>
+<div class="addresspage">
+
+    <div class="saved">
+        <h2>Saved Addresses:</h2>
+        <ul>
+            <% userAddresses.forEach(address => { %>
+                <li>
+                    <%= address.username %>:  <br>House Number - <%=  address.houseNumber %>, <br>
+                    <%= address.locality %>, <br> <%= address.city %>,
+                    <%= address.state %>  <br>PIN - <%= address.pinCode %>
+                    <form action="/address/remove/<%= address._id %>" method="post">
+                        <br>
+                        <button type="submit">Remove</button>
+                        <br><br>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+       </div>
+      
+    <div class="new">
+        <form action="/address/add" method="post" class="addressform">
+            <h2 class="newaddress">New Address:</h2>
+            <br>
+            <label for="houseNumber">House Number:</label>
+            <input type="number" id="houseNumber" name="houseNumber" required>
+    
+            <label for="locality">Locality:</label>
+            <input type="text" id="locality" name="locality" required>
+    
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+    
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+    
+            <label for="pinCode">Pin Code:</label>
+            <input type="number" id="pinCode" name="pinCode" required>
+    
+            <button type="submit" class="addbtn">Add Address</button>
+        </form>
+    
+    </div>
+        
+</div>
+   
+</body>

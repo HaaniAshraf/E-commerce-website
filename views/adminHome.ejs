@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <!--Material CDN-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!--STYLESHEET-->
+    <link rel="stylesheet" href="css/adminCSS/adminHome.css">
+</head>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/images/admin.png" alt="Avatar" class="avatar">
+                    <h2 class="smart">HAANI</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#" class="active">
+                    <span class="material-symbols-sharp">
+                        grid_view
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/userlist">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                    <h3>Customers</h3>
+                </a>
+                <a href="/productlist">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                    <h3>Products</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        receipt_long
+                    </span>
+                <h3>Orders</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        mail_outline
+                    </span>
+                    <h3>Messages</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        rate_review
+                        </span>
+                    <h3>Reviews</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                    <h3>Settings</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp logouticon">
+                        logout
+                    </span>
+                    <h3 class="logout">Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!------------------ END OF ASIDE -------------------->
+
+        <main>
+            <h1>DASHBOARD</h1>
+
+            <div class="date">
+                <input type="date"  id="currentDate" readonly>
+            </div>
+            <div>
+                <div class="insights">
+                    <div class="sales">
+                        <span class="material-icons-sharp">
+                            analytics
+                        </span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Sales</h3>
+                                <h1>$784,014</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx="38" cy="38" r="36"></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>85%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                
+                    <!-----------------------END OF SALES----------------------->
+                
+                    <div class="expenses">
+                        <span class="material-icons-sharp">
+                            bar_chart
+                        </span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Expenses</h3>
+                                <h1>$24,014</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx="38" cy="38" r="36"></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>59%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                    <!-----------------------END OF EXPENSES----------------------->
+                
+                    <div class="income">
+                        <span class="material-icons-sharp">
+                            stacked_line_chart
+                        </span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>Total Income</h3>
+                                <h1>$310,014</h1>
+                            </div>
+                            <div class="progress">
+                                <svg>
+                                    <circle cx="38" cy="38" r="36"></circle>
+                                </svg>
+                                <div class="number">
+                                    <p>41%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                    <!-----------------------END OF INCOME----------------------->
+            </div>
+        
+            <div class="btns">
+               <a href="/addProduct"> <button>Add Product</button></a>
+                <a href="/addCoupon"><button>Add Coupon</button></a>
+               <a href="/addBanner"><button>Add Banner</button></a> 
+            </div>
+
+        </main>
+        <figure class="pie-chart">
+            <h1>User &nbsp; Tracking</h1>
+            <figcaption>
+                Visited 38<span style="color:#4e79a7"></span><br>
+                Signed 33<span style="color:rgb(230, 230, 26)"></span><br>
+                Logged 20<span style="color:rgb(55, 188, 55)"></span><br>
+                Logout 8<span style="color:#e15759"></span>
+            </figcaption>
+        </figure>
+        <!-----------------------END OF MAIN----------------------->
+    </div>
+
+    <script src="js/date.js"></script>
+
+
+</body>
+</html>

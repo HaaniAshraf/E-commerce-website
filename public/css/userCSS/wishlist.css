@@ -1,0 +1,14 @@
+
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.wishlistHead{
+    margin-top: 100px;
+}

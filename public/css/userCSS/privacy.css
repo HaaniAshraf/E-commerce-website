@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+}
+h1{
+    text-align: center;
+}
+.para{
+    margin-top: 30px;
+    padding: 0 50px;
+    font-size: 15px;
+}

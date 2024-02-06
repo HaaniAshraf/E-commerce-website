@@ -1,0 +1,19 @@
+
+<%- include('mainHeader.ejs') %>
+
+<%- include('profileHeader.ejs') %>
+<body>
+  <h1>Coupons</h1>
+
+  <ul>
+    <% coupons.forEach(coupon => { %>
+      <li>
+        <span>Coupon Code: <%= coupon.couponCode %></span>
+        <span>Discount : <%= coupon.discount %></span>
+        <span>Discount Condition: <%= coupon.conditions %></span>
+        <span>Expiry Date: <%= coupon.expiry %></span>   
+        </li>
+    <% }); %>
+  </ul>
+
+</body>

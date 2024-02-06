@@ -1,0 +1,66 @@
+<!-- updateProduct.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Product</title>
+  <link rel="stylesheet" href="/css/adminCSS/updateProduct.css">
+</head>
+<body>
+  <a href="/adminHome">
+    <div class="logo">
+      <img src="/images/admin.png" alt="Avatar" class="avatar">
+      <h2 class="smart">HAANI</h2>
+    </div>
+  </a>
+  <div class="content-container">
+
+    <% if (product) { %>
+      <form action="/updateProduct/<%= product._id %>" method="post" enctype="multipart/form-data">
+        <h1>Update Product</h1>
+
+        <div class="inp1">
+          <label for="images">Product Images:</label>
+          <input type="file" id="images" name="productimg" accept="image/*" multiple>
+        </div>
+  
+        <div class="inp1">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" value="<%= product.name %>" required>
+        </div>
+  
+        <div class="inp1">
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" value="<%= product.category %>" required>
+        </div>
+  
+        <div class="inp1">
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+        </div>
+  
+        <div class="inp1">
+          <label for="rating">Rating:</label>
+          <input type="number" id="rating" name="rating" value="<%= product.rating %>" min="0" max="5" required>
+        </div>
+  
+        <div class="inp1">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" value="<%= product.price %>" step="0.01" required>
+        </div>
+  
+        <div class="inp1">
+          <label for="ogPrice">Original Price:</label>
+          <input type="number" id="ogPrice" name="ogPrice" value="<%= product.ogPrice %>" step="0.01">
+        </div>
+  
+        <button type="submit" class="update">Update Product</button>
+      </form>
+    <% } else { %>
+      <p>Product not found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

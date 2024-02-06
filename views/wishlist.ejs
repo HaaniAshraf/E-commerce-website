@@ -1,0 +1,28 @@
+<title><%= title %></title>
+
+<%- include('mainHeader.ejs') %>
+
+<body>
+
+  <h1 class="wishlistHead">Your Wishlist</h1>
+
+  <% if (wishlistProducts.length > 0) { %>
+    <ul>
+      <% wishlistProducts.forEach(product => { %>
+        <li>
+          <img src="<%= product.imageUrls[0] %>" alt="<%= product.name %>" width="100">
+          <h3><%= product.name %></h3>
+          <p>Price: ₹ <%= product.price %></p>
+          <form action="/removeFromWishlist/<%= product._id %>" method="post" onsubmit="return confirm('Are you sure you want to remove this product from your wishlist?')">
+            <input type="hidden" name="source" value="wishlist">
+            <button type="submit">Remove from Wishlist</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>    
+  <% } else { %>
+    <p>Your wishlist is empty. Start adding products you like!</p>
+  <% } %>
+  
+
+</body>

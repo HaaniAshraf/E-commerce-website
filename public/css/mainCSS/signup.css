@@ -1,0 +1,110 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+ body{
+    background-color: black;
+    color: white;
+ }
+  form{
+    background-color:  rgb(14, 13, 13);
+    height: 620px;
+    width: 500px;
+    position: absolute; 
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    padding: 0px 35px;
+    font-family: 'Poppins',sans-serif;
+    box-shadow:  0 0 8px 2px rgb(111, 110, 110); 
+  }
+
+  .left{
+    /* width: 100%; */
+    display: flex;
+    margin-left: 160px;
+    margin-top: 15px;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .logo {
+    height: 17px; 
+    width: 19px; 
+  }
+  
+  .SHOPON {
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .SHOPON .on {
+    color: rgb(247, 173, 37);
+  }
+  form h3{
+    font-size: 35px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 30px;
+  }
+  label{
+    display: block;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  input{
+    color: white;
+    display: block;
+    height: 35px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.215);
+    padding: 0 10px;
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+  }
+  input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+  }
+  ::placeholder{
+    color: #a7a5a595;
+  }
+  button{
+    margin-top: 30px;
+    width: 100%;
+    background-color: rgb(247, 173, 37);
+    color: #080710;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  .down{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .login{
+    font-size: 18px;
+  }
+  a{
+    text-decoration: none;
+    color: rgb(247, 173, 37);
+  }
+  .redLabel{
+    color: red;
+  }
+  

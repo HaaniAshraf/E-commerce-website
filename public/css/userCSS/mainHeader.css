@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+}
+.header{
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 80px;
+    width: 100vw;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    gap: 250px;
+    box-shadow: 0 0 8px 2px rgb(86, 86, 86);
+}
+.left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+  }
+  .logo {
+    height: 22px; 
+    width: auto; 
+  }
+  
+  .SHOPON {
+    display: flex;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .SHOPON .on {
+    color: rgb(247, 173, 37);
+  }
+.left a{
+    text-decoration: none;
+}
+.header input {
+    background-color: rgb(31, 31, 31);
+    height: 35px;
+    width: 90%;
+    position: relative;
+    margin-left: 60px;
+    border: none;
+    border-radius: 8px;
+}
+.search{
+    width: 600px;
+    display: flex;
+}
+
+.search button {
+    position: relative;
+    right: 35px; 
+    border: none;
+    background: none;
+    color: rgb(173, 172, 172);
+}
+::placeholder{
+    color: rgb(148, 145, 145);
+}
+a{
+    color: white;
+    font-size: 22px;
+}
+.right{
+    display: flex;
+    gap: 20px;
+    margin-left: 70px;
+}

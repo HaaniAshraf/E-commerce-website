@@ -1,0 +1,83 @@
+<!-- userlist.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+  <link rel="stylesheet" href="css/adminCSS/userlist.css">
+  <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <a href="/adminHome">
+    <div class="logo">
+      <img src="/images/admin.png" alt="Avatar" class="avatar">
+      <h2 class="smart">HAANI</h2>
+    </div>
+  </a>
+  <div class="content-container">
+    <h1>Customers List</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Signup Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% regularUsers.forEach(user => { %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.createdAt %></td>
+          <td style="display: flex; gap: 10px;">
+            
+            <button type="submit" class="bt3"><i class="fa-solid fa-info"></i></button>
+            <form action="/removeUser/<%= user._id %>" method="post"
+              onsubmit="return confirm('Are you sure you want to remove this user?')">
+              <button type="submit" class="bt2"><i class="fa-regular fa-trash-can"></i></button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <script>
+      async function removeUser(userId) {
+        const confirmation = confirm('Are you sure you want to remove this user?');
+
+        if (confirmation) {
+          try {
+            const response = await fetch(`/removeUser/${userId}`, {
+              method: 'POST',
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+              alert('User removed successfully.');
+            } else {
+              alert('Error removing user. Please try again.');
+            }
+          } catch (error) {
+            console.error('Error removing user:', error);
+            alert('Internal Server Error. Please try again.');
+          }
+        }
+      }
+    </script>
+
+  </div>
+
+</body>
+
+</html>
