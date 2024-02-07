@@ -12,3 +12,83 @@ body{
 .wishlistHead{
     margin-top: 100px;
 }
+.nil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 10px;
+}
+.nil img{
+    height: 100px;
+    width: 100px;
+}
+.nil button{
+    margin-top: 20px;
+    height: 40px;
+    width: 180px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(30, 30, 30);
+    color: rgb(249, 195, 44);
+}
+.empty{
+    font-size: 25px;
+}
+.start{
+    color: gray;
+}
+.wishlistUl {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    padding: 0 40px;
+ }
+ .wishlistList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(14, 13, 13);
+    border-radius: 10px;
+ }
+li img{
+    height: 200px;
+    width: 200px;
+}
+li h3{
+    color: rgb(249, 195, 44);
+}
+li button{
+    height: 30px;
+    width: 150px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(35, 34, 34);
+}
+.buttons{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+button:hover{
+    background-color:rgb(40, 40, 40) ;
+}
+.buttons .remove{
+    color: rgb(251, 51, 51);
+}
+.buttons .addToCart{
+    color: rgb(65, 170, 65);
+}

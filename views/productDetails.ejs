@@ -28,9 +28,11 @@
             <% } %>
           </div>
         <div class="btns">
-            <button class="addToCart">Add To Cart</button>  
-            <button class="wishlist">Wishlist</button>
-        </div>    
+           <a href="/cart"> <button class="addToCart">Add To Cart</button> </a> 
+           <form action="/addToWishlist/<%= product._id %>" method="post">
+           <a href="/wishlist"> <button type="submit" class="wishlist">Add To Wishlist</button></a>
+        </form>     
+          </div>    
         <p class="desc"><b>Description:</b> <%= product.description %></p>    
 
         <div class="pngs">

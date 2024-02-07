@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/userCSS/coupon.css">
     <link rel="stylesheet" href="/css/userCSS/privacy.css">
     <link rel="stylesheet" href="/css/userCSS/wishlist.css">
+    <link rel="stylesheet" href="/css/userCSS/cart.css">
 </head>
 <body>
     <div class="header">
@@ -29,18 +30,27 @@
                         <button><i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
 
-                    <div class="right">
-                        <a href="/profile">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
-                       <a href="/wishlist">
-                         <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="/cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </a>                                       
-                        </div>
+                    <div class="right">  
+                                            
+                            <a href="/profile">
+                            <ion-icon name="person-outline" class="profile"></ion-icon>
+                            </a> 
+                                          
+                             <a href="/wishlist">
+                            <ion-icon name="heart-outline" class="wishlist"></ion-icon>
+                            </a> 
+                 
+                           <a href="/cart">
+                           <ion-icon name="bag-handle-outline" class="cart"></ion-icon>
+                           </a>                         
 
-    </div>
+                        </div>
+                    </div>
+
+
+        <script src="js/heart.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>

@@ -60,9 +60,20 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<%= product.imageUrls[0] %>">
                             <ul class="product__hover">
-                                <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                                <li><a href="/details/<%= product._id %>"><i class="fa-solid fa-circle-info"></i></a></li>
+                                <button id="wishlistButton" class="btn-action" data-product-id="<%= product._id %>"
+                                    data-action="<%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'removeFromWishlist' : 'addToWishlist' %>"
+                                    onclick="toggleWishlist(event)">
+                                <i class="fa-solid fa-heart buttonAction <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>"></i>
+                            </button>   
+                            <form action="/addToCart" method="POST">
+                                <input type="hidden" name="productId" value="<%= product._id %>">
+                                <button type="submit" class="btn-action">
+                                  <i class="fa-solid fa-cart-shopping buttonAction"></i>
+                                </button>
+                              </form>                         
+                              <button type="submit" class="btn-action" id="infoButton" data-product-id="<%= product._id %>">
+                               <a href="/details/<%= product._id %>"><i class="fa-solid fa-circle-info buttonAction"></i></a> 
+                            </button>   
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -143,6 +154,8 @@
             }
         }
     </script>
+        <script src="js/heart.js"></script>
+
 
     <!-- Js Plugins -->
     <script src="js/menSectionJS/jquery-3.3.1.min.js"></script>

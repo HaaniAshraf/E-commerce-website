@@ -1,14 +1,10 @@
-<!-- cart.ejs -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart</title>
-</head>
+<title><%= title %></title>
+
+<%- include('mainHeader.ejs') %>
+
 <body>
-  <h1>Your Shopping Cart</h1>
+  <h1 class="carthead">Your Shopping Cart</h1>
 
   <% if (cart && cart.items.length > 0) { %>
     <div class="cart-items">
@@ -30,7 +26,13 @@
       </div>
     </div>
   <% } else { %>
-    <p>Your cart is empty.</p>
+    <div class="null">
+      <img src="/images/emptycart.png" alt="">
+      <p class="hey">Hey,it feels so light!</p>
+      <p class="your">Your bag is empty.</p>
+      <p class="lets">Lets add some items!</p>
+      <a href="/"><button class="btn">Continue Shopping</button></a>
+    </div>
   <% } %>
 
 </body>

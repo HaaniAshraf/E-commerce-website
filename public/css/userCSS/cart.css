@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.carthead{
+    margin-top: 100px;
+}
+.null{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 90px;
+}
+.null img{
+    height: 120px;
+    width: 120px;
+}
+.null button{
+    margin-top: 20px;
+    height: 40px;
+    width: 180px;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(30, 30, 30);
+    color: rgb(249, 195, 44);
+}
+.hey{
+    font-size: 25px;
+}
+.your,.lets{
+    color: gray;
+}

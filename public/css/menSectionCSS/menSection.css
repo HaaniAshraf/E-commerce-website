@@ -311,26 +311,24 @@ ol {
 	top: 20px;
 	transition: all, 0.3s;
 }
-
-.product__item__pic .product__hover li {
-	list-style: none;
-	margin-bottom: 10px;
-	position: relative;
-}
-.product__item__pic .product__hover li {
-	text-align: center;
+.product__hover button{
 	background-color: white;
-	border-radius: 5px;
+	border: none;
+	height: 30px;
 	width: 30px;
-}
-.product__item__pic .product__hover li i{
+	margin-bottom: 8px;
+	border-radius: 10px;
+	font-size: 18px;
 	color: gray;
-	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-.buttonAction{
+.redcolor{
+	color:rgb(205, 33, 33) !important;
+}
+.fa-circle-info{
 	color: gray;
-}
-li i{
 	font-size: 18px;
 }
 .product__item__text {

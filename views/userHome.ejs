@@ -69,8 +69,13 @@
           </button>
 
           <button class="action-btn">
-           <a href="/wishlist"><ion-icon name="heart-outline" class="wishlist"></ion-icon></a> 
-          </button>
+            <a href="/wishlist">
+           <ion-icon name="heart-outline" class="wishlist"></ion-icon>
+           <% if (wishlistCount) { %>
+            <span class="wishlist-count" id="wishlistCount"><%= wishlistCount %></span>
+        <% } %>
+      </a> 
+      </button>
 
           <button class="action-btn">
           <a href="/cart"> <ion-icon name="bag-handle-outline" class="cart"></ion-icon></a> 
@@ -532,12 +537,12 @@
                 <img src="<%= product.imageUrls[0] %>" alt="<%= product.name %>" class="product-img default">
               <% } %>
               <div class="showcase-actions">
-                <form id="wishlistForm" action="<%= userWishlist && userWishlist.products.includes(product._id.toString()) ? '/removeFromWishlist/' + product._id : '/addToWishlist/' + product._id %>" method="post">
-                  <input type="hidden" name="source" value="userhome">
-                  <button id="wishlistButton" class="btn-action" data-product-id="<%= product._id %>">
-                      <i class="fa-solid fa-heart buttonAction  <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>" onclick="add(event)"></i>
-                  </button>
-              </form>                                                                              
+                
+              <button id="wishlistButton" class="btn-action" data-product-id="<%= product._id %>"
+                data-action="<%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'removeFromWishlist' : 'addToWishlist' %>"
+                onclick="toggleWishlist(event)">
+            <i class="fa-solid fa-heart buttonAction <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>"></i>
+        </button>                                                                          
               <form action="/addToCart" method="POST">
                 <input type="hidden" name="productId" value="<%= product._id %>">
                 <button type="submit" class="btn-action">
@@ -772,7 +777,7 @@
         <img src="images/payment.png" alt="payment method" class="payment-img">
 
         <p class="copyright">
-          Copyright &copy; <a href="#">Anon</a> all rights reserved.
+          Copyright &copy; <a href="#">Shopon</a> all rights reserved.
         </p>
 
       </div>

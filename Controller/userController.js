@@ -10,23 +10,26 @@ module.exports={
         const banners = await Banner.find();
         const homeProducts = await Product.find({ category: 'home' });
         let userWishlist = null;
+        let wishlistCount = 0;
         if (req.session.email) {
             try {
                 const userId = req.session.user.userId;
                 userWishlist = await Wishlist.findOne({ user: userId });
+                if (userWishlist) {
+                    wishlistCount = userWishlist.products.length;
+                }
             } catch (error) {
                 console.error('Error fetching userWishlist:', error);
                 res.status(500).send('Internal Server Error');
-                return; 
+                return;
             }
         }
-        res.render('userHome', { banners, products: homeProducts, userWishlist });
-    } catch (error) {
+        res.render('userHome', { banners, products: homeProducts, userWishlist, wishlistCount });
+      } catch (error) {
         console.error('Error fetching homeProducts:', error);
         res.status(500).send('Internal Server Error');
-    }
-},
-
+      }
+    },
 
 
     profileGet:async(req,res)=>{
@@ -44,7 +47,7 @@ module.exports={
         if (!user) {
           return res.status(404).send('User not found');
         }
-            res.render('profile', { user });
+            res.render('profile', { user ,title:dynamicTitle});
       } catch (error) {
         console.error('Error fetching user details:', error);
         res.status(500).send('Internal Server Error');
@@ -146,7 +149,22 @@ module.exports={
     menSectionGet:async(req,res)=>{
       try {
         const menProducts = await Product.find({ category: 'mens' });
-        res.render('menSection', { products: menProducts });
+        let userWishlist = null;
+        let wishlistCount = 0;
+        if (req.session.email) {
+          try {
+              const userId = req.session.user.userId;
+              userWishlist = await Wishlist.findOne({ user: userId });
+              if (userWishlist) {
+                  wishlistCount = userWishlist.products.length;
+              }
+          } catch (error) {
+              console.error('Error fetching userWishlist:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+      }
+        res.render('menSection', { products: menProducts, userWishlist, wishlistCount });
     } catch (error) {
         console.error('Error fetching mencategory products:', error);
         res.status(500).send('Internal Server Error');
@@ -157,8 +175,23 @@ module.exports={
     womenSectionGet:async(req,res)=>{
       try {
         const womenProducts = await Product.find({ category: 'womens' });
-        res.render('womenSection', { products: womenProducts });
-    } catch (error) {
+        let userWishlist = null;
+        let wishlistCount = 0;
+        if (req.session.email) {
+          try {
+              const userId = req.session.user.userId;
+              userWishlist = await Wishlist.findOne({ user: userId });
+              if (userWishlist) {
+                  wishlistCount = userWishlist.products.length;
+              }
+          } catch (error) {
+              console.error('Error fetching userWishlist:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+        }
+        res.render('womenSection', { products: womenProducts, userWishlist, wishlistCount });
+        } catch (error) {
         console.error('Error fetching womencategory products:', error);
         res.status(500).send('Internal Server Error');
      }  
@@ -168,7 +201,22 @@ module.exports={
     jewelrySectionGet:async(req,res)=>{
       try {
         const jewelryProducts = await Product.find({ category: 'jewelry' });
-        res.render('jewelrySection', { products: jewelryProducts });
+        let userWishlist = null;
+        let wishlistCount = 0;
+        if (req.session.email) {
+          try {
+              const userId = req.session.user.userId;
+              userWishlist = await Wishlist.findOne({ user: userId });
+              if (userWishlist) {
+                  wishlistCount = userWishlist.products.length;
+              }
+          } catch (error) {
+              console.error('Error fetching userWishlist:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+        }
+        res.render('jewelrySection', { products: jewelryProducts, userWishlist, wishlistCount });
     } catch (error) {
         console.error('Error fetching jewelrycategory products:', error);
         res.status(500).send('Internal Server Error');
@@ -179,7 +227,22 @@ module.exports={
     perfumeSectionGet:async(req,res)=>{
       try {
         const perfumeProducts = await Product.find({ category: 'perfume' });
-        res.render('perfumeSection', { products: perfumeProducts });
+        let userWishlist = null;
+        let wishlistCount = 0;
+        if (req.session.email) {
+          try {
+              const userId = req.session.user.userId;
+              userWishlist = await Wishlist.findOne({ user: userId });
+              if (userWishlist) {
+                  wishlistCount = userWishlist.products.length;
+              }
+          } catch (error) {
+              console.error('Error fetching userWishlist:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+        }
+        res.render('perfumeSection', { products: perfumeProducts, userWishlist, wishlistCount });
     } catch (error) {
         console.error('Error fetching perfumecategory products:', error);
         res.status(500).send('Internal Server Error');
@@ -190,7 +253,22 @@ module.exports={
     electronicSectionGet:async(req,res)=>{
       try {
         const electronicProducts = await Product.find({ category: 'electronics' });
-        res.render('electronicSection', { products: electronicProducts });
+        let userWishlist = null;
+        let wishlistCount = 0;
+        if (req.session.email) {
+          try {
+              const userId = req.session.user.userId;
+              userWishlist = await Wishlist.findOne({ user: userId });
+              if (userWishlist) {
+                  wishlistCount = userWishlist.products.length;
+              }
+          } catch (error) {
+              console.error('Error fetching userWishlist:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+        }
+        res.render('electronicSection', { products: electronicProducts, userWishlist, wishlistCount });
     } catch (error) {
         console.error('Error fetching electroniccategory products:', error);
         res.status(500).send('Internal Server Error');
@@ -205,104 +283,138 @@ module.exports={
               const userId = req.session.user.userId;
               const wishlist = await Wishlist.findOne({ user: userId }).populate('products');
               if (!wishlist) {
-                  res.render('wishlist', { wishlistProducts: [], title: dynamicTitle });
+                  res.render('wishlist', { wishlistProducts: [], title: dynamicTitle,wishlistCount });
                   return;
               }
-              res.render('wishlist', { wishlistProducts: wishlist.products, title: dynamicTitle });
+              let wishlistCount = 0;
+              if (wishlist) {
+                  wishlistCount = wishlist.products.length;
+              }      
+              res.render('wishlist', { wishlistProducts: wishlist.products, title: dynamicTitle ,wishlistCount});
           } catch (error) {
               console.error('Error fetching wishlist:', error);
               res.status(500).json({ error: 'Internal Server Error' });
           }
-      } else {
+        } else {
           res.redirect('/login');
-      }
-  },
+        }
+      },
   
 
-
-      addToWishlist: async (req, res) => {
-        if(req.session.email){
-          try {
+  wishlistToggle: async (req, res) => {
+    if (req.session.email) {
+        try {
             const productId = req.params.productId;
             const userId = req.session.user.userId;
             let wishlist = await Wishlist.findOne({ user: userId });
             if (!wishlist) {
                 wishlist = new Wishlist({ user: userId, products: [] });
             }
-            if (!wishlist.products.includes(productId) && mongoose.isValidObjectId(productId)) {
+            const { isRedColor } = req.body;
+            const shouldRemove = isRedColor === 'true';
+            if (shouldRemove) {
+                wishlist.products.pull(productId);
+            } else {
                 wishlist.products.push(productId);
-                await wishlist.save();
-                res.redirect('/')
             }
+            await wishlist.save();
+            res.status(200).json({ success: true }); // Respond with JSON
         } catch (error) {
-            console.error('Error adding to wishlist:', error);
+            console.error('Error toggling wishlist:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
-        }else{
-          res.redirect('/login')
-        }       
+    } else {
+        res.status(401).json({ error: 'User not authenticated' }); // Respond with JSON
+    }
     },
-    
 
-    removeFromWishlist: async (req, res) => {
-      try {
-          const productId = req.params.productId;
+
+     wishlistCount: async (req, res) => {
+      if(req.session.email){
+        try {
           const userId = req.session.user.userId;
-          const source = req.body.source;
-  
-          console.log('Removing product with ID:', productId);
-          console.log('User ID:', userId);
-          console.log('Source:', source);
-  
-          let wishlist = await Wishlist.findOne({ user: userId });
-  
-          console.log('Wishlist:', wishlist);
-  
-          if (wishlist) {
-            await Wishlist.findOneAndUpdate(
-              { user: userId },
-              { $pull: { products: productId } },
-              { new: true } 
-           );
-           wishlist = await Wishlist.findOne({ user: userId });
-             console.log('Wishlist after removal:', wishlist);
-             if (source === 'userhome') {
-              res.redirect('/'); 
-          } else if (source === 'wishlist') {
-              res.redirect('/wishlist'); 
-          } else {
-              res.redirect('/'); 
-          }  
-          return;
-          } else {
-              res.status(404).json({ error: 'Wishlist not found' });
-          }
+          const userWishlist = await Wishlist.findOne({ user: userId });
+          const wishlistCount = userWishlist ? userWishlist.products.length : 0;
+          res.json({ wishlistCount });
       } catch (error) {
-          console.error('Error removing from wishlist:', error);
+          console.error('Error fetching wishlist count:', error);
           res.status(500).json({ error: 'Internal Server Error' });
       }
-  },
-  
+      }else{
+        res.redirect('/login'); 
+        }     
+     },
 
-     cartGet : async (req, res) => {
-      try {
-        const userId = req.session.user.userId;
-        const cartItems = await Cart.find({ userId })
-          .populate('productId')
-          .exec();   
-        if (cartItems.length === 0) {
-          return res.render('cart', { cart: null });
+
+     addToWishlist:async(req,res)=>{
+      if(req.session.email){
+        try{
+          const productId=req.params.productId;
+          const userId=req.session.user.userId;
+          const wishlist = await Wishlist.findOne({ user: userId });
+          if (wishlist.products.includes(productId)) {
+            return res.redirect('/wishlist');
+          }
+          else{
+            wishlist.products.push(productId);
+            await wishlist.save();
+            res.redirect('/wishlist');
         }
-          const totalPrice = cartItems.reduce((sum, item) => sum + item.totalPrice, 0);
-          const cart = {
-          items: cartItems,
-          totalPrice: totalPrice.toFixed(2), 
-        };   
-        res.render('cart', { cart });
-      } catch (error) {
-        console.error('Error fetching cart:', error);
+      }catch (error) {
+        console.error(error);
         res.status(500).send('Internal Server Error');
       }
+     }else{
+      res.redirect('/login')
+     }
+    },
+
+
+     removeFromWishist:async(req,res)=>{
+      if (req.session.email) {
+        try {
+            const productId = req.params.productId;
+            const userId = req.session.user.userId;
+            const wishlist = await Wishlist.findOne({ user: userId });
+            if (wishlist) {
+                wishlist.products.pull(productId);
+                await wishlist.save();
+                res.redirect('/wishlist'); 
+            } else {
+                res.status(404).send('Wishlist not found');
+            }
+        } catch (error) {
+            console.error('Error removing from wishlist:', error);
+            res.status(500).send('Internal Server Error');
+        }
+     }
+    },
+
+
+     cartGet : async (req, res) => {
+      if(req.session.email){
+        try {
+          const dynamicTitle = 'Cart';
+          const userId = req.session.user.userId;
+          const cartItems = await Cart.find({ userId })
+            .populate('productId')
+            .exec();   
+          if (cartItems.length === 0) {
+            return res.render('cart', { cart: null ,title: dynamicTitle});
+          }
+            const totalPrice = cartItems.reduce((sum, item) => sum + item.totalPrice, 0);
+            const cart = {
+            items: cartItems,
+            totalPrice: totalPrice.toFixed(2), 
+          };   
+          res.render('cart', { cart,title: dynamicTitle });
+        } catch (error) {
+          console.error('Error fetching cart:', error);
+          res.status(500).send('Internal Server Error');
+        }
+      }else{
+        res.redirect('/login')
+      }     
     },
 
 

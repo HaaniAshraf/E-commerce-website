@@ -283,6 +283,21 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 .profile,.wishlist,.cart{
   color: white;
 }
+.wishlist-count{
+  color: white;
+  background-color: red;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+}
 .search-btn:hover { color: var(--salmon-pink); }
 
 .mobile-bottom-navigation {
@@ -869,7 +884,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .product-featured .price {
-  color: var(--salmon-pink);
+  color: rgb(247, 173, 37);
   font-weight: var(--weight-700);
 }
 
@@ -879,7 +894,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .product-featured .add-cart-btn {
-  background: var(--salmon-pink);
+  background: rgb(247, 173, 37);
   padding: 8px 15px;
   color: black;
   font-weight: var(--fs-9);
@@ -895,7 +910,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 
 .product-featured .add-cart-btn:hover {
   background: var(--eerie-black);
-  color:var(--salmon-pink) ;
+  color:rgb(247, 173, 37) ;
 }
 
 .product-featured .showcase-status { margin-bottom: 15px; }

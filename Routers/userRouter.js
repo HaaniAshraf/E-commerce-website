@@ -17,8 +17,10 @@ const {
     perfumeSectionGet,
     electronicSectionGet,
     wishlistGet,
+    wishlistToggle,
+    wishlistCount,
     addToWishlist,
-    removeFromWishlist,
+    removeFromWishist,
     cartGet,
     productDetailsGet,
 }=require('../Controller/userController')
@@ -38,8 +40,10 @@ router.get('/',userhomeGet)
       .get('/perfumeSection',perfumeSectionGet)
       .get('/electronicSection',electronicSectionGet)
       .get('/wishlist',wishlistGet)
+      .post('/wishlistToggle/:productId',wishlistToggle)
+      .get('/wishlist/count',wishlistCount)
       .post('/addToWishlist/:productId',addToWishlist)
-      .post('/removeFromWishlist/:productId',removeFromWishlist)
+      .post('/removeFromWishlist/:productId',removeFromWishist)
       .get('/cart',cartGet)
       .get('/details/:productId',productDetailsGet)
 
