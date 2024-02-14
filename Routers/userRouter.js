@@ -22,7 +22,10 @@ const {
     addToWishlist,
     removeFromWishist,
     cartGet,
-    productDetailsGet,
+    // cartToggle,
+    // cartCount,
+    addToCart,
+    removeFromCart,
 }=require('../Controller/userController')
 
 
@@ -45,7 +48,10 @@ router.get('/',userhomeGet)
       .post('/addToWishlist/:productId',addToWishlist)
       .post('/removeFromWishlist/:productId',removeFromWishist)
       .get('/cart',cartGet)
-      .get('/details/:productId',productDetailsGet)
+      //.post('/cartToggle/:productId',cartToggle)
+      // .get('/cart/count',cartCount)
+      .post('/addToCart/:productId',addToCart)
+      .post('/removeFromCart/:productId',removeFromCart)
 
 
 

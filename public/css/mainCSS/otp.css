@@ -9,7 +9,7 @@ body{
     justify-content: center;
     align-items: center;
 }
-form{
+.otpForm{
     margin-top: 150px;
     background-color:rgb(14, 13, 13);
     height: 260px;
@@ -63,6 +63,7 @@ input{
     width: 200px;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 .resend{
     margin-top: 15px;
@@ -74,4 +75,5 @@ input{
     width: 200px;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }

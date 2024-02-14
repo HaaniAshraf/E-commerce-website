@@ -1,9 +1,9 @@
-const emailLabel=document.getElementById('emailLabel')
-const emailInput=document.getElementById('emailInput')
+const emailLabel=document.getElementById('email')
+const emailInput=document.getElementById('email')
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const passwordLabel=document.getElementById('passwordLabel')
-const passwordInput=document.getElementById('passwordInput')
+const passwordLabel=document.getElementById('password')
+const passwordInput=document.getElementById('password')
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 emailInput.onblur=()=>{
@@ -12,7 +12,7 @@ emailInput.onblur=()=>{
         emailLabel.classList.add('redLabel')
     }
     else{
-        emailLabel.innerHTML='email'
+        emailLabel.innerHTML='Email'
         emailLabel.classList.remove('redLabel')
     }
 }
@@ -23,7 +23,7 @@ passwordInput.onblur=()=>{
         passwordLabel.classList.add('redLabel')
     }
     else{
-        passwordLabel.innerHTML='password'
+        passwordLabel.innerHTML='Password'
         passwordLabel.classList.remove('redLabel')
     }
 }

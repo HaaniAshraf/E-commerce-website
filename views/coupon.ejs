@@ -1,3 +1,4 @@
+<title><%= title %></title>
 
 <%- include('mainHeader.ejs') %>
 
@@ -5,15 +6,25 @@
 <body>
   <h1>Coupons</h1>
 
-  <ul>
+<div class="couponContent">
+  <ul class="couponUl">
     <% coupons.forEach(coupon => { %>
-      <li>
-        <span>Coupon Code: <%= coupon.couponCode %></span>
-        <span>Discount : <%= coupon.discount %></span>
-        <span>Discount Condition: <%= coupon.conditions %></span>
-        <span>Expiry Date: <%= coupon.expiry %></span>   
+      <li class="couponLi">
+        <div class="couponLiUp">
+          <div class="couponLiUp1">
+            <span> <%= coupon.discount %> <br> OFF</span>
+          </div>        
+          <div class="couponLiUp2">
+            <span> Code: <b><%= coupon.couponCode %></b> </span>
+            <span style="color: gray;">On <%= coupon.conditions %></span>
+          </div>        
+        </div>
+        <div class="couponLiDown">
+          <span>Expiry Date: <%= coupon.expiry %></span>   
+        </div>
         </li>
     <% }); %>
   </ul>
+</div>
 
 </body>

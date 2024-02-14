@@ -1,3 +1,4 @@
+<title><%= title %></title>
 
 <%- include('mainHeader.ejs') %>
 
@@ -8,27 +9,29 @@
     <div class="saved">
         <h2>Saved Addresses:</h2>
         <ul>
-            <% userAddresses.forEach(address => { %>
-                <li>
-                    <%= address.username %>:  <br>House Number - <%=  address.houseNumber %>, <br>
-                    <%= address.locality %>, <br> <%= address.city %>,
-                    <%= address.state %>  <br>PIN - <%= address.pinCode %>
-                    <form action="/address/remove/<%= address._id %>" method="post">
-                        <br>
-                        <button type="submit">Remove</button>
-                        <br><br>
-                    </form>
-                </li>
+            <% userAddresses.forEach(user => { %>
+                <% user.addresses.forEach(address => { %>
+                    <li>
+                        <%= user.username %>:  <br>House Number - <%= address.houseNumber %>, <br>
+                        <%= address.locality %>, <br> <%= address.city %>,
+                        <%= address.state %>  <br>PIN - <%= address.pinCode %>
+                        <form action="/address/remove/<%= address._id %>" method="post">
+                            
+                            <button type="submit">Remove</button>
+                            <br><br>
+                        </form>
+                    </li>
+                <% }); %>
             <% }); %>
         </ul>
-       </div>
+    </div>
       
     <div class="new">
         <form action="/address/add" method="post" class="addressform">
             <h2 class="newaddress">New Address:</h2>
             <br>
             <label for="houseNumber">House Number:</label>
-            <input type="number" id="houseNumber" name="houseNumber" required>
+            <input type="text" id="houseNumber" name="houseNumber" required>
     
             <label for="locality">Locality:</label>
             <input type="text" id="locality" name="locality" required>

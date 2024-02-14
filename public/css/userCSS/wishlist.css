@@ -9,6 +9,9 @@ body{
     display: flex;
     flex-direction: column;
 }
+.wishlistContainer{
+    margin-bottom: 50px;
+}
 .wishlistHead{
     margin-top: 100px;
 }
@@ -77,18 +80,15 @@ li button{
     border-radius: 5px;
     background-color: rgb(35, 34, 34);
 }
-.buttons{
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-button:hover{
+.remove:hover{
     background-color:rgb(40, 40, 40) ;
 }
-.buttons .remove{
+.addToCart:hover{
+    background-color:rgb(40, 40, 40) ;
+}
+ .remove{
     color: rgb(251, 51, 51);
 }
-.buttons .addToCart{
+ .addToCart{
     color: rgb(65, 170, 65);
 }

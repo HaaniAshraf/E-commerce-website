@@ -55,7 +55,6 @@ try{
       password: hashedPassword,
   };
   const newUser = await User.create(data);
-  console.log(newUser);
 }catch(error){
     console.error("Error during user registration:", error);
     res.status(500).send("Internal Server Error");

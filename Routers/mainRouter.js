@@ -1,13 +1,12 @@
 const express=require('express')
 const router=express.Router()
 
-
 const {
     headerGet,
     proHeadGet,
     loginGet,
     loginPost,
-    logoutGet,
+    logoutPost,
     signupGet,
     signupPost,
     otpGet,
@@ -22,7 +21,7 @@ router.get('/mainHeader',headerGet)
       .get('/profileHeader',proHeadGet)
       .get('/login',loginGet)
       .post('/login',logVerify,loginPost)
-      .get('/logout',logoutGet)
+      .post('/logout',logoutPost)
       .get('/signup',signupGet)
       .post('/signup',signVerify,signupPost)
       .get('/otp',otpGet)

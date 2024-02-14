@@ -35,14 +35,17 @@ body{
     border-radius: 5px;
     height: 25px;
     width: 120px;
+    margin-top: 8px;
 }
-.saved button{
-    margin: 0;
+.saved button:hover{
+    background-color: rgb(248, 85, 85);
 }
+
 .new .addressform{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     background-color: rgb(14, 13, 13);
     box-shadow: 0 0 8px 2px rgb(111, 110, 110);
     border-radius: 10px;
@@ -61,9 +64,7 @@ body{
     width: 300px;
     padding-left: 5px;
 }
-.addressform input,label{
-    margin-left: 60px;
-}
+
 .new form button{
     background-color: rgb(247, 173, 37);
     color: black;
@@ -74,9 +75,7 @@ body{
     margin-top: 25px;
     border: none;
     border-radius: 5px;
-}
-.addbtn{
-    margin-left: 60px;
+    cursor: pointer;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

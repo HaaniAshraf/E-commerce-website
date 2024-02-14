@@ -7,12 +7,6 @@ const {
     adminhomeGet,
     userlistGet,
     removeUser,
-    productlistGet,
-    addProductGet,
-    addProductPost,
-    updateProductGet,
-    updateProductPost,
-    deleteProduct,
     addBannerGet,
     addBannerPost,
     updateBannerGet,
@@ -29,13 +23,7 @@ const {
 
 router.get('/adminHome',adminhomeGet)
       .get('/userlist',userlistGet)
-      .post('/removeUser/:userId',removeUser)
-      .get('/productlist',productlistGet)
-      .get('/addProduct',addProductGet)
-      .post('/addProduct',upload.array('productimg', 5),addProductPost)
-      .get('/updateProduct/:productId',updateProductGet)
-      .post('/updateProduct/:productId',upload.array('productimg', 5),updateProductPost)
-      .post('/deleteproduct/:productId',deleteProduct)
+      .post('/removeUser/:userId',removeUser)  
       .get('/addBanner',addBannerGet)
       .post('/addBanner',upload.single('image'),addBannerPost)
       .get('/updateBanner/:bannerId',updateBannerGet)

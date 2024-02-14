@@ -2,21 +2,22 @@
 
 <%- include('mainHeader.ejs') %>
 <%- include('profileHeader.ejs') %>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" href="css/mainCSS/swal.css">
 <body>
 
 <div class="main">
-                <form action="/profile" method="post" class="forms">
-                    <h2>User Profile</h2>
+                <form action="/profile" method="post" class="forms" id="profileForm">
+                    <h2 class="profilehead">User Profile</h2>
 
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value="<%= user.name %>">
             
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="<%= user.email %>">
+                    <input type="email" id="email" name="email" value="<%= user.email %>" readonly>
             
                     <label for="phone">Phone</label>
-                    <input type="number" id="phone" name="phone" value="<%= user.phone %>">
+                    <input type="number" id="phone" name="phone" value="<%= user.phone %>" readonly>
 
                     <label for="dob">Date of Birth</label>
                     <input type="date" id="dob" name="dob" value="<%= user.dob %>">
@@ -35,5 +36,56 @@
                 </form>
 
 </div>
-    <script src="extras.js"></script>
+
+<!-- <script>
+    function profileUpdate() {
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`,
+            backdrop: 'rgba(0,0,0,0.9)',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire("Saved!", "Profile updated successfully.", "success");
+                return true;
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+                return false;
+            }
+        });
+        return false;
+    }
+</script> -->
+<script>
+    document.getElementById('profileForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new URLSearchParams(new FormData(this));
+        fetch('/profile', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json',
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            Swal.fire("Profile Updated", "Your profile has been updated!", "success");
+        })
+        .catch(error => {
+            Swal.fire("Error", "Failed to update profile", "error");
+        });
+    });
+</script>
+
+
+
+
 </body>

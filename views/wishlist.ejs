@@ -4,6 +4,8 @@
 
 <body>
 
+<div class="wishlistContainer">
+  
   <h1 class="wishlistHead">Your Wishlist</h1>
 
   <% if (wishlistProducts.length > 0) { %>
@@ -15,12 +17,12 @@
           <p>Price: ₹ <%= product.price %></p>
           <form action="/removeFromWishlist/<%= product._id %>" method="post" onsubmit="return confirm('Are you sure you want to remove this product from your wishlist?')">
             <input type="hidden" name="source" value="wishlist">
-            <div class="buttons">
               <button type="submit" class="remove">Remove</button>
-              <button class="addToCart">Add To Cart</button>
-            </div>        
-        </form>        
-        </li>
+          </form>        
+          <form action="/addToCart/<%= product._id %>" method="post">
+            <a href="/cart"> <button type="submit" class="addToCart">Add To Cart</button></a> 
+        </form>
+          </li>
       <% }); %>
     </ul>    
   <% } else { %>
@@ -32,5 +34,7 @@
     </div>
   <% } %>
   
+</div>
 
+ 
 </body>

@@ -2,6 +2,8 @@ const mongoose=require('mongoose')
 const { User } = require('../Model/db');
 const { ObjectId } = require('mongoose').Types;
 
+const {sendPhoneOtp,verifyPhoneOtp,resendPhoneOtp}=require('../Utilities/twilio')
+
 const serviceSID="VA8012a02709508a14ff3d218ca1551f98"
 const accountSID="AC21860c8e1af91a58babe5e8d041c8819"
 const authToken="e7cb6710d30101baa75cd7e8b718a2b8"
@@ -60,17 +62,17 @@ module.exports={
       },
 
 
-      logoutGet:(req, res) => {
+      logoutPost: (req, res) => {
         req.session.destroy((err) => {
-          if (err) {
-            console.error('Error destroying session:', err);
-            return res.status(500).send('Internal Server Error');
-          }
-          res.redirect('/login');
+            if (err) {
+                console.error('Error destroying session:', err);
+                return res.status(500).json({ success: false, message: 'Internal Server Error' });
+            }
+            res.json({ success: true, message: 'Logout successful' });
         });
-      },
-        
-
+    },
+    
+    
       signupGet: (req, res) => {
         if(req.session.email){
           res.redirect('/')
@@ -86,13 +88,7 @@ module.exports={
         const defaultRole = 'user';   
         req.session.role = defaultRole; 
         req.session.phone=req.body.phone
-        await client.verify.v2
-        .services(serviceSID)
-        .verifications.create({
-          to: `+91${req.body.phone}`,
-          channel:"sms",
-          body: 'Signup to SHOPON using this code',
-        })
+        sendPhoneOtp(req.body.phone)
         .then((resp)=>{
           res.redirect('/otp');
         })
@@ -107,24 +103,12 @@ module.exports={
       otpPost: async (req, res) => {
         const { otp } = req.body;
         const phone=req.session.phone
-        try {
-            const verificationCheck = await client.verify.v2
-                .services(serviceSID)
-                .verificationChecks.create({
-                    to:  `+91${phone}`,
-                    code: otp
-                });    
-                console.log('otp verification response', verificationCheck);
-                if (verificationCheck.status === 'approved') {
-                  const user = await User.findOneAndUpdate(
-                    { phone: phone },
-                    { $set: { otpVerified: true } },
-                    { new: true }
-                );
-                res.redirect('/');
-            } else {
-                res.render('otp', { errors: 'Invalid OTP' });
-            }
+        try {   
+            if(verifyPhoneOtp(phone,otp)){
+              res.redirect('/');
+            }else {
+              res.render('otp', { errors: 'Invalid OTP' });
+          }
         } catch (error) {
             console.error('Error during OTP verification:', error);
             res.status(500).send('Internal Server Error');
@@ -135,14 +119,8 @@ module.exports={
     resendPost:async(req,res)=>{
       const phone = req.session.phone;
       try {
-        await client.verify.v2
-            .services(serviceSID)
-            .verifications.create({
-                to: `+91${phone}`,
-                channel: "sms",
-                body: 'Signup to SHOPON using this code', 
-            });
-        res.render('otp');
+        resendPhoneOtp(phone)
+        res.render('otp',{errors:err});
     } catch (err) {
         console.error(err);
         res.json({ message: 'Error' });

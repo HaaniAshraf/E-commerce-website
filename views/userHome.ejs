@@ -39,7 +39,7 @@
 
     <div class="header-main">
 
-      <div class="container"
+      <div class="container">
 
         <a href="/">
         <div class="left">
@@ -305,28 +305,26 @@
 
                 <div class="showcase">
 
-                  <a href="#" class="showcase-img-box">
-                    <img src="images/products/1.jpg" alt="baby fabric shoes" width="75" height="75"
+                  <a href="/details/65be0c425da35915c76cbd63" class="showcase-img-box">
+                    <img src="images/product/menpic1_2.jpeg" alt="jack & jones" width="75" height="75"
                       class="showcase-img">
                   </a>
 
                   <div class="showcase-content">
 
-                    <a href="#">
-                      <h4 class="showcase-title">baby fabric shoes</h4>
+                    <a href="/details/65be0c425da35915c76cbd63">
+                      <h4 class="showcase-title">Low Top Sneaker</h4>
                     </a>
 
                     <div class="showcase-rating">
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
                     </div>
 
                     <div class="price-box">
-                      <del>₹ 299</del>
-                      <p class="price">₹ 199</p>
+                      <del>₹ 1899</del>
+                      <p class="price">₹ 1499</p>
                     </div>
 
                   </div>
@@ -335,27 +333,27 @@
 
                 <div class="showcase">
 
-                  <a href="#" class="showcase-img-box">
-                    <img src="images/products/2.jpg" alt="men's hoodies t-shirt" class="showcase-img"
+                  <a href="/details/65be678ad8eb615169b97075" class="showcase-img-box">
+                    <img src="images/product/womenpic7_2.jpg" alt="carlton-london" class="showcase-img"
                       width="75" height="75">
                   </a>
 
                   <div class="showcase-content">
 
-                    <a href="#">
-                      <h4 class="showcase-title">men's hoodies t-shirt</h4>
+                    <a href="/details/65be678ad8eb615169b97075">
+                      <h4 class="showcase-title">Carlton Sunglass</h4>
                     </a>
                     <div class="showcase-rating">
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-half-outline"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
                     </div>
 
                     <div class="price-box">
-                      <del>₹ 899</del>
-                      <p class="price">₹ 829</p>
+                      <del>₹ 919</del>
+                      <p class="price">₹ 839</p>
                     </div>
 
                   </div>
@@ -364,27 +362,26 @@
 
                 <div class="showcase">
 
-                  <a href="#" class="showcase-img-box">
-                    <img src="images/products/3.jpg" alt="girls t-shirt" class="showcase-img" width="75"
+                  <a href="/details/65be1d4fe2e5b59937ff339a" class="showcase-img-box">
+                    <img src="images/product/perfume-1_2.png" alt="Bella Vita" class="showcase-img" width="75"
                       height="75">
                   </a>
 
                   <div class="showcase-content">
 
-                    <a href="#">
-                      <h4 class="showcase-title">girls t-shirt</h4>
+                    <a href="/details/65be1d4fe2e5b59937ff339a">
+                      <h4 class="showcase-title">Bella Vita Perfume</h4>
                     </a>
                     <div class="showcase-rating">
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-half-outline"></ion-icon>
                     </div>
 
                     <div class="price-box">
-                      <del>₹ 749</del>
-                      <p class="price">₹ 689</p>
+                      <del>₹ 1099</del>
+                      <p class="price">₹ 899</p>
                     </div>
 
                   </div>
@@ -393,18 +390,17 @@
 
                 <div class="showcase">
 
-                  <a href="#" class="showcase-img-box">
-                    <img src="images/products/4.jpg" alt="woolen hat for men" class="showcase-img" width="75"
+                  <a href="/details/65bf31c8608f222abb97d725" class="showcase-img-box">
+                    <img src="images/product/electronic-8_2.png" alt="OnePlus Buds" class="showcase-img" width="75"
                       height="75">
                   </a>
 
                   <div class="showcase-content">
 
-                    <a href="#">
-                      <h4 class="showcase-title">woolen hat for men</h4>
+                    <a href="/details/65bf31c8608f222abb97d725">
+                      <h4 class="showcase-title">OnePlus Buds Pro 2</h4>
                     </a>
                     <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
@@ -412,8 +408,8 @@
                     </div>
 
                     <div class="price-box">
-                      <del>₹ 499</del>
-                      <p class="price">₹ 449</p>
+                      <del>₹ 9999</del>
+                      <p class="price">₹ 9299</p>
                     </div>
 
                   </div>
@@ -543,12 +539,9 @@
                 onclick="toggleWishlist(event)">
             <i class="fa-solid fa-heart buttonAction <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>"></i>
         </button>                                                                          
-              <form action="/addToCart" method="POST">
-                <input type="hidden" name="productId" value="<%= product._id %>">
-                <button type="submit" class="btn-action">
-                  <i class="fa-solid fa-cart-shopping buttonAction"></i>
-                </button>
-              </form>                         
+        <button type="button" class="btn-action" id="addToCartButton">
+          <i class="fa-solid fa-cart-shopping buttonAction <%= userCart && userCart.products.some(item => item.product.toString() === product._id.toString()) ? 'orangeColor' : '' %>" id="cartIcon" data-product-id="<%= product._id %>"></i>
+      </button>                                 
               <button type="submit" class="btn-action" id="infoButton" data-product-id="<%= product._id %>">
                <a href="/details/<%= product._id %>"><i class="fa-solid fa-circle-info buttonAction"></i></a> 
             </button>          
@@ -789,9 +782,10 @@
   <!--
     - custom js link
   -->
-  <script src="js/countdown.js"></script>
-  <script src="js/banner.js"></script>
-  <script src="js/heart.js"></script>
+  <script src="/js/countdown.js"></script>
+  <script src="/js/banner.js"></script>
+  <script src="/js/heart.js"></script>
+  <script src="/js/cart.js"></script>
 
   <!--
     - ionicon link

@@ -8,9 +8,12 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .carthead{
     margin-top: 100px;
 }
+
+
 .null{
     display: flex;
     flex-direction: column;
@@ -18,6 +21,8 @@ body{
     justify-content: center;
     gap: 10px;
     margin-top: 90px;
+    position: absolute;
+    left: 660px;
 }
 .null img{
     height: 120px;
@@ -37,6 +42,317 @@ body{
 .hey{
     font-size: 25px;
 }
-.your,.lets{
+.lets{
     color: gray;
+}
+
+.cartContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cartContent{
+    display: flex;
+    align-items: center;
+    border: solid 1px rgb(71, 71, 71);
+    margin-top: 40px;
+    width: 80%;
+    margin-bottom: 100px;
+}
+.cartContent.emptyCart {
+    border: none;
+}
+.cartLeft.emptyCart {
+    border: none;
+}
+.cartContent li{
+    list-style: none;
+}
+.cartLeft{
+    border-right: solid 1px rgb(71, 71, 71);
+    width: 60%;
+    padding: 20px 50px;
+}
+
+
+.address-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.address-section h2{
+    font-size: 17px;
+}
+.address-section select{
+    margin-left: 10px;
+}
+.address-sectionup{
+    display: flex;
+    align-items: center;
+}
+
+
+.offer-section{
+    border: solid 1px rgb(71, 71, 71);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 20px;
+}
+.offer-section img{
+    height: 15px;
+    width: 15px;
+}
+.offer-section h2{
+    font-size: 17px;
+}
+.offer-sectionup{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.offer-sectiondown{
+    font-size: 15px;
+    color: gray;
+    margin-top: 5px;
+}
+
+
+.item-section{
+    margin-top: 50px;
+}
+.item-sectionall{
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    border: solid 1px rgb(71, 71, 71);
+    padding: 10px;
+}
+.item-sectionleft img{
+    height: 100%;
+}
+.item-sectionright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    gap: 10px;
+}
+.item-sectionright h3{
+    font-size: 23px;
+    color: white;
+    text-align: center;
+}
+
+.quantitybuttons{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.quantitybuttons button{
+    height: 25px;
+    width: 25px;
+    color: white;
+}
+
+.itemPrice{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.itemPrice p{
+    color: rgb(249, 195, 44);
+    font-size: 20px;
+    font-weight: bold;
+}
+.itemPrice del{
+    color: gray;
+}
+
+.texts{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    color: gray;
+}
+.textup,.textdown{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.texts img{
+    height: 20px;
+    width: 20px;
+}
+
+.itembtns{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 10px;
+}
+.itembtns button{
+    width: 150px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(20, 20, 20);
+    cursor: pointer;
+}
+.itembtns .removeItem{
+    color: rgba(245, 66, 66, 0.897);
+}
+
+.leftdown{
+    display: flex;
+    border: solid 1px rgb(71, 71, 71);
+    font-size: 17px;
+    margin-top: 30px;
+    padding: 10px 30px;
+    gap: 10px;
+    align-items: center;
+}
+.cartLeft a{
+    text-decoration: none;
+}
+.leftdownarrow{
+    margin-left: 330px;
+}
+
+
+
+.cartRight{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    padding: 20px 50px;
+}
+.coupon-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.couponUp{
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    gap: 10px;
+    font-weight: bold;
+}
+.couponimg img{
+    height: 40px;
+    width: 40px;
+}
+.couponDown{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.couponDown input{
+    height: 30px;
+    width: 180px;
+    background-color: rgb(50, 50, 50);
+    border: none;
+    border-radius: 5px;
+    padding-left: 5px;
+    color: white;
+}
+.couponDown button{
+    height: 30px;
+    width: 80px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgb(249, 195, 44);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gift-section{
+    background-color: rgb(244, 204, 231);
+    color: black;
+    margin-top: 30px;
+    border-radius: 10px;
+    display: flex;
+    width: 85%;
+}
+.gift-section img{
+    height: 60px;
+    width: 60px;
+}
+.gifttext{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
+}
+.gifttext .p1{
+    font-weight: bold;
+}
+.gifttext .p2{
+    font-size: 15px;
+}
+.gifttext button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(224, 85, 131);
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.price-section{
+    margin-top: 50px;
+}
+.priceHead{
+    font-size: 18px;
+    border-bottom: solid 1px rgb(71, 71, 71);
+    padding-bottom: 2px;
+}
+.pricetext{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+.pt1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pt1 .mrp{
+    color: rgb(107, 106, 106);
+}
+.pt1 .discount{
+    color: rgb(247, 87, 87);
+}
+.pt1 .price{
+    color: rgb(68, 225, 141);
+}
+.pt1 .amount{
+    font-weight: bold;
+    font-size: 18px;
+}
+.pt1 .totalamount{
+    color: rgb(249, 195, 44);
+}
+.price-section button{
+    height: 38px;
+    width: 100%;
+    margin-top: 25px;
+    background-color: rgb(249, 195, 44);
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.price-section button:hover{
+    background-color: rgb(30, 30, 30);
+    color: rgb(249, 195, 44);
 }

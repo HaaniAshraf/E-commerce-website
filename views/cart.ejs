@@ -2,38 +2,165 @@
 <title><%= title %></title>
 
 <%- include('mainHeader.ejs') %>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <body>
-  <h1 class="carthead">Your Shopping Cart</h1>
 
-  <% if (cart && cart.items.length > 0) { %>
-    <div class="cart-items">
-      <% cart.items.forEach(item => { %>
-        <div class="cart-item">
-          <img src="<%= item.productId.imageUrls[0] %>" alt="<%= item.productId.name %>">
-          <div class="item-details">
-            <h3><%= item.productId.name %></h3>
-            <p>Price: $<%= item.productId.price.toFixed(2) %></p>
-            <p>Quantity: <%= item.quantity %></p>
-          </div>
+<div class="cartContainer">
+    <h1 class="carthead">Your Shopping Cart</h1>
+
+    <div class="cartContent<%= (cart && cart.products && cart.products.length > 0) ? '' : ' emptyCart' %>">
+    
+    <div class="cartLeft<%= (cart && cart.products && cart.products.length > 0) ? '' : ' emptyCart' %>">
+    
+        <% if (cart && cart.products && cart.products.length > 0) { %>
+            
+            <div class="address-section">
+                <div class="address-sectionup">
+                    <h2>Choose Delivery Address</h2>
+                    <select id="addressDropdown" name="selectedAddress">
+                        <% userAddresses.forEach(userAddress => { %>
+                            <% userAddress.addresses.forEach(address => { %>
+                                <option value="<%= address._id %>">
+                                    <%= address.houseNumber %>, <%= address.locality %>, <%= address.city %>, <%= address.state %> - <%= address.pinCode %>
+                                </option>                                                            
+                            <% }); %>
+                        <% }); %>
+                    </select>                                                       
+                </div>
+            </div>
+    
+            <div class="offer-section">
+                <div class="offer-sectionup">
+                    <img src="/images/discount.png" alt="">
+                    <h2>Available Offers</h2>
+                </div>
+                <div class="offer-sectiondown">
+                    <p>10% instant discount on Citi Credit & Debit Cards on a min spend of  &nbsp; ₹3000.TCA</p>
+                </div>
+            </div>
+    
+            <div class="item-section">
+                <ul>
+                    <% cart.products.forEach(item => { %>
+                        <li>
+                            <div class="item-sectionall">
+    
+                                <div class="item-sectionleft">
+                                    <img src="<%= item.product.imageUrls[0] %>" alt="<%= item.product.name %>">
+                                </div>
+    
+                                <div class="item-sectionright">
+                                    <h3><%= item.product.name %></h3>
+    
+                                    <div class="quantitybuttons">
+                                        <button onclick="updateQuantity('<%= item._id %>', -1)">-</button>Quantity:
+                                        <span id="<%= item._id %>Quantity"><%= item.quantity %></span>
+                                        <button onclick="updateQuantity('<%= item._id %>', 1)">+</button> 
+                                    </div>
+    
+                                    <div class="itemPrice">
+                                        <p>₹ <%= item.product.price * item.quantity %></p>
+                                        <del>₹ <%= item.product.ogPrice %></del>
+                                    </div> 
+    
+                                    <div class="texts">
+                                        <div class="textup">
+                                            <img src="/images/product-return.png" alt="">
+                                            <p> 14 days return available.</p>
+                                        </div>
+                                        <div class="textdown">
+                                            <img src="/images/check.png" alt=""> 
+                                            <p>Delivery by 20 Feb 2024.</p>
+                                        </div>
+                                    </div>    
+    
+                                    <div class="itembtns">
+                                        <button class="removeItem" onclick="confirmRemove('<%= item._id %>')">Remove From Cart</button>         
+                                     </div>
+    
+                                </div>
+                            </div>                     
+                        </li>
+                    <% }); %>
+                </ul> 
+            </div>
+
+            <a href="/wishlist">
+                <div class="leftdown">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <div class="leftdownText">Add More From Wishlist</div>
+                    <i class="fa-solid fa-arrow-right leftdownarrow"></i>
+                </div>
+            </a>
+                      
+    </div>
+    
+    <div class="cartRight">
+
+        <div class="coupon-section">
+            <div class="couponUp">
+                <div class="couponimg"><img src="/images/coupon.png" alt=""></div>
+                <div class="coupontext">Apply Coupons</div>
+            </div>
+            <div class="couponDown">
+                <input type="text" name="couponCode" id="couponCode" placeholder="Enter your Coupon Code">
+                <button class="apply">Apply</button>
+            </div>
         </div>
-      <% }); %>
 
-      <div class="cart-summary">
-        <h2>Order Summary</h2>
-        <p>Total Items: <%= cart.items.length %></p>
-        <p>Total Price: $<%= cart.totalPrice.toFixed(2) %></p>
-      </div>
+        <div class="gift-section">
+            <img src="/images/gift-ribbon.png" alt="">
+            <div class="gifttext">
+                <p class="p1">Buying for a special person?</p>
+                <p class="p2">Gift wrap, only for ₹20</p>
+                <button>Add Gift Wrap</button>
+            </div>
+        </div>
+
+        <div class="price-section">
+            <div class="priceHead">Price Details</div>
+            <div class="pricetext">
+                <div class="pt1">
+                    <p>Total MRP :</p>
+                    <p class="mrp"> ₹ <%= cart.totalOgPrice %></p>
+                </div>
+                <div class="pt1">
+                    <p>Discount :</p>
+                    <p class="discount"> ₹ <%= cart.discount %></p>
+                </div>
+                <div class="pt1">
+                    <p>Our Price :</p>
+                    <p class="price"> ₹ <%= cart.totalPrice %></p>
+                </div>               
+                <div class="pt1">
+                    <p class="couponDiscount">Coupon Discount :</p>
+                    <p> ₹ <%= cart.totalPrice %></p>
+                </div>
+                <div class="pt1">
+                    <p class="totalamount">Total Amount :</p>
+                    <p class="amount totalamount"> ₹ <%= cart.totalPrice %></p>
+                </div>               
+            </div>         
+            <button class="place">Place Order</button>
+        </div>
+
     </div>
-  <% } else { %>
-    <div class="null">
-      <img src="/images/emptycart.png" alt="">
-      <p class="hey">Hey,it feels so light!</p>
-      <p class="your">Your bag is empty.</p>
-      <p class="lets">Lets add some items!</p>
-      <a href="/"><button class="btn">Continue Shopping</button></a>
-    </div>
-  <% } %>
+
+    <% } else { %>
+        <div class="null">
+            <img src="images/emptycart.png" alt="">
+            <p class="hey">Hey, it feels so light!</p>
+            <p class="lets">Let's add some items. </p>
+            <a href="/"><button class="btn">Continue Shopping</button></a>
+        </div>
+    <% } %>
+</div>
+    
+</div>
+
+
+
+<script src="js/cart.js"></script>
 
 </body>
 </html>

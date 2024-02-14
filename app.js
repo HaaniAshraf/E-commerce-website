@@ -7,6 +7,7 @@ const cache=require('nocache')      //to disable client-side caching.
 const mainRouter=require('./Routers/mainRouter')
 const userRouter=require('./Routers/userRouter')
 const adminRouter=require('./Routers/adminRouter')
+const productRouter=require('./Routers/productRouter')
 
 //Database model
 const { startMongoServer } = require('./Model/db');
@@ -41,6 +42,7 @@ app.set('views',"views" )
 app.use('/',mainRouter)
 app.use('/',userRouter)
 app.use('/',adminRouter)
+app.use('/',productRouter)
 
 
 app.listen(port, () => {

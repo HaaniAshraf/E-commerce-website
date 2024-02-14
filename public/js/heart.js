@@ -29,9 +29,6 @@ async function toggleWishlist(event) {
 }
 
 
-
-
-
 async function updateWishlistCount() {
     try {
         const response = await fetch('/wishlist/count');
@@ -40,15 +37,13 @@ async function updateWishlistCount() {
             return; 
         }
         if (!response.ok) {
-            throw new Error(`Server responded with status: ${response.status}`);
+            console.error(`Server responded with status: ${response.status}`);
         }
         const data = await response.json();
         const wishlistCountSpan = document.getElementById('wishlistCount');
         if (wishlistCountSpan) {
             wishlistCountSpan.textContent = data.wishlistCount;
-        } else {
-            console.log('Null');
-        }
+        } 
     } catch (error) {
         console.error('Error updating wishlist count:', error);
     }

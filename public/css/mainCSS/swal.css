@@ -1,0 +1,37 @@
+/* custom-swal-styles.css */
+
+.swal2-popup {
+    background-color: #292f32 !important;
+}
+
+.swal2-title {
+    color: #fff !important;
+}
+.swal2-icon{
+    color: rgb(234, 72, 72) !important;
+}
+.swal2-icon.swal2-warning{
+    border-color: rgb(234, 72, 72) !important;
+}
+#swal2-content{
+    color: rgb(139, 139, 139) !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring{
+    border-color: rgb(64, 158, 64);
+}
+.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long {
+    background-color: rgb(64, 158, 64);
+}
+.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip {
+    background-color: rgb(64, 158, 64);
+}
+.swal2-confirm-button {
+    background-color: #3085d6 !important;
+    color: #fff !important;
+}
+
+.swal2-cancel-button {
+    background-color: #d33 !important;
+    color: #fff !important;
+}

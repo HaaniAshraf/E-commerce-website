@@ -81,38 +81,39 @@ const profileSchema = new mongoose.Schema({
   
 
 //Address Schema(addresses collection)
-const addressSchema=new mongoose.Schema({
-    userId: { 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-     },
-    username: { 
-        type: String, 
-        required: true
-     },
-    houseNumber: {
-        type: String, 
-        required: true 
-    },
-    locality: { 
-        type: String, 
-        required: true 
-    },
-    city: { 
-        type: String, 
-        required: true 
-    },
-    state: { 
-        type: String, 
-        required: true 
-    },
-    pinCode: { 
-        type: String, 
-        required: true 
-    },
-})
-
+const addressSchema = new mongoose.Schema({
+  userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+  },
+  username: {
+      type: String,
+      required: true
+  },
+  addresses: [{
+      houseNumber: {
+          type: String,
+          required: true
+      },
+      locality: {
+          type: String,
+          required: true
+      },
+      city: {
+          type: String,
+          required: true
+      },
+      state: {
+          type: String,
+          required: true
+      },
+      pinCode: {
+          type: Number,
+          required: true
+      }
+  }]
+});
 
 //Product Schema(products collection)
 const productSchema = new mongoose.Schema({
@@ -198,23 +199,41 @@ const wishlistSchema=new mongoose.Schema({
 
 //Cart Schema(carts collection)
 const cartSchema = new mongoose.Schema({
-  userId: {
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
     required: true,
   },
-  productId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'products',
-    required: true,
-  },
-  quantity: {
-    type: Number,
-    default: 1,
-  },
+  products: [{
+    product: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'products',
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      default: 1,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    ogPrice: {
+      type: Number,
+      required: true,
+    },
+  }],
   totalPrice: {
     type: Number,
     required: true,
+  },
+  totalOgPrice: {
+    type: Number,
+    required: true,
+  },
+  discount:{
+    type:Number,
+    required:true,
   },
 });
   
