@@ -16,11 +16,11 @@
           </div>        
           <div class="couponLiUp2">
             <span> Code: <b><%= coupon.couponCode %></b> </span>
-            <span style="color: gray;">On <%= coupon.conditions %></span>
+            <span style="color: gray;"> <%= coupon.conditions %></span>
           </div>        
         </div>
         <div class="couponLiDown">
-          <span>Expiry Date: <%= coupon.expiry %></span>   
+          <span>Expiry Date: <%= coupon.expiry.toDateString() %></span>   
         </div>
         </li>
     <% }); %>

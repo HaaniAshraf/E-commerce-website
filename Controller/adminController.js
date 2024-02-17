@@ -121,17 +121,18 @@ module.exports={
         },
   
   
-        addCouponPost:async(req,res)=>{
+        addCouponPost: async (req, res) => {
           try {
-            const { couponCode, discount, conditions, expiry } = req.body;
-            const newCoupon = new Coupon({ couponCode, discount, conditions, expiry});
-            await newCoupon.save();
-            res.redirect('/addCoupon');
+              const { couponCode, discount, conditions, expiry } = req.body;
+              const newCoupon = new Coupon({ couponCode: couponCode.toUpperCase(), discount, conditions, expiry });
+              await newCoupon.save();
+              res.redirect('/addCoupon');
           } catch (error) {
-            console.error('Error adding coupon:', error);
-            res.status(500).send('Internal Server Error');
+              console.error('Error adding coupon:', error);
+              res.status(500).send('Internal Server Error');
           }
-        },
+      },
+      
 
 
         updateCouponGet:async(req,res)=>{
@@ -153,7 +154,7 @@ module.exports={
           const couponId = req.params.couponId;
           const { couponCode, discount, conditions, expiry } = req.body;      
           try {
-            const coupon = await Coupon.findByIdAndUpdate(couponId,{couponCode, discount, conditions, expiry });   
+            const coupon = await Coupon.findByIdAndUpdate(couponId,{couponCode: couponCode.toUpperCase(), discount, conditions, expiry });   
             if (!coupon) {
               return res.status(404).send('Coupon not found');
             }      

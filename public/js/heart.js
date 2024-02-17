@@ -1,3 +1,4 @@
+// Wishlist Toggling
 async function toggleWishlist(event) {
     event.preventDefault();
     const heart = event.currentTarget.querySelector('.fa-heart');
@@ -29,6 +30,7 @@ async function toggleWishlist(event) {
 }
 
 
+// Wishlist Count
 async function updateWishlistCount() {
     try {
         const response = await fetch('/wishlist/count');
@@ -39,11 +41,17 @@ async function updateWishlistCount() {
         if (!response.ok) {
             console.error(`Server responded with status: ${response.status}`);
         }
-        const data = await response.json();
-        const wishlistCountSpan = document.getElementById('wishlistCount');
-        if (wishlistCountSpan) {
-            wishlistCountSpan.textContent = data.wishlistCount;
-        } 
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await response.json();
+            const wishlistCountSpan = document.getElementById('wishlistCount');
+            if (wishlistCountSpan) {
+                wishlistCountSpan.textContent = data.wishlistCount;
+            } 
+        }else {
+            // console.error('Unexpected content type. Expected JSON.');
+        }
+        
     } catch (error) {
         console.error('Error updating wishlist count:', error);
     }

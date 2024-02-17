@@ -22,10 +22,13 @@ const {
     addToWishlist,
     removeFromWishist,
     cartGet,
-    // cartToggle,
-    // cartCount,
+    cartCount,
     addToCart,
+    updateCart,
     removeFromCart,
+    validateCoupon,
+    applyGift,
+    checkoutGet
 }=require('../Controller/userController')
 
 
@@ -48,11 +51,13 @@ router.get('/',userhomeGet)
       .post('/addToWishlist/:productId',addToWishlist)
       .post('/removeFromWishlist/:productId',removeFromWishist)
       .get('/cart',cartGet)
-      //.post('/cartToggle/:productId',cartToggle)
-      // .get('/cart/count',cartCount)
+      .get('/cart/count',cartCount)
       .post('/addToCart/:productId',addToCart)
+      .post('/updateCartItem',updateCart)
       .post('/removeFromCart/:productId',removeFromCart)
-
+      .post('/applyCoupon',validateCoupon)
+      .post('/applyGift',applyGift)
+      .get('/checkout',checkoutGet)
 
 
 module.exports=router

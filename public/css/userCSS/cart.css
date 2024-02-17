@@ -338,8 +338,17 @@ body{
     font-weight: bold;
     font-size: 18px;
 }
+.pt1 .free{
+    color:rgb(68, 225, 141) ;
+}
 .pt1 .totalamount{
     color: rgb(249, 195, 44);
+}
+.coupongreen{
+    color: rgb(16, 152, 27);
+}
+.couponred{
+    color: rgb(247, 105, 105);
 }
 .price-section button{
     height: 38px;

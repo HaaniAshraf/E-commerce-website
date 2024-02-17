@@ -1,3 +1,5 @@
+
+// Orange Color of Cart
 document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('click', async (event) => {
         const addToCartButton = event.target.closest('#addToCartButton');
@@ -10,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json',
                     },
                 });
-
                 if (cartResponse.ok) {
                     addToCartButton.classList.add('orangeColor');
                 } else {
@@ -20,8 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error:', error);
             }
         }
-
-        // Check if the cartIcon element exists before accessing its classList
         const cartIcon = document.getElementById('cartIcon');
         if (cartIcon && cartIcon.classList.contains('productInCart')) {
             cartIcon.classList.add('orangeColor');
@@ -31,17 +30,97 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-function updateQuantity(itemId, change) {
-        const quantityElement = document.getElementById(`${itemId}Quantity`);
-        let quantity = parseInt(quantityElement.innerText);
-        quantity += change;
-        if (quantity < 1) {
-            quantity = 1; 
+
+
+// Cart Count
+async function updateCartCount() {
+    try {
+        const response = await fetch('/cart/count');       
+        if (response.status === 302) {
+            window.location.href = '/login';
+            return; 
         }
-        quantityElement.innerText = quantity;
+        if (!response.ok) {
+            console.error(`Server responded with status: ${response.status}`);
+            return;
+        }
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await response.json();
+            const cartCountSpan = document.getElementById('cartCount');  
+            if (cartCountSpan) {
+                cartCountSpan.textContent = data.cartCount;
+            }
+        } else {
+            // console.error('Unexpected content type. Expected JSON.');
+        }
+    } catch (error) {
+        console.error('Error updating cart count:', error);
     }
+}
+updateCartCount(); 
 
 
+
+
+
+// Quantity Update
+const productPrice = document.getElementById('productPrice')  //price of a product
+const productOgPrice = document.getElementById('productOgPrice')  // Ogprice of a product
+const totalPriceElement = document.getElementById('totalCartPrice');  // Total price of the cart
+const totalOgPriceElement = document.getElementById('totalCartOgPrice');  // Total original price of the cart(mrp)
+const totalDiscountElement = document.getElementById('totalCartDiscount'); // Mrp-Our Price
+const totalAmountElement = document.getElementById('totalAmountValue');
+
+function updateQuantity(itemId, change, price, ogPrice) {
+    const quantityElement = document.getElementById(`${itemId}Quantity`);
+    let quantity = parseInt(quantityElement.innerText);
+    quantity += change;
+    if (quantity < 1) {
+        quantity = 1; 
+    }
+    quantityElement.innerText = quantity;
+
+    const finalPrice = parseInt(price * quantity);
+    const finalOgPrice = parseInt(ogPrice * quantity);
+
+    const productPriceElement = document.querySelector(`.productPrice${itemId}`);
+    const productOgPriceElement = document.querySelector(`.productOgPrice${itemId}`);
+
+    productPriceElement.innerHTML = `₹${finalPrice}`;
+    productOgPriceElement.innerHTML = `₹${finalOgPrice}`;
+
+    const data = {
+        itemId: itemId,
+        quantity: quantity,
+        finalPrice: finalPrice,
+        finalOgPrice: finalOgPrice
+    };
+
+    fetch('/updateCartItem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        totalPriceElement.innerText = `₹${result.totalPrice}`;
+        totalOgPriceElement.innerText = `₹${result.totalOgPrice}`;
+        totalDiscountElement.innerText = `₹${result.discount}`;
+        totalAmountElement.innerText = `₹${result.totalOrderAmount}`
+    })
+    .catch(error => {
+        console.error('Error updating cart:', error);
+     });
+    }
+    
+
+
+
+    
+// Cart Remove
     function confirmRemove(productId) {
         Swal.fire({
             title: 'Are you sure?',
@@ -58,16 +137,20 @@ function updateQuantity(itemId, change) {
             }
         });
     }
+
     async function removeFromCart(productId) {
         try {
             const response = await fetch('/removeFromCart/' + productId, {
                 method: 'POST',
-            });    
+            });
+    
             if (response.ok) {
                 const result = await response.json();
                 console.log('Remove from cart response:', result);
-                    if (result.success) {
-                        window.location.reload();
+    
+                if (result.success) {
+                    // Wait for the removal to be completed before reloading
+                     window.location.reload();
                 } else {
                     console.error('Failed to remove item from cart.');
                 }
@@ -79,3 +162,132 @@ function updateQuantity(itemId, change) {
         }
     }
     
+ 
+
+
+
+// Gift Wrap 
+    document.addEventListener('DOMContentLoaded', function () {
+        var addGiftWrapBtn = document.getElementById('addGiftWrapBtn');
+        var totalAmountElement = document.getElementById('totalAmountValue'); 
+
+        if (totalAmountElement) {
+            var txtContent = totalAmountElement.textContent.replace('₹', '');
+            const total = parseFloat(txtContent);
+
+            if(addGiftWrapBtn){
+                addGiftWrapBtn.addEventListener('click',async ()=> {
+
+                    try{
+                        const response = await fetch('/applyGift',{
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({  })
+                        })
+        
+                        if(response.ok){
+                            const result = await response.json();
+        
+                            if(result.success){
+                                totalAmountElement.innerHTML = `₹${result.totalOrderAmount}`;
+                            }
+                        }
+
+                    }catch(error){
+                        console.error('Error applying gift wrap:',error)
+                    }
+
+                })
+            }
+        }
+    });
+    
+
+
+
+
+// Coupon Apply
+document.addEventListener('DOMContentLoaded',()=>{
+    
+    document.querySelector('.apply').addEventListener('click', async () => {
+        const couponCode = document.getElementById('couponCode').value;
+    
+        try {
+            const response = await fetch('/applyCoupon', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ couponCode }),
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+    
+                if (result.success) {
+                    const couponDiscount = parseFloat(result.discount);
+                    const condition = result.condition;
+    
+                    const couponDiscountElement = document.querySelector('.couponDiscount');
+                    couponDiscountElement.textContent = `${couponDiscount}%`;
+    
+                    const totalAmountElement = document.getElementById('totalAmountValue');
+                    const originalPriceElement = document.getElementById('totalCartPrice');
+    
+                    if (originalPriceElement) {
+                        const originalPrice = parseFloat(originalPriceElement.innerText.replace('₹', ''));
+    
+                        if (!isNaN(couponDiscount) && !isNaN(originalPrice)) {   // isNaN() returns true if a value is Not A Number.
+                            const discountedAmount = originalPrice - (originalPrice * (couponDiscount / 100));
+
+                            if(checkCondition(condition,originalPrice)){
+                                totalAmountElement.textContent = `₹ ${discountedAmount.toFixed()}`;
+                                couponDiscountElement.classList.add('coupongreen')
+                            }else{
+                                couponDiscountElement.textContent = `Coupon condition not met!`
+                                couponDiscountElement.classList.add('couponred')
+                            }
+
+                        } else {
+                            console.log('Invalid coupon discount or original price');
+                        }
+                    } else {
+                        console.log('Total price element not found');
+                    }
+                } else {
+                    console.log('Invalid coupon code');
+                }
+    
+            } else {
+                console.error('Failed to validate coupon:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error validating coupon:', error);
+        }
+    });
+    
+})
+
+function checkCondition(condition, originalPrice) {
+    // Extract numeric values from the condition
+    const amounts = condition.match(/\d+/g); // amounts is an array with the 2 numbers is condition.
+
+    if (amounts && amounts.length === 2) {
+        const minPurchaseAmount = parseFloat(amounts[0]); // takes the first amount of amounts array
+        const maxPurchaseAmount = parseFloat(amounts[1]); // takes the second amount of amounts array
+
+        if (!isNaN(minPurchaseAmount) && !isNaN(maxPurchaseAmount)) {
+            return originalPrice >= minPurchaseAmount && originalPrice <= maxPurchaseAmount;
+        } else {
+            console.log('Invalid numeric values in condition');
+            return false;
+        }
+    } else {
+        console.log('Invalid condition format');
+        return false;
+    }
+}
+
+

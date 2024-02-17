@@ -298,6 +298,21 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   top: 0px;
   right: 2px;
 }
+.cart-count{
+  color: white;
+  background-color: red;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  position: absolute;
+  top: 0px;
+  right: 2px;
+}
 .search-btn:hover { color: var(--salmon-pink); }
 
 .mobile-bottom-navigation {

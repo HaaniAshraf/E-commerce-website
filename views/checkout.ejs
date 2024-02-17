@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/css/userCSS/checkout.css">
+</head>
+<body>
+    <%- include('mainHeader.ejs') %>
+
+    <div class="fullContent">
+
+        <div class="checkoutContent">
+
+            <h1>Choose A Payment Method</h1>
+        
+            <div class="checkoutCards">
+        
+                <div class="card" onclick="showCashOnDeliveryForm()">
+                    <img src="/images/checkout/cash-on-delivery.png" alt="Cash On Delivery">
+                    <h4>Cash On Delivery</h4>
+                </div>
+                <div class="modal-overlay" id="modalOverlay"></div>
+                <div class="modal" id="cashOnDeliveryModal">
+                    <div class="modal-content">
+                        <form id="cashOnDeliveryForm">
+                            <p class="please">Please verify your Email:</p>
+                            <input type="email" class="cashDeliveryInp">
+                            <p class="extra">₹30 will be charged extra for Cash on Delivery option.</p>
+                        </form>
+                        <button class="placeOrder">Place Order</button>
+                        <button onclick="hideCashOnDeliveryForm()" class="close">Close</button>
+                    </div>
+                </div>
+                
+
+                <div class="card" onclick="showUpiForm()">
+                    <img src="/images/checkout/cashless-payment.png" alt="UPI Payment">
+                    <h4>UPI Payment</h4>
+                </div>
+                <div class="modal-overlay" id="upiModalOverlay"></div>
+                <div class="modal" id="upiPaymentModal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="upiOptions">
+                            <div class="option1">
+                                <input type="radio" id="gpay" name="upiOption" value="gpay" class="upiOptionsInp">
+                                <img src="/images/checkout/png-transparent-google-pay-or-tez-hd-logo-thumbnail.png" alt="">
+                                <label for="gpay" class="upiLabel">GPay</label>
+                            </div>
+                            <div class="option1">
+                                <input type="radio" id="phonepe" name="upiOption" value="phonepe" class="upiOptionsInp">
+                                <img src="/images/checkout/png-transparent-phonepe-india-unified-payments-interface-india-purple-violet-text.png" alt="">
+                                <label for="phonepe" class="upiLabel">PhonePe</label>
+                            </div>
+                            <div class="option1">
+                                <input type="radio" id="paytm" name="upiOption" value="paytm" class="upiOptionsInp">
+                                <img src="/images/checkout/Paytm-Circle-Logo.png" alt="">
+                                <label for="paytm" class="upiLabel">Paytm</label> 
+                            </div>                                                    
+                        </div>                    
+                        <form id="upiPaymentForm">                          
+                            <label for="upiId">Enter UPI ID:</label>
+                            <input type="text" name="upiId" id="upiId">
+                        </form>
+                        <button class="placeOrder">Place Order</button>
+                        <button onclick="hideUpiForm()" class="close">Close</button>
+                    </div>
+                </div>                
+
+
+                <div class="card" onclick="showCardForm()">
+                    <img src="/images/checkout/atm-card.png" alt="Card Payment">
+                    <h4>Credit / Debit Card Payment</h4>
+                </div>
+                <div class="modal-overlay" id="cardModalOverlay"></div>
+                <div class="modal" id="cardPaymentModal" style="display: none;">
+                    <div class="modal-content">
+                        <form id="cardPaymentForm">
+                            <label for="cardHolderName">Cardholder Name:</label>
+                            <input type="text" name="cardHolderName" id="cardHolderName" placeholder="Name" required>                                  
+                            <label for="cardNumber">Card Number:</label>
+                            <input type="number" name="cardNumber" id="cardNumber" placeholder="0000 0000 0000 0000" required>           
+                            <label for="expiryDate">Expiry Date:</label>
+                            <input type="date" name="expiryDate" id="expiryDate" placeholder="MM/YY" required>        
+                            <label for="cvc">CVC:</label>
+                            <input type="number" name="cvc" id="cvc" placeholder="xxx" required>                                        
+                        </form>
+                        <button class="placeOrder" onclick="processCardPayment()">Place Order</button>
+                        <button onclick="hideCardForm()" class="close">Close</button>
+                    </div>
+                </div>
+                
+
+                <div class="card" onclick="showEMIForm()">
+                    <img src="/images/checkout/tax.png" alt="EMI Payment">
+                    <h4>EMI Payment</h4>
+                </div>
+                <div class="modal-overlay" id="emiModalOverlay"></div>
+                <div class="modal" id="emiPaymentModal" style="display: none;">
+                    <div class="modal-content">
+                        <form id="emiPaymentForm">
+                            <label for="emiProvider"><h3>EMI Providers:</h3></label>
+                            <div class="emiOptions">
+                                <div class="option2">
+                                    <input type="radio" id="hdfc" name="emiOption" value="hdfc" class="emiOptionsInp">
+                                    <img src="/images/checkout/hdfc.png" alt="">
+                                    <label for="hdfc" class="emiLabel">HDFC Credit Card EMI</label>
+                                </div>
+                                <div class="option2">
+                                    <input type="radio" id="axis" name="emiOption" value="axis" class="emiOptionsInp">
+                                    <img src="/images/checkout/axis.png" alt="">
+                                    <label for="axis" class="emiLabel">AXIS Credit Card EMI</label>
+                                </div>
+                                <div class="option2">
+                                    <input type="radio" id="icici" name="emiOption" value="icici" class="emiOptionsInp">
+                                    <img src="/images/checkout/icici.png" alt="">
+                                    <label for="icici" class="emiLabel">ICICI Credit Card EMI</label> 
+                                </div>   
+                                <div class="option2">
+                                    <input type="radio" id="sbi" name="emiOption" value="sbi" class="emiOptionsInp">
+                                    <img src="/images/checkout/sbi.png" alt="">
+                                    <label for="sbi" class="emiLabel">SPI Credit Card EMI</label>
+                                </div>                                                 
+                            </div>      
+                        </form>
+                        <button class="placeOrder" onclick="processEMIPayment()">Place Order</button>
+                            <button onclick="hideEMIForm()" class="close">Close</button>
+                    </div>
+                </div>
+                             
+
+                <div class="card" onclick="showPayLaterForm()">
+                    <img src="/images/checkout/credit.png" alt="Pay Later">
+                    <h4>Pay Later</h4>
+                </div>
+                <div class="modal-overlay" id="payLaterModalOverlay"></div>
+                <div class="modal" id="payLaterModal" style="display: none;">
+                    <div class="modal-content">
+                        <form id="payLaterForm">
+                            <div class="payLaterOptions">
+                                <div class="option3">
+                                    <input type="radio" id="simpl" name="payLaterOption" value="simpl" class="payLaterOptionsInp">
+                                    <img src="/images/checkout/simpl.png" alt="">
+                                    <label for="simpl" class="payLaterLabel">Simpl</label>
+                                </div>
+                                <div class="option3">
+                                    <input type="radio" id="lazypay" name="payLaterOption" value="lazypay" class="payLaterOptionsInp">
+                                    <img src="/images/checkout/lazypay.jpg" alt="">
+                                    <label for="lazypay" class="payLaterLabel">LazyPay</label>
+                                </div>
+                                <div class="option3">
+                                    <input type="radio" id="icicipay" name="payLaterOption" value="icicipay" class="payLaterOptionsInp">
+                                    <img src="/images/checkout/icicipay.png" alt="">
+                                    <label for="icicipay" class="payLaterLabel">ICICI Pay Later</label> 
+                                </div>                                                    
+                            </div>      
+                        </form>
+                        <button class="placeOrder" onclick="processPayLaterPayment()">Place Order</button>
+                        <button onclick="hidePayLaterForm()" class="close">Close</button>
+                    </div>
+                </div>
+                
+
+                <div class="card" onclick="showNetBankingForm()">
+                    <img src="/images/checkout/provider.png" alt="Net Banking">
+                    <h4>Net Banking</h4>
+                </div>
+                <div class="modal-overlay" id="netBankingModalOverlay"></div>
+                <div class="modal" id="netBankingModal" style="display: none;">
+                    <div class="modal-content">
+                        <form id="netBankingForm">
+                            <div class="netBankingOptions">
+                                <div class="option4">
+                                    <input type="radio" id="icici" name="netBankingOption" value="icici" class="netBankingOptionsInp">
+                                    <img src="/images/checkout/icici.png" alt="">
+                                    <label for="icici" class="netBankingLabel">ICICI Bank</label>
+                                </div>
+                                <div class="option4">
+                                    <input type="radio" id="hdfc" name="netBankingOption" value="hdfc" class="netBankingOptionsInp">
+                                    <img src="/images/checkout/hdfc.png" alt="">
+                                    <label for="hdfc" class="netBankingLabel">HDFC Bank</label>
+                                </div>
+                                <div class="option4">
+                                    <input type="radio" id="sbi" name="netBankingOption" value="sbi" class="netBankingOptionsInp">
+                                    <img src="/images/checkout/sbi.png" alt="">
+                                    <label for="sbi" class="netBankingLabel">State Bank of India</label>
+                                </div>
+                                <div class="option4">
+                                    <input type="radio" id="axis" name="netBankingOption" value="axis" class="netBankingOptionsInp">
+                                    <img src="/images/checkout/axis.png" alt="">
+                                    <label for="axis" class="netBankingLabel">Axis Bank</label>
+                                </div>
+                                <div class="option4">
+                                    <input type="radio" id="axis" name="netBankingOption" value="axis" class="netBankingOptionsInp">
+                                    <img src="/images/checkout/kotak.jpg" alt="">
+                                    <label for="axis" class="netBankingLabel">Kotak Bank</label>
+                                </div>
+                            </div>
+                        </form>
+                        <button class="placeOrder" onclick="processNetBankingPayment()">Place Order</button>
+                        <button onclick="hideNetBankingForm()" class="close">Close</button>
+                    </div>
+                </div>
+        
+            </div>
+        
+           </div>
+        
+            <div class="priceDetails">
+                <h1>Price Details</h1>
+                <div class="pricetext">
+                    <div class="pt1">
+                        <p>Total MRP :</p>
+                        <p class="mrp"> ₹ <%= cart.totalOgPrice %></p>
+                    </div>
+                    <div class="pt1">
+                        <p>Discount :</p>
+                        <p class="discount"> ₹ <%= cart.discount %></p>
+                    </div>
+                    <div class="pt1">
+                        <p>Our Price :</p>
+                        <p class="price"> ₹ <%= cart.totalPrice %></p>
+                    </div>               
+                    <div class="pt1">
+                        <p class="shipping">Shipping Fee :</p>
+                        <p class="free"> FREE</p>
+                    </div>  
+                    <div class="pt1">
+                        <p class="totalamount">Total Amount :</p>
+                        <p class="amount totalamount" id="totalAmountValue" > ₹ <%= cart.totalOrderAmount %></p>
+                    </div>               
+                </div>         
+            </div>
+
+        </div>
+
+        <script src="/js/checkoutForms.js"></script>
+
+</body>
+</html>

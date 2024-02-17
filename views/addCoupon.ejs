@@ -27,7 +27,7 @@
             <span>Coupon Code: <b><%= coupon.couponCode %></b> </span>
             <span>Discount : <%= coupon.discount %></span>
             <span>Discount Condition: <%= coupon.conditions %></span>
-            <span>Expiry Date: <%= coupon.expiry %></span>
+            <span>Expiry Date: <%= coupon.expiry.toDateString() %></span>
             <div class="btns">
               <a href="/updateCoupon/<%= coupon._id %>">
                 <button class="update">Update</button>
@@ -55,7 +55,7 @@
         <input type="text" id="conditions" name="conditions" required>
     
         <label for="expiry">Expiry Date:</label>
-        <input type="text" id="expiry" name="expiry" required>
+        <input type="date" id="expiry" name="expiry" required>
     
         <button type="submit" class="add">Add Coupon</button>
       </form>

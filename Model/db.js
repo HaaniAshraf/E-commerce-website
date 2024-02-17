@@ -164,7 +164,7 @@ const bannerSchema = new mongoose.Schema({
 
 //Coupon Schema(coupons collection)
 const couponSchema=new mongoose.Schema({
-  couponCode:{
+    couponCode:{
     type:String,
     required:true,
   },
@@ -177,7 +177,7 @@ const couponSchema=new mongoose.Schema({
     required:true
   },
   expiry:{
-    type:String,
+    type:Date,
     required:true,
   }
 });
@@ -230,11 +230,17 @@ const cartSchema = new mongoose.Schema({
   totalOgPrice: {
     type: Number,
     required: true,
+    default: 0,
   },
   discount:{
     type:Number,
     required:true,
+    default: 0,
   },
+  totalOrderAmount:{
+    type:Number,
+    default:true
+  }
 });
   
 
