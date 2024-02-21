@@ -16,7 +16,9 @@ const {
     addCouponPost,
     updateCouponGet,
     updateCouponPost,
-    deleteCoupon
+    deleteCoupon,
+    orderListGet,
+    orderStatusPost,
 
 }=require('../Controller/adminController')
 
@@ -34,6 +36,8 @@ router.get('/adminHome',adminhomeGet)
       .get('/updateCoupon/:couponId',updateCouponGet)
       .post('/updateCoupon/:couponId',updateCouponPost)
       .post('/deleteCoupon/:couponId',deleteCoupon)
+      .get('/orderList',orderListGet)
+      .post('/updateOrderStatus/:orderId',orderStatusPost)
 
 
 module.exports=router

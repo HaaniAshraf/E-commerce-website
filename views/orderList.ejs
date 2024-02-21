@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="/css/adminCSS/orderList.css">
+</head>
+<body>
+
+    <a href="/adminHome">
+        <div class="logo">
+          <img src="/images/admin.png" alt="Avatar" class="avatar">
+          <h2 class="smart">HAANI</h2>
+        </div>
+      </a>
+
+    <div class="orderListContent">
+
+        <h1>Orders</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Total Amount</th>
+                    <th>Ordered Date</th>
+                    <th>Delivery Date</th>
+                    <th>Order Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order._id %></td>
+                        <td><%= order.user %></td>
+                        <td>₹ <%= order.totalOrderAmount %></td>
+                        <td><%= order.orderedDate.toDateString() %></td>
+                        <td>
+                            <% if (order.deliveryDate) { %>
+                                <%= order.deliveryDate.toDateString() %>
+                          <% } else { %>
+                            -
+                         <% } %>
+                        </td>
+                        <td>
+                            <% if (order.orderStatus === 'Cancelled') { %>
+                                <span class="statusCancelled">Cancelled</span>   
+                            <% } else if (order.orderStatus === 'Delivered') { %>
+                                <span class="statusDelivered">Delivered</span>  
+                           <% }                       
+                            else { %>
+                                <form id="orderStatusForm" method="POST" action="/updateOrderStatus/<%= order._id %>">
+                                    <select name="orderStatus" onchange="submitForm()">
+                                        <option value="Pending" <%= order.orderStatus === 'Pending' ? 'selected' : '' %>>Pending</option>
+                                        <option value="Shipped" <%= order.orderStatus === 'Shipped' ? 'selected' : '' %>>Shipped</option>
+                                        <option value="Delivered" <%= order.orderStatus === 'Delivered' ? 'selected' : '' %>>Delivered</option>
+                                    </select>
+                                </form>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        function submitForm() {
+            document.getElementById("orderStatusForm").submit();
+        }
+    </script>
+    
+
+</body>
+</html>

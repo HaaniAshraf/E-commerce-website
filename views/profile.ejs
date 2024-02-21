@@ -37,27 +37,6 @@
 
 </div>
 
-<!-- <script>
-    function profileUpdate() {
-        Swal.fire({
-            title: "Do you want to save the changes?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Save",
-            denyButtonText: `Don't save`,
-            backdrop: 'rgba(0,0,0,0.9)',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire("Saved!", "Profile updated successfully.", "success");
-                return true;
-            } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
-                return false;
-            }
-        });
-        return false;
-    }
-</script> -->
 <script>
     document.getElementById('profileForm').addEventListener('submit', function (event) {
         event.preventDefault();

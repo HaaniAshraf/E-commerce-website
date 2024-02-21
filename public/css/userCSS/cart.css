@@ -77,29 +77,11 @@ body{
 }
 
 
-.address-section{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.address-section h2{
-    font-size: 17px;
-}
-.address-section select{
-    margin-left: 10px;
-}
-.address-sectionup{
-    display: flex;
-    align-items: center;
-}
-
-
 .offer-section{
     border: solid 1px rgb(71, 71, 71);
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-top: 20px;
 }
 .offer-section img{
     height: 15px;

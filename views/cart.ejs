@@ -14,20 +14,6 @@
     
         <% if (cart && cart.products && cart.products.length > 0) { %>
             
-            <div class="address-section">
-                <div class="address-sectionup">
-                    <h2>Choose Delivery Address</h2>
-                    <select id="addressDropdown" name="selectedAddress">
-                        <% userAddresses.forEach(userAddress => { %>
-                            <% userAddress.addresses.forEach(address => { %>
-                                <option value="<%= address._id %>">
-                                    <%= address.houseNumber %>, <%= address.locality %>, <%= address.city %>, <%= address.state %> - <%= address.pinCode %>
-                                </option>                                                            
-                            <% }); %>
-                        <% }); %>
-                    </select>                                                       
-                </div>
-            </div>
     
             <div class="offer-section">
                 <div class="offer-sectionup">
@@ -63,8 +49,8 @@
                                         <% const finalOgPrice = item.product.ogPrice * item.quantity; %>
                                         <p class="productPrice<%=item._id%> productPrice" id="productPrice<%=item._id%>">₹ <%= finalPrice %></p>
                                         <del class="productOgPrice<%=item._id%> productOgPrice" id="productOgPrice<%=item._id%>">₹ <%= finalOgPrice %></del>
-                                    </div>                                                                    
-    
+                                    </div>      
+                                    
                                     <div class="texts">
                                         <div class="textup">
                                             <img src="/images/product-return.png" alt="">

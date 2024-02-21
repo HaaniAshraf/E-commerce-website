@@ -28,7 +28,11 @@ const {
     removeFromCart,
     validateCoupon,
     applyGift,
-    checkoutGet
+    checkoutGet,
+    checkoutPost,
+    orderPlacedGet,
+    ordersGet,
+    cancelOrderPost,
 }=require('../Controller/userController')
 
 
@@ -58,6 +62,10 @@ router.get('/',userhomeGet)
       .post('/applyCoupon',validateCoupon)
       .post('/applyGift',applyGift)
       .get('/checkout',checkoutGet)
+      .post('/checkout',checkoutPost)
+      .get('/orderPlaced',orderPlacedGet)
+      .get('/orders',ordersGet)
+      .post('/cancelOrder/:orderId',cancelOrderPost)
 
 
 module.exports=router

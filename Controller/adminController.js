@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Order } = require('../Model/db');
 
 
 module.exports={
@@ -15,6 +15,9 @@ module.exports={
     },
 
 
+
+
+
     userlistGet:async(req,res)=>{
       try {
         const regularUsers = await User.find({ role: false });
@@ -24,6 +27,8 @@ module.exports={
         res.status(500).send('Internal Server Error');
       }
     },
+
+
 
 
     removeUser:async(req,res)=>{
@@ -41,6 +46,8 @@ module.exports={
     },
    
 
+
+
       addBannerGet:async(req,res)=>{
         try {
           const banners = await Banner.find();
@@ -50,6 +57,9 @@ module.exports={
           res.status(500).send('Internal Server Error');
         }
       },
+
+
+
 
 
       addBannerPost:async(req,res)=>{
@@ -65,6 +75,9 @@ module.exports={
       },
 
 
+
+
+
       updateBannerGet:async(req,res)=>{
         const bannerId = req.params.bannerId;
         try {
@@ -78,6 +91,9 @@ module.exports={
         res.status(500).send('Internal Server Error');
       }
       },
+
+
+
 
 
       updateBannerPost:async(req,res)=>{
@@ -99,6 +115,9 @@ module.exports={
       },
 
 
+
+
+
       deleteBanner:async(req,res)=>{
         try {
           const bannerId = req.params.bannerId;
@@ -110,6 +129,9 @@ module.exports={
         },     
         
         
+
+
+
         addCouponGet:async(req,res)=>{
           try {
             const coupons = await Coupon.find();
@@ -120,6 +142,8 @@ module.exports={
           }
         },
   
+
+
   
         addCouponPost: async (req, res) => {
           try {
@@ -135,6 +159,8 @@ module.exports={
       
 
 
+
+
         updateCouponGet:async(req,res)=>{
           const couponId = req.params.couponId;
           try {
@@ -148,6 +174,9 @@ module.exports={
           res.status(500).send('Internal Server Error');
         }
         },
+
+
+
 
 
         updateCouponPost:async(req,res)=>{
@@ -167,6 +196,8 @@ module.exports={
         },
 
 
+
+
         deleteCoupon:async(req,res)=>{
           try {
             const couponId = req.params.couponId;
@@ -175,8 +206,37 @@ module.exports={
           } catch (error) {
                console.error('Error deleting coupon:', error);
           }
+        },
+
+
+
+
+        orderListGet:async(req,res)=>{
+
+          const orders = await Order.find({})
+          res.render('orderList',{orders})
+
+        },
+
+
+
+
+        orderStatusPost:async(req,res)=>{
+          try {
+            const orderId = req.params.orderId;
+            console.log('orderId:',orderId);
+            const newStatus = req.body.orderStatus;
+            console.log('newStatus:',newStatus);
+            
+            await Order.findByIdAndUpdate(orderId, { orderStatus: newStatus });
+    
+            res.redirect('/orderList');
+        } catch (error) {
+            console.error('Error updating order status:', error);
+            res.status(500).send('Internal Server Error');
         }
 
+        },
 
 
 }

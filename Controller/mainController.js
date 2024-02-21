@@ -51,12 +51,10 @@ module.exports={
           }
             if (user.role) {
               req.session.role = user.role
-              console.log('Admin');
               res.redirect('/adminHome');
           } else {
             req.session.email = user.email;
             req.session.user={userId:user._id}
-            console.log('User');
               res.redirect('/');
           }
       },

@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order } = require('../Model/db');
 
 
 module.exports={
@@ -547,16 +547,17 @@ module.exports={
     
 
 
-    addToCart: async (req, res) => {
+     addToCart: async (req, res) => {
       if (req.session.email) {
         try {
           const productId = req.params.productId;
           const userId = req.session.user.userId;
-          let userCart = await Cart.findOne({ user: userId });    
+    
+          let userCart = await Cart.findOne({ user: userId })  
           if (!userCart) {
-            userCart = new Cart({ user: userId, products: [], totalPrice: 0 });
-          }   
-
+            userCart = new Cart({ user: userId, products: [], totalPrice: 0});
+          }
+    
           const existingProduct = userCart.products.find((item) => item.product.equals(productId));
           let product;   
           if (existingProduct) {
@@ -564,36 +565,37 @@ module.exports={
             if (!product) {
               return res.status(404).send('Product not found');
             }   
-
+    
             existingProduct.quantity += 1;
             existingProduct.price = product.price * existingProduct.quantity;
             existingProduct.ogPrice = product.ogPrice * existingProduct.quantity;
-
+    
           } else {
             product = await Product.findById(productId);   
             if (!product) {
               return res.status(404).send('Product not found');
             }   
-
+    
             userCart.products.push({
               product: productId,
               quantity: 1,
               price: product.price, 
-              ogPrice:product.ogPrice,
-              discount:product.discount
+              ogPrice: product.ogPrice,
+              discount: product.discount,
             });
           } 
-
+    
           userCart.totalPrice = userCart.products.reduce((total, item) => {
             return total + item.price;
           }, 0);         
           userCart.totalOgPrice = userCart.products.reduce((total, item) => {
             return total + item.ogPrice;
           }, 0);         
-          userCart.discount=userCart.totalOgPrice-userCart.totalPrice
-          userCart.totalOrderAmount=userCart.totalPrice.toFixed()
-
+          userCart.discount = userCart.totalOgPrice - userCart.totalPrice;
+          userCart.totalOrderAmount = userCart.totalPrice.toFixed()
+    
           await userCart.save();
+    
           res.redirect('/cart');
         } catch (error) {
           console.error(error);
@@ -603,6 +605,7 @@ module.exports={
         res.redirect('/login');
       }
     },
+    
 
 
 
@@ -777,19 +780,174 @@ module.exports={
 
     checkoutGet:async(req,res)=>{
       if (req.session.email) {
+        
         try {
           const dynamicTitle = 'Checkout';
           const userId = req.session.user.userId;
           const userCart = await Cart.findOne({ user: userId }).populate('products.product');   
-          res.render('checkout', { cart: userCart, title: dynamicTitle });
+
+          if(userCart){
+            const userAddresses = await Address.find({ userId });
+            res.render('checkout', { cart: userCart, title: dynamicTitle, userAddresses: userAddresses });
+          }else{
+            res.redirect('/cart')
+          }  
+
         } catch (error) {
           console.error(error);
           res.status(500).send('Internal Server Error');
         }
+
       } else {
         res.redirect('/login');
       }
-    }
+    },
+
+
+
+
+    checkoutPost:async(req,res)=>{
+      if(req.session.email){
+
+        try{
+          const userId = req.session.user.userId;
+
+          const userEmail = req.body.email;
+          if (userEmail !== req.session.email) {
+            return res.redirect('/checkout');
+          }
+
+          const userAddresses=await Address.findOne({userId:userId})
+          const selectedAddressId = req.body.selectedAddress;
+          const selectedAddress = userAddresses.addresses.find(address => address._id.toString() === selectedAddressId);
+          const userDeliveryAddress = {
+            houseNumber: selectedAddress.houseNumber,
+            locality: selectedAddress.locality,
+            city: selectedAddress.city,
+            state: selectedAddress.state,
+            pinCode: selectedAddress.pinCode,
+          };
+
+          const userCart = await Cart.findOne({ user: userId }).populate({
+            path: 'products.product',
+            model: 'products'
+          })  
+
+        if (!userCart || userCart.products.length === 0) {
+          return res.render('checkout', { error: 'Cart is empty' });
+        }
+
+        const orderedDate = Date.now()
+        const deliveryDate = new Date(orderedDate);
+        deliveryDate.setDate(deliveryDate.getDate() + 2);
+
+        let orderStatus = 'Pending'
+
+        const paymentMethod = req.body.paymentMethod;
+        let extraCharge = 0;
+        if (paymentMethod === 'Cash On Delivery') {
+          extraCharge = 30;
+        }
+
+        const userOrder = new Order({
+          user: userId,
+          products: userCart.products.map(cartItem => ({
+              product: cartItem.product._id,
+              quantity: cartItem.quantity,
+          })),
+          totalOrderAmount: userCart.totalOrderAmount + extraCharge, 
+          deliveryAddress: userDeliveryAddress,
+          orderedDate: orderedDate,
+          deliveryDate: deliveryDate,
+          orderStatus: orderStatus,
+          paymentMethod: paymentMethod
+      });
+
+      await userOrder.save();
+      res.redirect(`/orderPlaced?orderId=${userOrder._id}`);
+
+        }catch(error){
+          console.error('Error in checkoutPost:', error);
+        }
+      }
+    },
+  
+
+
+
+    orderPlacedGet: async (req, res) => {
+      try {
+        const orderId = req.query.orderId;
+        const userId = req.session.user.userId
+
+        const populatedOrder = await Order.findById(orderId).populate({
+          path: 'products.product',
+          model: 'products'
+        });
+        const deliveryAddress = populatedOrder.deliveryAddress;
+        const cart = await Cart.find({ user:userId })
+
+        if(cart.length>0){
+          res.render('orderPlaced', { order: populatedOrder, deliveryAddress, cart });
+          await Cart.deleteOne({ user: userId });
+        }else{
+          res.redirect('/cart')
+        }       
+    
+      } catch (error) {
+        console.error('Error getting orderPlaced page:', error);
+        res.status(500).render('orderPlaced', { error: 'Internal Server Error' });
+      }
+    },
+
+
+
+
+    ordersGet: async (req, res) => {
+      try {
+        if (req.session.email) {
+          const userId = req.session.user.userId;        
+          const userOrders = await Order.find({ user: userId }).sort({ orderedDate: -1 })
+          .populate({
+            path: 'products.product',
+            model: 'products', 
+        });
+          res.render('orders', { userOrders });
+        } else {
+          res.redirect('/login');
+        }
+        
+      } catch (error) {
+        console.error('Error in ordersGet:', error);
+        res.status(500).render('orders', { error: 'Internal Server Error' });
+      }
+    },
+
+    
+
+
+
+    cancelOrderPost:async(req,res)=>{
+      try {
+        const orderId = req.params.orderId;
+        const { reason } = req.body;
+        
+        await Order.findByIdAndUpdate(orderId, { 
+          orderStatus: 'Cancelled',
+          deliveryDate: '',
+          cancelReason: reason,
+         },
+         { new:true }
+         );   
+
+        res.json({ success: true, message: 'Order cancelled successfully.' });
+
+      } catch (error) {
+        console.error('Error cancelling order:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+      }
+    },
+    
     
 
         

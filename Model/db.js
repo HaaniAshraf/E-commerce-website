@@ -232,16 +232,78 @@ const cartSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  discount:{
-    type:Number,
-    required:true,
+  discount: {
+    type: Number,
+    required: true,
     default: 0,
   },
-  totalOrderAmount:{
-    type:Number,
-    default:true
+  totalOrderAmount: {
+    type: Number,
+    default: true,
   }
 });
+
+
+
+// Order Schema(orders collection)
+const orderSchema = new mongoose.Schema({
+    user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: true,
+    },
+    products: [{
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'products',
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+    }],
+    totalOrderAmount: {
+      type: Number,
+      default: true,
+    },
+    deliveryAddress: {
+      houseNumber: {
+        type: String,
+      },
+      locality: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+      pinCode: {
+        type: Number,
+      },
+    },
+    orderedDate:{
+      type:Date,
+      required: true,
+      default: Date.now,
+    },
+    deliveryDate:{
+      type:Date,
+    },
+    orderStatus:{
+      type:String,
+      default:'Pending'
+    },
+    cancelReason:{
+      type:String
+    },
+    paymentMethod:{
+      type:String
+    }
+});
+
   
 
 module.exports = {
@@ -253,5 +315,6 @@ module.exports = {
     Coupon:mongoose.model('coupons',couponSchema),
     Wishlist:mongoose.model('wishlists',wishlistSchema),
     Cart:mongoose.model('carts',cartSchema),
+    Order:mongoose.model('orders',orderSchema),
     startMongoServer
 };

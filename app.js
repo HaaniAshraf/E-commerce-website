@@ -3,6 +3,9 @@ const express=require('express')
 const session = require('express-session');
 const cache=require('nocache')      //to disable client-side caching.
 
+//Flash
+const flash=require('express-flash')
+
 //Routers
 const mainRouter=require('./Routers/mainRouter')
 const userRouter=require('./Routers/userRouter')
@@ -31,6 +34,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+app.use(flash());
 
 //Caching Middleware and Static Files
 app.use(cache())

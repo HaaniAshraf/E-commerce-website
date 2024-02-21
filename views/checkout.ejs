@@ -24,13 +24,30 @@
                 <div class="modal-overlay" id="modalOverlay"></div>
                 <div class="modal" id="cashOnDeliveryModal">
                     <div class="modal-content">
-                        <form id="cashOnDeliveryForm">
-                            <p class="please">Please verify your Email:</p>
-                            <input type="email" class="cashDeliveryInp">
+                        <form id="cashOnDeliveryForm" method="POST" action="/checkout">
+                            <input type="hidden" name="paymentMethod" value="Cash On Delivery">
+                            <label for="email" class="cashDeliveryLabel">Please Verify Your Email</label>
+                            <input type="text" class="cashDeliveryInp" id="email" name="email" placeholder="xyz@gmail.com" required>
+                            <div class="address-section">
+                                <div class="address-sectionup">
+                                    <label for="address">Choose Delivery Address</label>
+                                    <select id="addressDropdown" name="selectedAddress">
+                                        <% userAddresses.forEach(userAddress => { %>
+                                            <% userAddress.addresses.forEach(address => { %>
+                                                <option value="<%= address._id %>">
+                                                    <%= address.houseNumber %>, <%= address.locality %>, <%= address.city %>, <%= address.state %> - <%= address.pinCode %>
+                                                </option>                                                            
+                                            <% }); %>
+                                        <% }); %>
+                                    </select>                                                       
+                                </div>
+                            </div>
                             <p class="extra">₹30 will be charged extra for Cash on Delivery option.</p>
-                        </form>
-                        <button class="placeOrder">Place Order</button>
-                        <button onclick="hideCashOnDeliveryForm()" class="close">Close</button>
+                            <div class="checkoutBtns">
+                              <button type="submit" class="placeOrder">Place Order</button>
+                              <button type="button" onclick="hideCashOnDeliveryForm()" class="close">Close</button>
+                            </div>
+                          </form>                          
                     </div>
                 </div>
                 
@@ -43,6 +60,7 @@
                 <div class="modal" id="upiPaymentModal" style="display: none;">
                     <div class="modal-content">
                         <div class="upiOptions">
+                            <input type="hidden" name="paymentMethod" value="UPI Payment">
                             <div class="option1">
                                 <input type="radio" id="gpay" name="upiOption" value="gpay" class="upiOptionsInp">
                                 <img src="/images/checkout/png-transparent-google-pay-or-tez-hd-logo-thumbnail.png" alt="">
@@ -77,6 +95,7 @@
                 <div class="modal" id="cardPaymentModal" style="display: none;">
                     <div class="modal-content">
                         <form id="cardPaymentForm">
+                            <input type="hidden" name="paymentMethod" value="Credit / Debit">
                             <label for="cardHolderName">Cardholder Name:</label>
                             <input type="text" name="cardHolderName" id="cardHolderName" placeholder="Name" required>                                  
                             <label for="cardNumber">Card Number:</label>
@@ -100,7 +119,7 @@
                 <div class="modal" id="emiPaymentModal" style="display: none;">
                     <div class="modal-content">
                         <form id="emiPaymentForm">
-                            <label for="emiProvider"><h3>EMI Providers:</h3></label>
+                            <input type="hidden" name="paymentMethod" value="EMI Payment">
                             <div class="emiOptions">
                                 <div class="option2">
                                     <input type="radio" id="hdfc" name="emiOption" value="hdfc" class="emiOptionsInp">
@@ -137,7 +156,8 @@
                 <div class="modal-overlay" id="payLaterModalOverlay"></div>
                 <div class="modal" id="payLaterModal" style="display: none;">
                     <div class="modal-content">
-                        <form id="payLaterForm">
+                        <form id="payLaterForm"> 
+                            <input type="hidden" name="paymentMethod" value="Pay Later">
                             <div class="payLaterOptions">
                                 <div class="option3">
                                     <input type="radio" id="simpl" name="payLaterOption" value="simpl" class="payLaterOptionsInp">
@@ -170,6 +190,7 @@
                 <div class="modal" id="netBankingModal" style="display: none;">
                     <div class="modal-content">
                         <form id="netBankingForm">
+                            <input type="hidden" name="paymentMethod" value="Net Banking">
                             <div class="netBankingOptions">
                                 <div class="option4">
                                     <input type="radio" id="icici" name="netBankingOption" value="icici" class="netBankingOptionsInp">
@@ -191,11 +212,6 @@
                                     <img src="/images/checkout/axis.png" alt="">
                                     <label for="axis" class="netBankingLabel">Axis Bank</label>
                                 </div>
-                                <div class="option4">
-                                    <input type="radio" id="axis" name="netBankingOption" value="axis" class="netBankingOptionsInp">
-                                    <img src="/images/checkout/kotak.jpg" alt="">
-                                    <label for="axis" class="netBankingLabel">Kotak Bank</label>
-                                </div>
                             </div>
                         </form>
                         <button class="placeOrder" onclick="processNetBankingPayment()">Place Order</button>
@@ -207,34 +223,44 @@
         
            </div>
         
-            <div class="priceDetails">
-                <h1>Price Details</h1>
-                <div class="pricetext">
-                    <div class="pt1">
-                        <p>Total MRP :</p>
+           <div class="priceDetails">
+            <h1>Price Details</h1>
+            <div class="pricetext">
+                <div class="pt1">
+                    <p>Total MRP :</p>
+                    <% if (cart && cart.totalOgPrice !== undefined) { %>
                         <p class="mrp"> ₹ <%= cart.totalOgPrice %></p>
-                    </div>
-                    <div class="pt1">
-                        <p>Discount :</p>
+                    <% } %>
+                </div>
+                <div class="pt1">
+                    <p>Discount :</p>
+                    <% if (cart && cart.discount !== undefined) { %>
                         <p class="discount"> ₹ <%= cart.discount %></p>
-                    </div>
-                    <div class="pt1">
-                        <p>Our Price :</p>
+                    <% } %>
+                </div>
+                <div class="pt1">
+                    <p>Our Price :</p>
+                    <% if (cart && cart.totalPrice !== undefined) { %>
                         <p class="price"> ₹ <%= cart.totalPrice %></p>
-                    </div>               
-                    <div class="pt1">
-                        <p class="shipping">Shipping Fee :</p>
-                        <p class="free"> FREE</p>
-                    </div>  
-                    <div class="pt1">
-                        <p class="totalamount">Total Amount :</p>
+                    <% } %>
+                </div>               
+                <div class="pt1">
+                    <p class="shipping">Shipping Fee :</p>
+                    <p class="free"> FREE</p>
+                </div>  
+                <div class="pt1">
+                    <p class="totalamount">Total Amount :</p>
+                    <% if (cart && cart.totalOrderAmount !== undefined) { %>
                         <p class="amount totalamount" id="totalAmountValue" > ₹ <%= cart.totalOrderAmount %></p>
-                    </div>               
-                </div>         
-            </div>
+                    <% } %>
+                </div>               
+            </div>         
+        </div>
+        
 
         </div>
 
+        
         <script src="/js/checkoutForms.js"></script>
 
 </body>

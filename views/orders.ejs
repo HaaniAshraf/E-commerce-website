@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/userCSS/orders.css">
+    <link rel="stylesheet" href="/css/mainCSS/swal.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <%- include('mainHeader.ejs') %>
+
+    <%- include('profileHeader.ejs') %>
+
+    <h1>Your Orders</h1>
+
+
+    <div class="orders-content">
+        <% if (userOrders && userOrders.length > 0) { %>
+
+            <div class="order-list">
+                <% userOrders.forEach(order => { %>
+                    <div class="order-item">
+
+                            <div class="order-item-left">
+                            <p class="orderDate">Order Date: <%= order.orderedDate.toDateString() %></p>
+                            <% order.products.forEach(product => { %>
+                                <div class="product-item">
+                                    <div class="single-product">
+                                        <div class="single-productLeft">
+                                            <img src="<%= product.product.imageUrls[0] %>" alt="">
+                                        </div>
+                                        <div class="single-productRight">
+                                            <p class="productName"><%= product.product.name %></p>
+                                            <p class="productQuantity">Quantity: <%= product.quantity %></p>
+                                        </div>               
+                                    </div>                          
+                                </div>
+                            <% }); %>
+                         </div>      
+                         
+                         <div class="order-item-middle">
+                            <p class="orderId">Order ID - <%= order._id %></p>
+                            <% 
+                            const deliveryAddressStr = `${order.deliveryAddress.houseNumber}, ${order.deliveryAddress.locality}, ${order.deliveryAddress.city}, ${order.deliveryAddress.state} - ${order.deliveryAddress.pinCode}`;
+                            %>
+                        <p class="deliveryAddress">Delivery Address : <span> House Number <%= deliveryAddressStr %></span></p> 
+                        <p class="orderAmount">Order Amount : ₹ <%= order.totalOrderAmount %></p>
+                        <p class="paymentMethod">Payment Method : <%= order.paymentMethod %></p>
+                    </div>
+                    
+                    <div class="order-item-right" data-status="<%= order.orderStatus %>" data-order-id="<%= order._id %>">
+                      <p class="deliveryDate">
+                        <% if (order.orderStatus === 'Pending' || order.orderStatus === 'Shipped') { %>
+                            Arrives On : <%= order.deliveryDate.toDateString() %>
+                        <% } else if (order.orderStatus === 'Delivered') { %>
+                            Arrived On : <%= order.deliveryDate.toDateString() %>
+                        <% } %>
+                    </p>
+                    
+                            <% if (order.orderStatus === 'Pending') { %>
+                            <p class="orderStatus">Order Status: <span style="color: rgb(166, 165, 165);"><%= order.orderStatus %></span></p>
+                            <button class="cancelOrder" data-order-id="<%= order._id %>">Cancel Order</button>
+                          <% } else if (order.orderStatus === 'Shipped') { %>
+                            <p class="orderStatus">Order Status: <span style="color: rgb(197, 194, 15);"><%= order.orderStatus %></span></p>
+                            <button class="cancelOrder" data-order-id="<%= order._id %>">Cancel Order</button>
+                            <% } else if (order.orderStatus === 'Delivered') { %>
+                                <p class="orderStatus">Order Status: <span style="color: rgb(24, 170, 75);"><%= order.orderStatus %></span></p>
+                                <button class="orderReview">Review</button>
+                                <button class="orderReturn">Return</button>
+                          <% } else { %>
+                            <p class="orderStatus">Order Status: <span style="color: rgb(249, 57, 57);"><%= order.orderStatus %></span></p>
+                          <% } %>              
+                      </div>
+
+                        </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <div class="noOrders">
+                <img src="/images/add-product.png" alt="">
+                <p class="oops">OOPS! You have no orders yet.</p>
+               <a href="/"><button class="startShopping">Start Shopping</button></a> 
+            </div>
+        <% } %>
+    </div>
+   
+  <script src="/js/orders.js"></script>
+
+</body>
+</html>
