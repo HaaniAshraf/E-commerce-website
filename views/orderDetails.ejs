@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/css/adminCSS/orderDetails.css">
+    <link rel="shortcut icon" href="/images/cartlogo.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <a href="/adminHome">
+      <div class="logo">
+        <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
+        <h2 class="smart">SHOP <span>ON</span></h2>
+    </div>
+      </a>
+
+      <div class="orderDetailsContent">
+
+        <h1>Order Details</h1>
+
+        <div class="orderCard">
+
+          <div class="orderCardLeft">
+            <h2>Products</h2>
+            <div class="productSection">
+              <% order.products.forEach(product=>{ %>
+                <div class="productSectionMain">
+                  <div class="productSectionLeft">
+                    <img src="<%= product.product.imageUrls[0] %>" alt="">
+                  </div>
+                  <div class="productSectionRight">
+                    <p class="productName"><%= product.product.name %></p>
+                    <p class="productQuantity">Quantity : <%= product.quantity %></p>
+                    <p class="productId">Product ID - <%= product._id %></p>
+                  </div>      
+                </div>                      
+                <% }); %>
+              </div>
+          </div>
+         
+
+          <div class="orderCardMiddle">
+
+            <h2>User</h2>
+            <div class="userSection">
+              <p>Name : <%= user.name %></p>
+              <p>Email : <%= user.email %></p>
+              <p>Phone : <%= user.phone %></p>            
+            </div>
+
+            <div class="addressSection">
+              <h2>Address</h2>
+              <% 
+              houseNumberStr = `${order.deliveryAddress.houseNumber}`,
+              localityStr = `${order.deliveryAddress.locality}`, 
+              cityStr =  `${order.deliveryAddress.city}`,
+              stateStr = `${order.deliveryAddress.state}`
+              pinCodeStr =  `${order.deliveryAddress.pinCode}`;
+             %>
+              <p class="deliveryAddress">Delivery Address : <span> House Number - <%= houseNumberStr %>,</span>
+                <span><%= localityStr %>,</span>
+                <span><%= cityStr %>,</span>
+                <span><%= stateStr %>,</span>
+                <span>PIN - <%= pinCodeStr %></span>
+              </p> 
+            </div>       
+
+          </div>
+
+
+          <div class="orderCardRight">
+
+            <div class="dateSection">
+              
+              <p>Ordered Date : <%= order.orderedDate.toDateString() %></p>
+              <p><% if (order.orderStatus === 'Pending' || order.orderStatus === 'Shipped') { %>
+                Delivery On : <%= order.deliveryDate.toDateString() %>
+                  <% } else if (order.orderStatus === 'Delivered') { %>
+                Delivered On : <%= order.deliveryDate.toDateString() %>
+                  <% } else if(order.orderStatus === 'Cancelled') { %>
+                Delivery On : -   
+                 <% } %>
+                </p>
+            </div>
+
+            <div class="orderDetails">
+              <p class="orderId">Order Id - <%= order._id %></p>
+              <% if(order.orderStatus === 'Pending') { %>
+                <p class="orderStatus">Order Status : <span style="color: rgb(166, 165, 165);"> <%= order.orderStatus %></span></p>
+             <% } else if (order.orderStatus === 'Shipped') { %>
+                <p class="orderStatus">Order Status: <span style="color: rgb(197, 194, 15);"><%= order.orderStatus %></span></p>
+            <% } else if (order.orderStatus === 'Delivered') { %>
+              <p class="orderStatus">Order Status: <span style="color: rgb(24, 170, 75);"><%= order.orderStatus %></span></p>
+            <% } else { %>
+              <p class="orderStatus">Order Status: <span style="color: rgb(249, 57, 57);"><%= order.orderStatus %></span></p>
+            <% } %>  
+            </div>
+
+            <div class="priceSection">
+              <h2>Price</h2>
+              <p class="totalAmount">Total Amount : <%= order.totalOrderAmount %></p>
+              <p class="paymentMethod">Payment Method : <%= order.paymentMethod %></p>
+            </div>
+
+          </div>
+         
+
+        </div>
+
+        <a href="/orderList" class="back"><i class="fa-solid fa-arrow-left"></i>Back to Orders</a>
+
+      </div>
+
+</body>
+</html>

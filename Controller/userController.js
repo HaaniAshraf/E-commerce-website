@@ -558,7 +558,10 @@ module.exports={
             userCart = new Cart({ user: userId, products: [], totalPrice: 0});
           }
     
-          const existingProduct = userCart.products.find((item) => item.product.equals(productId));
+          const existingProduct = userCart.products.find((item) => item.product == productId);
+          // item: Represents an individual element in the userCart.products array.
+          // item.product: Refers to the product field within each item in the array. This field is assumed to store the product ID.
+          
           let product;   
           if (existingProduct) {
             product = await Product.findById(productId);   

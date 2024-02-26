@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/mainCSS/searchPage.css">
+    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <%- include('mainHeader.ejs') %>
+
+    <div class="searchContent">
+        <h4>Search Results for "<%= searchTerm %>"</h4>
+
+        <% if (products.length === 0) { %>
+            <div class="notFound">
+                <img src="/images/product-not-found.png" alt="">
+                <p>Your Search did not match any products.</p>
+                <p>Please try again.</p>
+            </div>
+
+        <% } else { %>
+            <div class="searchProducts">
+                <% products.forEach(product => { %>
+                    <div class="singleproduct">
+
+                      <a href="/details/<%= product._id %>"><img src="<%= product.imageUrls[0] %>" alt=""></a> 
+                       
+                        <h3><%= product.name %></h3>
+
+                        <div class="prices">
+                            <p class="price">₹ <%= product.price %></p>
+                            <del class="ogPrice">₹ <%= product.ogPrice %></del>
+                        </div>   
+                    </div>              
+                <% }) %>
+            </div>            
+            
+        <% } %>
+    
+    </div>
+   
+</body>
+</html>

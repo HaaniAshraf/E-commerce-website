@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Home</title>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
     <!--Material CDN-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet"
@@ -17,14 +18,15 @@
         <aside>
             <div class="top">
                 <div class="logo">
-                    <img src="/images/admin.png" alt="Avatar" class="avatar">
-                    <h2 class="smart">HAANI</h2>
+                    <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
+                    <h2 class="smart">SHOP <span>ON</span></h2>
                 </div>
                 <div class="close" id="close-btn">
                     <span class="material-icons-sharp">
                         close
                     </span>
                 </div>
+             
             </div>
             <div class="sidebar">
                 <a href="#" class="active">
@@ -163,6 +165,10 @@
 
         </main>
         <figure class="pie-chart">
+            <div class="adminName">
+                <img src="/images/admin.png" alt="" class="adminImg">
+                <p><%= admin.name %></p>
+            </div>
             <h1>User &nbsp; Tracking</h1>
             <figcaption>
                 Visited 38<span style="color:#4e79a7"></span><br>

@@ -1,0 +1,212 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+.logo{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.logo img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.logo .on{
+    color: rgb(247, 173, 37);
+}
+
+.userDetailsContent{
+    /* padding: 20px 40px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.userDetailsContent h1{
+    text-align: center;
+    color: rgb(247, 173, 37);
+}
+
+.userDetailsContent .userCard{
+    background-color:rgb(16, 16, 16) ;
+    display: flex;
+    margin-top: 10px;
+    padding: 20px 10px;
+}
+
+
+.userCardLeft{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.userSection{
+    border: solid 1px rgb(83, 82, 82);
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    padding: 10px;
+    border-radius: 5px;
+    gap: 5px;
+    font-size: 18px;
+    /* justify-content: center; */
+}
+.userSection h2{
+    text-align: center;
+    color: wheat;
+}
+.userSection p{
+    color: rgb(143, 142, 142);
+    display: flex;
+}
+.userSection span{
+    color: white;
+}
+
+.addressSection{
+    border: solid 1px rgb(83, 82, 82);
+    display: flex;
+    flex-direction: column;
+    height: 44%;
+    padding: 10px;
+    border-radius: 5px;
+    gap: 5px;
+}
+.addressSection h2{
+    text-align: center;
+    color: wheat;
+}
+.addressSection ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.addressSection li{
+    list-style: none;
+}
+.addressSection p{
+    color: gray;
+}
+.addressSection span{
+    color: white;
+}
+
+
+.wishlistSection{
+    border: solid 1px rgb(83, 82, 82);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.wishlistSection h2{
+    text-align: center;
+    color: wheat;
+}
+.wishlistSection img{
+    height: 60px;
+    width: 60px;
+}
+.wishlistSection span{
+    font-weight: bold;
+    color: rgb(213, 211, 211);
+}
+.wishlistProduct{
+    display: flex;
+    gap: 5px;
+    font-size: 13px;
+    color: rgb(151, 149, 149);
+    margin-top: 10px;
+}
+
+
+.cartSection{
+    border:solid 1px rgb(83, 82, 82) ;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    color: rgb(151, 149, 149);
+}
+.cartSection h2{
+    text-align: center;
+    color: wheat;
+}
+.cartSection img{
+    height: 60px;
+    width: 60px;
+}
+.cartSection span{
+    font-weight: bold;
+    color: rgb(213, 211, 211);
+}
+.cartProduct{
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    align-items: center;
+    font-size: 13px;
+}
+
+
+
+.orderSection{
+    border:solid 1px rgb(83, 82, 82) ;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    color: rgb(151, 149, 149);
+    align-items: center;
+}
+.orderSection h2{
+    text-align: center;
+    color: wheat;
+}
+.orderSection .orderId{
+    display: flex;
+    margin-top: 10px;
+}
+.orderSection img{
+    height: 60px;
+    width: 60px;
+}
+.orderSection span{
+    font-weight: bold;
+    color: rgb(213, 211, 211);
+}
+.orderProducts{
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    align-items: center;
+    font-size: 13px;
+}
+.orderSection li{
+    list-style: none;
+}
+
+.back{
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    color: wheat;
+    font-size: 18px;
+}
+.back i{
+    margin-right: 10px;
+}

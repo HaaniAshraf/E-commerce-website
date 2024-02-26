@@ -18,13 +18,16 @@ const {
     updateCouponPost,
     deleteCoupon,
     orderListGet,
+    orderDetailsGet,
     orderStatusPost,
+    userDetailsGet,
 
 }=require('../Controller/adminController')
 
 
 router.get('/adminHome',adminhomeGet)
       .get('/userlist',userlistGet)
+      .get('/userDetails/:userId',userDetailsGet)
       .post('/removeUser/:userId',removeUser)  
       .get('/addBanner',addBannerGet)
       .post('/addBanner',upload.single('image'),addBannerPost)
@@ -37,6 +40,7 @@ router.get('/adminHome',adminhomeGet)
       .post('/updateCoupon/:couponId',updateCouponPost)
       .post('/deleteCoupon/:couponId',deleteCoupon)
       .get('/orderList',orderListGet)
+      .get('/orderDetails/:orderId',orderDetailsGet)
       .post('/updateOrderStatus/:orderId',orderStatusPost)
 
 

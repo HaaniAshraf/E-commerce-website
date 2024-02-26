@@ -8,15 +8,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User List</title>
   <link rel="stylesheet" href="css/adminCSS/userlist.css">
+  <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
   <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <a href="/adminHome">
-    <div class="logo">
-      <img src="/images/admin.png" alt="Avatar" class="avatar">
-      <h2 class="smart">HAANI</h2>
-    </div>
+  <a href="/adminHome" style="color: white;">
+    <div class="logo" style="display: flex;gap: 5px; margin-top: 15px;margin-left: 15px;">
+      <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
+      <h2 class="smart">SHOP <span>ON</span></h2>
+  </div>
   </a>
   <div class="content-container">
     <h1>Customers List</h1>
@@ -40,7 +41,7 @@
           <td><%= user.createdAt.toDateString() %></td>
           <td style="display: flex; gap: 10px;">
             
-            <button type="submit" class="bt3"><i class="fa-solid fa-info"></i></button>
+         <a href="/userDetails/<%= user._id %>"><button type="submit" class="bt3"><i class="fa-solid fa-info" ></i></button></a> 
             <form action="/removeUser/<%= user._id %>" method="post"
               onsubmit="return confirm('Are you sure you want to remove this user?')">
               <button type="submit" class="bt2"><i class="fa-regular fa-trash-can"></i></button>
@@ -74,6 +75,7 @@
           }
         }
       }
+
     </script>
 
   </div>

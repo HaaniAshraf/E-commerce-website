@@ -51,6 +51,7 @@ const signupSchema=new mongoose.Schema({
 const profileSchema = new mongoose.Schema({
     userId: {
       type: mongoose.Types.ObjectId,  
+      ref: 'users'
     },
     dob:{
         type:String,
@@ -84,7 +85,7 @@ const profileSchema = new mongoose.Schema({
 const addressSchema = new mongoose.Schema({
   userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'users',
       required: true
   },
   username: {

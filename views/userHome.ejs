@@ -54,11 +54,12 @@
 
         <div class="header-search-container">
 
-          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
-
-          <button class="search-btn">
-            <ion-icon name="search-outline"></ion-icon>
-          </button>
+          <form action="/search" method="GET">
+            <input type="text" name="searchWord" class="search-field" placeholder="Enter your product name...">
+            <button class="search-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+          </form>       
 
         </div>
 

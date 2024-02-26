@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+/* .logo{
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.logo img{
+    width: 2.3rem;
+    height: 2.2rem;
+} */
+.cartlogo{
+    height: 25px;
+    width: 25px;
+}
+.smart span{
+    color: rgb(247, 173, 37);
+}
+.logo h2{
+    font-size: 25px;
+}
+
+
+.orderDetailsContent{
+    padding: 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.orderDetailsContent h1{
+    text-align: center;
+    color: rgb(247, 173, 37);
+}
+
+
+/* orderCard */
+.orderCard{
+    background-color: rgb(16, 16, 16);
+    padding: 30px 10px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 80%;
+}
+
+.orderCardLeft{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.orderCardMiddle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.orderCardRight{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.orderCard h2{
+    border-bottom: solid 2px rgb(247, 173, 37);
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+
+/* productSection */
+.productSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.productSection img{
+    height: 100px;
+    width: 100px;
+}
+.productSectionMain{
+    display: flex;
+    gap: 10px;
+}
+.productSectionRight{
+    display: flex;
+    flex-direction: column;
+}
+.productSectionRight .productName{
+    color: rgb(218, 217, 217);
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 5px;
+}
+.productSectionRight .productQuantity{
+    color: rgb(144, 144, 144);
+    margin-top: 5px;
+}
+.productSectionRight .productId{
+    color: wheat;
+    margin-top: 5px;
+}
+
+
+
+/* userSection */
+.userSection{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.userSection p{
+    font-size: 18px;
+}
+
+
+/* addressSection */
+.addressSection{
+    margin-top: 30px;
+    line-height: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.addressSection .deliveryAddress{
+    margin-top: 10px;
+}
+.deliveryAddress span
+{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* dateSection */
+.dateSection{
+    margin-top: 20px;
+    border:  solid 1px rgb(83, 83, 83);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.orderDetails{
+    margin-top: 60px;
+}
+.orderDetails .orderId{
+    color: wheat;
+    font-weight: bold;
+}
+.orderDetails .orderStatus{   
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
+.orderCardRight .priceSection{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.priceSection .totalAmount{
+    color: rgb(247, 173, 37);
+    font-size: 20px;
+    font-weight: bold;
+}
+.priceSection .paymentMethod{
+    color: rgb(158, 157, 157);
+}
+
+.back{
+    text-decoration: none;
+    color: rgb(241, 182, 73);
+    margin-top: 40px;
+    font-size: 20px;
+}
+.back i{
+    margin-right: 8px;
+}

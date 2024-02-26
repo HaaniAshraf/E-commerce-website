@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order List</title>
     <link rel="stylesheet" href="/css/adminCSS/orderList.css">
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
 </head>
 <body>
 
-    <a href="/adminHome">
-        <div class="logo">
-          <img src="/images/admin.png" alt="Avatar" class="avatar">
-          <h2 class="smart">HAANI</h2>
-        </div>
+    <a href="/adminHome" style="color: white;">
+        <div class="logo" style="display: flex;gap: 5px; margin-top: 15px;margin-left: 15px;">
+          <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
+          <h2 class="smart">SHOP <span>ON</span></h2>
+      </div>
       </a>
 
     <div class="orderListContent">
@@ -32,11 +33,11 @@
             <tbody>
                 <% orders.forEach(order => { %>
                     <tr>
-                        <td><%= order._id %></td>
-                        <td><%= order.user %></td>
-                        <td>₹ <%= order.totalOrderAmount %></td>
-                        <td><%= order.orderedDate.toDateString() %></td>
-                        <td>
+                        <td onclick="redirectToOrderDetails('<%= order._id %>')"><%= order._id %></td>
+                        <td onclick="redirectToOrderDetails('<%= order._id %>')"><%= order.user %></td>
+                        <td onclick="redirectToOrderDetails('<%= order._id %>')">₹ <%= order.totalOrderAmount %></td>
+                        <td onclick="redirectToOrderDetails('<%= order._id %>')"><%= order.orderedDate.toDateString() %></td>
+                        <td onclick="redirectToOrderDetails('<%= order._id %>')">
                             <% if (order.deliveryDate) { %>
                                 <%= order.deliveryDate.toDateString() %>
                           <% } else { %>
@@ -66,11 +67,20 @@
 
     </div>
 
+
+    
     <script>
+
+        function redirectToOrderDetails(orderId) {
+            window.location.href = "/orderDetails/" + orderId;
+        }
+
         function submitForm() {
             document.getElementById("orderStatusForm").submit();
         }
+
     </script>
+
     
 
 </body>
