@@ -45,6 +45,32 @@
     
 </div>
 
+            <div class="review-Section">
+                <% if (productReview) { %>
+                    <h2>Customer Reviews</h2>
+
+                    <div class="review-grid">
+                        <% productReview.reviews.forEach(review => { %>
+                            <div class="review-item">
+                                <div class="reviewtop">
+                                    <img src="/images/user.png" alt="">
+                                    <p class="userName"><%= review.user.name %></p> 
+                                    <p class="reviewDate"><%= review.postedAt.toDateString() %></p>
+                                </div>                                                                                 
+                                <p class="userReview">"<%= review.review %>"</p>
+                                <div class="showcase-rating">
+                                    <% for (let i = 0; i < review.rating; i++) { %>
+                                        <i class="fa-solid fa-star"></i>
+                                    <% } %>
+                                </div>                               
+                            </div>
+                        <% }); %>
+                    </div>
+                    
+                <% } %>
+            </div>
+
+
 <%- include('footer.ejs') %>
      
           <script>

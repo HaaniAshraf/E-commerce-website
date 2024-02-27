@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Review } = require('../Model/db');
 
 module.exports={
 
@@ -18,16 +18,21 @@ module.exports={
     productDetailsGet:async(req,res)=>{
         const dynamicTitle = 'Product Details';
         const productId = req.params.productId;
+
       try {
           const product = await Product.findById(productId);
           if (!product) {
               return res.status(404).json({ success: false, error: 'Product not found' });
           }
-          res.render('productDetails', { product,title:dynamicTitle });
+
+          const productReview = await Review.findOne({ product:productId }).populate('reviews.user');
+          res.render('productDetails', { product,title:dynamicTitle,productReview });
+
       } catch (error) {
           console.error('Error fetching product details:', error.message);
           res.status(500).json({ success: false, error: 'Internal Server Error' });
       }
+
       },
 
 

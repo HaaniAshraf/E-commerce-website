@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order,Review } = require('../Model/db');
 
 
 module.exports={
@@ -72,6 +72,7 @@ module.exports={
 
     profilePost: async (req, res) => {
       try {
+        
         const userId = req.session.user.userId;
         const { name, email, phone, dob, gender, alternateMobile } = req.body;
         const updatedProfile = await Profile.findOneAndUpdate(
@@ -83,13 +84,15 @@ module.exports={
         if (!updatedProfile) {
           console.error('Profile not found or not updated.');
           return res.status(404).send('Profile not found or not updated.');
-        }    
+        }  
+
         res.json({ message: 'Profile updated successfully', redirectUrl: '/profile' });
 
       } catch (error) {
         console.error('Error updating user profile:', error);
         res.status(500).send('Internal Server Error');
       }
+
     },  
 
 
@@ -398,12 +401,14 @@ module.exports={
   wishlistToggle: async (req, res) => {
     if (req.session.email) {
         try {
+
             const productId = req.params.productId;
             const userId = req.session.user.userId;
             let wishlist = await Wishlist.findOne({ user: userId });
             if (!wishlist) {
                 wishlist = new Wishlist({ user: userId, products: [] });
             }
+
             const { isRedColor } = req.body;
             const shouldRemove = isRedColor === 'true';
             if (shouldRemove) {
@@ -411,12 +416,15 @@ module.exports={
             } else {
                 wishlist.products.push(productId);
             }
+
             await wishlist.save();
             res.status(200).json({ success: true }); 
+
         } catch (error) {
             console.error('Error toggling wishlist:', error);
             res.status(500).json({ error: 'Internal Server Error' });
         }
+
     } else {
         res.status(401).json({ error: 'User not authenticated' }); 
     }
@@ -427,15 +435,19 @@ module.exports={
 
      wishlistCount: async (req, res) => {
       if(req.session.email){
+
         try {
           const userId = req.session.user.userId;
           const userWishlist = await Wishlist.findOne({ user: userId });
           const wishlistCount = userWishlist ? userWishlist.products.length : 0;
+
           res.json({ wishlistCount });
+
       } catch (error) {
           console.error('Error fetching wishlist count:', error);
           res.status(500).json({ error: 'Internal Server Error' });
       }
+
       }else{
         res.redirect('/login'); 
         }     
@@ -447,12 +459,15 @@ module.exports={
      addToWishlist:async(req,res)=>{
       if(req.session.email){
         try{
+
           const productId=req.params.productId;
           const userId=req.session.user.userId;
+
           let wishlist = await Wishlist.findOne({ user: userId });
           if (!wishlist) {
             wishlist = new Wishlist({ user: userId, products: [] });
         }
+
           if (wishlist.products.includes(productId)) {
             return res.redirect('/wishlist');
           }
@@ -461,10 +476,12 @@ module.exports={
             await wishlist.save();
             res.redirect('/wishlist');
         }
+
       }catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
       }
+
      }else{
       res.redirect('/login')
      }
@@ -476,6 +493,7 @@ module.exports={
 
      removeFromWishist:async(req,res)=>{
       if (req.session.email) {
+        
         try {
             const productId = req.params.productId;
             const userId = req.session.user.userId;
@@ -489,6 +507,7 @@ module.exports={
             } else {
                 res.status(404).send('Wishlist not found');
             }
+
         } catch (error) {
             console.error('Error removing from wishlist:', error);
             res.status(500).send('Internal Server Error');
@@ -502,6 +521,7 @@ module.exports={
     cartGet: async (req, res) => {
       if (req.session.email) {
         try {
+
           const dynamicTitle = 'Cart';
           const userId = req.session.user.userId;
           const userCart = await Cart.findOne({ user: userId }).populate('products.product');   
@@ -512,11 +532,13 @@ module.exports={
             res.render('cart', { cart: [], title: dynamicTitle, coupon });
             return;
           }
+
           res.render('cart', { cart: userCart, userAddresses: userAddresses, title: dynamicTitle, coupon });
         } catch (error) {
           console.error(error);
           res.status(500).send('Internal Server Error');
         }
+
       } else {
         res.redirect('/login');
       }
@@ -527,18 +549,22 @@ module.exports={
 
     cartCount: async (req, res) => {
       if(req.session.email){
+
         try {
           const userId = req.session.user.userId;
           let userCart = await Cart.findOne({ user: userId });    
           const cartCount = userCart ? userCart.products.length : 0;
+
           res.json({ 
             success: true,
             cartCount: cartCount
           });
+
       } catch (error) {
           console.error('Error fetching cart count:', error);
           res.status(500).json({ error: 'Internal Server Error' });
       }
+
       }else{
         res.redirect('/login'); 
         }     
@@ -949,6 +975,70 @@ module.exports={
         console.error('Error cancelling order:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
       }
+    },
+
+
+
+
+    reviewGet:async(req,res)=>{
+      try{      
+        if(req.session.email){
+
+          const productId = req.query.productId
+
+          res.render('review',{ productId })
+
+        }else{
+          res.redirect('/login')
+        }
+
+      }catch(error){
+
+        console.error('Error fetching review page:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+      }
+
+    },
+
+
+
+
+    reviewPost:async(req,res)=>{
+      try{
+        if(req.session.email){
+
+          const { productId, rating, review } = req.body;
+
+          const existingReview = await Review.findOne({ product: productId });
+          if (existingReview) {
+            existingReview.reviews.push({
+                user: req.session.user.userId,
+                rating: parseInt(rating),
+                review: review
+            });
+            await existingReview.save();
+
+           } else {
+              const newReview = new Review({
+                  product: productId,
+                  reviews: [{
+                      user: req.session.user.userId,
+                      rating: parseInt(rating),
+                      review: review
+                  }]
+              });
+              await newReview.save();
+
+          }
+          res.redirect('/orders')
+        }
+
+      }catch(error){
+
+        console.error('Error posting review:', error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+      }
+
     },
     
     

@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.body.addEventListener('click', async (event) => {
         const addToCartButton = event.target.closest('#addToCartButton');
+
         if (addToCartButton) {
             try {
                 const productId = addToCartButton.querySelector('[data-product-id]').getAttribute('data-product-id');
@@ -12,19 +13,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         'Content-Type': 'application/json',
                     },
                 });
+
                 if (cartResponse.ok) {
                     addToCartButton.classList.add('orangeColor');
+                    updateCartCount()
+
                 } else {
                     console.error('Failed to add to cart');
                 }
+
             } catch (error) {
                 console.error('Error:', error);
             }
         }
+
         const cartIcon = document.getElementById('cartIcon');
         if (cartIcon && cartIcon.classList.contains('productInCart')) {
             cartIcon.classList.add('orangeColor');
         }
+
     });
 });
 
@@ -35,25 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // Cart Count
 async function updateCartCount() {
     try {
+        console.log('Updating cart count...');
         const response = await fetch('/cart/count');       
-        if (response.status === 302) {
-            window.location.href = '/login';
-            return; 
-        }
+   
         if (!response.ok) {
             console.error(`Server responded with status: ${response.status}`);
             return;
         }
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
+
             const data = await response.json();
-            const cartCountSpan = document.getElementById('cartCount');  
+
+            const cartCountSpan = document.getElementById('cartCount'); 
             if (cartCountSpan) {
                 cartCountSpan.textContent = data.cartCount;
             }
-        } else {
-            // console.error('Unexpected content type. Expected JSON.');
-        }
+
     } catch (error) {
         console.error('Error updating cart count:', error);
     }

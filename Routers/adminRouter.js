@@ -7,6 +7,7 @@ const {
     adminhomeGet,
     userlistGet,
     removeUser,
+    userDetailsGet,
     addBannerGet,
     addBannerPost,
     updateBannerGet,
@@ -20,7 +21,7 @@ const {
     orderListGet,
     orderDetailsGet,
     orderStatusPost,
-    userDetailsGet,
+    reviewListGet
 
 }=require('../Controller/adminController')
 
@@ -42,6 +43,7 @@ router.get('/adminHome',adminhomeGet)
       .get('/orderList',orderListGet)
       .get('/orderDetails/:orderId',orderDetailsGet)
       .post('/updateOrderStatus/:orderId',orderStatusPost)
+      .get('/reviewList',reviewListGet)
 
 
 module.exports=router

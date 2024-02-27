@@ -1,23 +1,24 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order, Review } = require('../Model/db');
 
 
 module.exports={
 
   adminhomeGet:async(req, res) => {
-    if(req.session.role){
+    if( req.session.role=== true){
 
       try{
         const role = req.session.role
         const admin = await User.findOne({ role:role })
 
-        res.render('adminHome',{admin})
+        res.render('adminHome',{ admin })
   
       }catch(error){
         console.error('Error fetching products:', error);
         res.status(500).send('Internal Server Error');
       }
+      
     }else{
       res.redirect('/login')
     }
@@ -325,6 +326,22 @@ module.exports={
             console.error('Error updating order status:', error);
             res.status(500).send('Internal Server Error');
         }
+
+        },
+
+
+
+
+        reviewListGet:async(req,res)=>{
+          try{
+
+            const productReviews = await Review.find({})
+            res.render('reviewList',{productReviews})
+
+          }catch(error){
+            console.error('Error fetching reviews list:', error);
+            res.status(500).send('Internal Server Error');
+          }
 
         },
 

@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
+.cartlogo{
+    height: 25px;
+    width: 25px;
+}
+.smart span{
+    color: rgb(247, 173, 37);
+}
+.logo h2{
+    font-size: 25px;
+}
+
+.reviewsContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0px 50px;
+}
+.reviewsContainer h1{
+    color: rgb(247, 173, 37);
+}
+.reviewsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reviewsTable th, .reviewsTable td {
+    border: 1px solid #575656;
+    padding: 10px;
+    text-align: left;
+}
+
+.reviewsTable th {
+    background-color: rgb(34, 34, 34);
+}

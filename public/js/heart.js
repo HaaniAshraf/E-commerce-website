@@ -1,9 +1,11 @@
 // Wishlist Toggling
 async function toggleWishlist(event) {
     event.preventDefault();
+
     const heart = event.currentTarget.querySelector('.fa-heart');
     const productId = event.currentTarget.getAttribute('data-product-id');
     const isRedColor = heart.classList.contains('redcolor');
+
     if (productId) {
         try {
             const response = await fetch(`/wishlistToggle/${productId}`, {
@@ -13,45 +15,45 @@ async function toggleWishlist(event) {
                 },
                 body: JSON.stringify({ isRedColor: isRedColor.toString() }),
             });
+
             if (response.status === 401) {
                 window.location.href = '/login';
                 return;
             }
+
             if (response.ok) {
                 heart.classList.toggle('redcolor');
                 updateWishlistCount();
+
             } else {
                 console.log(`Error toggling wishlist: ${response.statusText}`);
             }
+
         } catch (error) {
             console.error('Error toggling wishlist:', error);
         }
+        
     }
 }
+
+
 
 
 // Wishlist Count
 async function updateWishlistCount() {
     try {
         const response = await fetch('/wishlist/count');
-        if (response.status === 302) {
-            window.location.href = '/login';
-            return; 
-        }
+      
         if (!response.ok) {
             console.error(`Server responded with status: ${response.status}`);
         }
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
+
             const data = await response.json();
             const wishlistCountSpan = document.getElementById('wishlistCount');
             if (wishlistCountSpan) {
                 wishlistCountSpan.textContent = data.wishlistCount;
             } 
-        }else {
-            // console.error('Unexpected content type. Expected JSON.');
-        }
-        
+
     } catch (error) {
         console.error('Error updating wishlist count:', error);
     }

@@ -33,6 +33,8 @@ const {
     orderPlacedGet,
     ordersGet,
     cancelOrderPost,
+    reviewGet,
+    reviewPost
 }=require('../Controller/userController')
 
 
@@ -66,6 +68,8 @@ router.get('/',userhomeGet)
       .get('/orderPlaced',orderPlacedGet)
       .get('/orders',ordersGet)
       .post('/cancelOrder/:orderId',cancelOrderPost)
+      .get('/review',reviewGet)
+      .post('/review',reviewPost)
 
 
 module.exports=router

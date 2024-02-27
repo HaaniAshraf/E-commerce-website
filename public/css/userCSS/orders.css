@@ -32,7 +32,7 @@
 
 .orders-content{
   height: 100%;
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +55,7 @@
   display: flex;
 }
 .order-item .order-item-left{
-  width: 30%;
+  width: 40%;
 }
 .product-item img{
   height: 100px;
@@ -85,17 +85,55 @@
 .single-productRight .productQuantity{
   color: gray;
 }
+.single-productRight .productReview{
+  background-color: rgb(14, 13, 13);
+  height: 30px;
+  width: 120px;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(247, 173, 37);
+  cursor: pointer;
+}
+.single-productRight .productReview:hover{
+  background-color: rgb(19, 18, 18);
+}
+.single-productRight .productReturn{
+  background-color: rgb(14, 13, 13);
+  height: 30px;
+  width: 120px;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(82, 121, 239);
+  cursor: pointer;
+}
+.single-productRight .productReturn:hover{
+  background-color: rgb(19, 18, 18);
+}
+.single-productRight .buttons{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
 
+.order-item-right{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+}
 
-.order-item-middle {
+.order-item-rightUp {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 40%;
+  width: 100%;
 }
-.order-item-middle .orderId{
+.order-item-rightUp .orderId{
   color: wheat;
   font-weight: bold;
 }
@@ -111,27 +149,28 @@
   text-align: center;
   width: 50%;
 }
-.order-item-middle .orderAmount{
+.order-item-rightUp .orderAmount{
   color: rgb(247, 173, 37);
   font-size: 20px;
   font-weight: bold;
   margin-top: 30px;
 }
-.order-item-middle .paymentMethod{
+.order-item-rightUp .paymentMethod{
   margin-top: 10px;
   color: rgb(159, 158, 158);
 }
 
 
-.order-item-right{
-  width: 30%;
+.order-item-rightDown{
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin-top: 50px;
 }
-.order-item-right .deliveryDate{
+.order-item-rightDown .deliveryDate{
   color: rgb(35, 172, 88);
   font-size: 18px;
   font-weight: bold;
@@ -143,7 +182,7 @@
 .orderStatus span{
   color: yellow;
 }
-.order-item-right .cancelOrder{
+.order-item-rightDown .cancelOrder{
   background-color: rgb(14, 13, 13);
   height: 35px;
   width: 140px;
@@ -152,30 +191,6 @@
   color: rgb(245, 58, 58);
   cursor: pointer;
 }
-.order-item-right .cancelOrder:hover{
-  background-color: rgb(19, 18, 18);
-}
-.order-item-right .orderReview{
-  background-color: rgb(14, 13, 13);
-  height: 35px;
-  width: 140px;
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(247, 173, 37);
-  cursor: pointer;
-}
-.order-item-right .orderReview:hover{
-  background-color: rgb(19, 18, 18);
-}
-.order-item-right .orderReturn{
-  background-color: rgb(14, 13, 13);
-  height: 35px;
-  width: 140px;
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(82, 121, 239);
-  cursor: pointer;
-}
-.order-item-right .orderReturn:hover{
+.order-item-rightDown .cancelOrder:hover{
   background-color: rgb(19, 18, 18);
 }

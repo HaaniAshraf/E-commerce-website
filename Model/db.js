@@ -305,6 +305,33 @@ const orderSchema = new mongoose.Schema({
     }
 });
 
+
+
+
+const reviewSchema = new mongoose.Schema({
+  product:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'products'
+  },
+  reviews:[{
+    user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'users'
+    },
+    review:{
+      type:String
+    },
+    rating:{
+      type:Number
+    },
+    postedAt: {
+      type: Date,
+      default: Date.now,
+    },
+  }] 
+});
+
+
   
 
 module.exports = {
@@ -317,5 +344,6 @@ module.exports = {
     Wishlist:mongoose.model('wishlists',wishlistSchema),
     Cart:mongoose.model('carts',cartSchema),
     Order:mongoose.model('orders',orderSchema),
+    Review:mongoose.model('reviews',reviewSchema),
     startMongoServer
 };

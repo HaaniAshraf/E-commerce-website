@@ -1,0 +1,181 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-container{
+    width: 100%;
+    /* height: 100vh; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 110px;
+}
+.review-container form{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(8, 8, 8);
+    border-radius: 10px;
+    width: 30%;
+    height: 340px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.reviewArea{
+    margin-top: 20px;
+}
+.reviewArea label{
+    font-size: 1.3rem;
+}
+.reviewArea textarea{
+    background-color: rgb(42, 42, 42);
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.submitReview{
+    margin-top: 30px;
+    width: 50%;
+    height: 33px;
+    background-color: rgb(247, 173, 37);
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 25%;
+}
+.submitReview:hover{
+    background-color: rgb(42, 42, 42);
+    color: rgb(247, 173, 37);
+}
+
+
+/* https://dev.to/grahamthedev/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl */
+
+:root {
+    --star-rating-size: 1.5rem;
+    --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 50 50'%3e%3cpath fill='rgb(48,48,48)' stroke='white' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+    --checked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 50 50'%3e%3cpath fill='rgb(247, 173, 37)' stroke='black' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+    --hovered-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 50 50'%3e%3cpath fill='black' stroke='orange' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+    --max-stars: 5;
+  }
+  
+  .star-rating {
+    width: min-content;
+    padding: 0.3rem;
+    border: solid 1px rgb(70, 69, 69);
+  }
+  
+  .star-rating > div {
+    position: relative;
+    height: var(--star-rating-size);
+    width: calc(var(--star-rating-size) * var(--max-stars));
+    background-image: var(--unchecked-image);
+    background-size: var(--star-rating-size) var(--star-rating-size);
+  }
+  
+  .star-rating label {
+    position: absolute;
+    height: 100%;
+    background-size: var(--star-rating-size) var(--star-rating-size);
+    margin: 0;
+  }
+  
+  .star-rating label:nth-of-type(1) {
+    z-index: 10;
+    width: calc(100% / var(--max-stars) * 1);
+  }
+  
+  .star-rating label:nth-of-type(2) {
+    z-index: 9;
+    width: calc(100% / var(--max-stars) * 2);
+  }
+  
+  .star-rating label:nth-of-type(3) {
+    z-index: 8;
+    width: calc(100% / var(--max-stars) * 3);
+  }
+  
+  .star-rating label:nth-of-type(4) {
+    z-index: 7;
+    width: calc(100% / var(--max-stars) * 4);
+  }
+  
+  .star-rating label:nth-of-type(5) {
+    z-index: 6;
+    width: calc(100% / var(--max-stars) * 5);
+  }
+  
+  .star-rating label:nth-of-type(6) {
+    z-index: 5;
+    width: calc(100% / var(--max-stars) * 6);
+  }
+  
+  .star-rating label:nth-of-type(7) {
+    z-index: 4;
+    width: calc(100% / var(--max-stars) * 7);
+  }
+  
+  .star-rating label:nth-of-type(8) {
+    z-index: 3;
+    width: calc(100% / var(--max-stars) * 8);
+  }
+  
+  .star-rating label:nth-of-type(9) {
+    z-index: 2;
+    width: calc(100% / var(--max-stars) * 9);
+  }
+  
+  .star-rating label:nth-of-type(10) {
+    z-index: 1;
+    width: calc(100% / var(--max-stars) * 10);
+  }
+  
+  .star-rating input:checked + label,
+  .star-rating input:focus + label {
+    background-image: var(--checked-image);
+  }
+  .star-rating input:checked + label:hover,
+  .star-rating label:hover {
+    background-image: var(--hovered-image);
+  }
+  
+  .star-rating input,
+  .star-rating label > span {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(
+      1px 1px 1px 1px
+    ); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(
+      1px,
+      1px,
+      1px,
+      1px
+    ); /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(
+      50%
+    ); /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+  }
+  
+  .star-value {
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+  

@@ -50,7 +50,7 @@ module.exports={
               return res.render('login', { error: 'User not verified.Please Signup and verify' });
           }
             if (user.role) {
-              req.session.role = user.role
+              req.session.role = user.role         
               res.redirect('/adminHome');
           } else {
             req.session.email = user.email;
@@ -124,6 +124,7 @@ module.exports={
         res.json({ message: 'Error' });
     }
     },
+
 
 
 
