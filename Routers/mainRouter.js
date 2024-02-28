@@ -12,7 +12,6 @@ const {
     otpGet,
     otpPost,
     resendPost,
-    searchGet,
 
 }=require('../Controller/mainController')
 
@@ -29,7 +28,6 @@ router.get('/mainHeader',headerGet)
       .get('/otp',otpGet)
       .post('/otp',otpPost)
       .post('/resendOtp',resendPost)
-      .get('/search',searchGet)
 
 
 module.exports=router

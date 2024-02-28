@@ -181,124 +181,116 @@
           <div class="sidebar-category">
 
             <div class="sidebar-top">
-              <h2 class="sidebar-title">Category</h2>
+              <h2 class="sidebar-title">FILTER PRODUCTS</h2>
             </div>
 
           <div class="sidebar-bottom">
 
-            <ul class="sidebar-menu-category-list">
+            <div class="d-flex">
+              <div class="wrapper">
+                <header>
+                  <p class="priceRange">Price Change :</p>
+                </header>
 
-              <li class="sidebar-menu-category">
+                <form action="/filter" method="GET" id="filterForm">
 
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/dress.svg" alt="clothes" width="20" height="20"
-                      class="menu-title-img">
-
-                    <p class="menu-title">Clothes</p>
+                  
+                <div class="price-input">
+                  <div class="field">
+                    <span>Min</span>
+                    <input type="number" class="input-min" value="2500">
                   </div>
-
-                </button>
-
-              </li>
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/shoes.svg" alt="footwear" class="menu-title-img" width="20"
-                      height="20">
-
-                    <p class="menu-title">Footwear</p>
+                  <div class="separator">-</div>
+                  <div class="field">
+                    <span>Max</span>
+                    <input type="number" class="input-max" value="7500">
                   </div>
+                </div>
+                <div class="slider">
+                  <div class="progress"></div>
+                </div>
 
-                </button>
+               <div class="range-input">
+                  <input type="range" class="range-min" name="minPrice" min="0" max="10000" value="2500" step="100">
+                  <input type="range" class="range-max" name="maxPrice" min="0" max="10000" value="7500" step="100">
+                </div>
 
-              </li>
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/jewelry.svg" alt="clothes" class="menu-title-img" width="20"
-                      height="20">
-
-                    <p class="menu-title">Jewelry</p>
+                <div class="radioOptions">
+                  <div class="radioOption1">
+                    <input type="radio" name="price" value="Between 10k and 50k"> 
+                    <p>Between 10k and 50k</p>
                   </div>
-
-                </button>
-
-              </li>
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/perfume.svg" alt="perfume" class="menu-title-img" width="20"
-                      height="20">
-
-                    <p class="menu-title">Perfume</p>
-                  </div>
-
+                                                  
+                  <div class="radioOption1">
+                    <input type="radio" name="price" value="Above 50k"> 
+                    <p>Above 50k</p>
+                  </div> 
+                </div>                
+                        
+              </div>
              
-                </button>
+            </div>
+          
+            <div class="filterRating">
+              <p class="rating">Rating :</p>
+          
+            <div class="radioOption2">
+              <input type="radio" name="rating" value="5"> 
+              <p>5 stars</p>
+            </div>
+                             
+            <div class="radioOption2">
+              <input type="radio" name="rating" value="above 3"> 
+              <p>Above 3 stars</p>
+            </div>
+                            
+            <div class="radioOption2">
+              <input type="radio" name="rating" value="below 3"> 
+              <p>Below 3 stars</p>
+            </div>          
+ 
+          </div>
 
-              </li>
+          <div class="filterCategory">
 
-              <li class="sidebar-menu-category">
+            <p class="category">Category :</p>
 
-                <button class="sidebar-accordion-menu" data-accordion-btn>
+            <div class="checkboxOption">
+                <input type="checkbox" name="category" value="mens"> 
+                <p>Men</p>
+            </div>
+        
+            <div class="checkboxOption">
+                <input type="checkbox" name="category" value="womens"> 
+                <p>Women</p>
+            </div>
 
-                  <div class="menu-title-flex">
-                    <img src="images/icons/cosmetics.svg" alt="cosmetics" class="menu-title-img" width="20"
-                      height="20">
+            <div class="checkboxOption">
+              <input type="checkbox" name="category" value="jewelry"> 
+              <p>Jewelry</p>
+          </div>
 
-                    <p class="menu-title">Cosmetics</p>
-                  </div>
-                 
-                </button>   
+          <div class="checkboxOption">
+            <input type="checkbox" name="category" value="perfume"> 
+            <p>Perfumes</p>
+        </div>
 
-              </li>
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/glasses.svg" alt="glasses" class="menu-title-img" width="20"
-                      height="20">
-
-                    <p class="menu-title">Glasses</p>
-                  </div>
-
-                </button>
-
-              </li>
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="images/icons/bag.svg" alt="bags" class="menu-title-img" width="20" height="20">
-
-                    <p class="menu-title">Bags</p>
-                  </div>
-
-                </button>
-
-              </li>
-
-            </ul>
-
+        <div class="checkboxOption">
+          <input type="checkbox" name="category" value="electronics"> 
+          <p>Electronics</p>
+      </div>
 
           </div>
 
-       
+          <button class="filterButton">Filter</button>
+
+
+                </form>
+                
+
+          </div>
+
+
           </div>
 
           <div class="product-showcase">

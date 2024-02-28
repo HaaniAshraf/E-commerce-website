@@ -10,6 +10,8 @@ const{
     updateProductGet,
     updateProductPost,
     deleteProduct,
+    searchGet,
+    filterProductsGet,
 
 }=require('../Controller/productController')
 
@@ -20,6 +22,8 @@ router.get('/productlist',productlistGet)
       .post('/updateProduct/:productId',upload.array('productimg', 5),updateProductPost)
       .post('/deleteproduct/:productId',deleteProduct)
       .get('/details/:productId',productDetailsGet)
+      .get('/search',searchGet)
+      .get('/filter',filterProductsGet)
 
 
 module.exports=router

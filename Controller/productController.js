@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
-const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Review } = require('../Model/db');
+const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order,Review } = require('../Model/db');
 
 module.exports={
 
@@ -122,5 +122,117 @@ module.exports={
              console.error('Error deleting product:', error);
         }
         },
+
+
+
+
+        searchGet: async (req, res) => {
+          try {
+            const searchTerm = req.query.searchWord;
+            const userId = req.session.user ? req.session.user.userId : null;
+            
+            if (searchTerm) {
+              const regex = new RegExp(escapeRegex(searchTerm), 'gi');
+              const foundProducts = await Product.find({ name: regex });
+              
+              function escapeRegex(text) {
+                return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+              }
+        
+              const userWishlist = await Wishlist.findOne({ user:userId })
+              const userCart = await Cart.findOne({ user:userId })
+    
+              res.render('searchPage', { products: foundProducts, searchTerm, userWishlist, userCart });
+            } else {
+              res.render('searchPage', { products: [], searchTerm: '' });
+            }
+          } catch (error) {
+            console.error('Error during search get:', error);
+            res.status(500).send('Internal Server Error');
+          }
+
+        },
+
+
+
+
+        filterProductsGet:async(req,res)=>{
+          try {
+            const { minPrice ,maxPrice, price, rating, category } = req.query;
+
+            const banners = await Banner.find();
+            let userWishlist = null;
+            let wishlistCount = 0;
+            let userCart = null;
+            let cartCount=0
+
+            if (req.session.email) {
+              try {
+                  const userId = req.session.user.userId;
+                  userWishlist = await Wishlist.findOne({ user: userId });
+                  if (userWishlist) {
+                      wishlistCount = userWishlist.products.length;
+                  }
+                  userCart = await Cart.findOne({ user: userId });
+                  if (userCart) {
+                    cartCount = userCart.products.length;
+                }
+  
+              } catch (error) {
+                  res.status(500).send('Internal Server Error');
+                  return;
+              }
+          }
+        
+            const filterQuery = {};
+        
+            if (price === 'Between 10k and 50k') {
+              filterQuery.price = { $gte: 10000, $lte: 50000 };
+            }  
+              else if (price === 'Above 50k') {
+              filterQuery.price = { $gt: 50000 };
+            } 
+               else if (minPrice || maxPrice) { 
+
+              const parsedMinPrice = parseInt(minPrice);
+              const parsedMaxPrice = parseInt(maxPrice);
+  
+              if (!isNaN(parsedMinPrice) && !isNaN(parsedMaxPrice)) {
+                  filterQuery.price = { $gte: parsedMinPrice, $lte: parsedMaxPrice };
+              } else {
+                  console.error('Invalid price range input');
+              }
+          }
+        
+            if (rating) {
+              if (rating === '5') {
+                filterQuery.rating = 5;
+              } 
+              else if (rating === 'above 3') {
+                filterQuery.rating = { $gt: 3 };
+              } 
+              else if (rating === 'below 3') {
+                filterQuery.rating = { $lt: 3 }; 
+              } 
+              else {
+                console.error('Invalid rating value');
+              }
+            }
+        
+            if (category) {
+              filterQuery.category = category; 
+            }
+        
+            const filteredProduct = await Product.find(filterQuery);
+            // console.log('Filtered Products:', filteredProduct);
+
+            res.render('userHome', { banners, products: filteredProduct, userWishlist, wishlistCount,userCart,cartCount });
+
+          } catch (error) {
+            console.error('Error during filter get:', error);
+            res.status(500).send('Internal Server Error');
+          }
+        },
+        
   
 }

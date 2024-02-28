@@ -126,35 +126,6 @@ module.exports={
     },
 
 
-
-
-
-    searchGet: async (req, res) => {
-      try {
-        const searchTerm = req.query.searchWord;
-        const userId = req.session.user ? req.session.user.userId : null;
-        
-        if (searchTerm) {
-          const regex = new RegExp(escapeRegex(searchTerm), 'gi');
-          const foundProducts = await Product.find({ name: regex });
-          
-          function escapeRegex(text) {
-            return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-          }
-    
-          const userWishlist = await Wishlist.findOne({ user:userId })
-          const userCart = await Cart.findOne({ user:userId })
-
-          res.render('searchPage', { products: foundProducts, searchTerm, userWishlist, userCart });
-        } else {
-          res.render('searchPage', { products: [], searchTerm: '' });
-        }
-      } catch (error) {
-        console.error('Error during search get:', error);
-        res.status(500).send('Internal Server Error');
-      }
-    },
-    
     
 
 }
