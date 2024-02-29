@@ -2,15 +2,18 @@ body {
     font-family: 'Poppins',sans-serif;
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 .fullContent{
     display: flex;
     margin-top: 100px;
-    margin-bottom: 100px;
+    height: 100%;
+    padding-bottom: 50px;
 }
 .checkoutContent {
     width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,14 +22,15 @@ body {
 }
 h1 {
     text-align: center;
+    margin-top: 20px;
 }
 
 .checkoutCards {
-    margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 60px;
-    justify-content: center;
+    height: 100%;
+    margin-top: 70px;
 }
 .card {
     text-align: center;
@@ -145,7 +149,7 @@ h1 {
     transform: translate(-50%, -50%);
     padding: 20px 30px;
     width: 25%;
-    height: 45%;
+    height: 35%;
     background-color: rgb(14, 13, 13);
     z-index: 2;
 }
@@ -167,6 +171,7 @@ input[type="radio"] {
     border-radius: 5px;
     height: 25px;
     width: 90%;
+    padding-left: 5px;
 }
 .upiOptions{
     display: flex;
@@ -188,163 +193,7 @@ input[type="radio"] {
     margin: 0;
 }
 #upiPaymentModal button{
-    margin-top: 10px;
-}
-
-
-
-#cardPaymentModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px 30px;
-    width: 25%;
-    height: 50%;
-    background-color: rgb(14, 13, 13);
-    z-index: 2;
-}
-.modal-content #cardPaymentForm{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-#cardPaymentForm input{
-    background-color: rgb(48, 48, 48);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    height: 25px;
-    width: 90%;
-    padding-left: 5px;
-}
-#cardPaymentForm label{
-    margin-bottom: 5px;
-}
-#cardPaymentForm input::placeholder{
-    color: rgb(98, 98, 98);
-}
-
-
-#emiPaymentModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px 30px;
-    width: 25%;
-    height: 40%;
-    background-color: rgb(14, 13, 13);
-    z-index: 2;
-}
-.modal-content #emiPaymentForm{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-.emiOptions{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-.emiOptions .option2{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.option2 img{
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
-.emiLabel{
-    margin: 0;
-}
-
-
-#payLaterModal {
-    display: none;
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px 30px;
-    width: 25%;
-    height: 35%;
-    background-color: rgb(14, 13, 13);
-    z-index: 2;
-}
-.modal-content #payLaterForm{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-.payLaterOptions{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-.payLaterOptions .option3{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.option3 img{
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
-.payLaterLabel{
-    margin: 0;
-}
-
-
-#netBankingModal {
-    display: none;
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0px 30px;
-    width: 25%;
-    height: 40%;
-    background-color: rgb(14, 13, 13);
-    z-index: 2;
-}
-.modal-content #netBankingForm{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    margin-top: 10px;
-}
-.netBankingOptions{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-}
-.netBankingOptions .option4{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.option4 img{
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    margin-left: 10px;
-}
-.netBankingLabel{
-    margin: 0;
+    margin-top: 15px;
 }
 
 

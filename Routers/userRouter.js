@@ -30,11 +30,13 @@ const {
     applyGift,
     checkoutGet,
     checkoutPost,
+    razorPayPost,
+    orderPost,
     orderPlacedGet,
     ordersGet,
     cancelOrderPost,
     reviewGet,
-    reviewPost
+    reviewPost,
 }=require('../Controller/userController')
 
 
@@ -65,6 +67,8 @@ router.get('/',userhomeGet)
       .post('/applyGift',applyGift)
       .get('/checkout',checkoutGet)
       .post('/checkout',checkoutPost)
+      .post('/createRazorpayOrder',razorPayPost)
+      .post('/createOrder',orderPost)
       .get('/orderPlaced',orderPlacedGet)
       .get('/orders',ordersGet)
       .post('/cancelOrder/:orderId',cancelOrderPost)

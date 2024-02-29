@@ -26,57 +26,62 @@ function hideUpiForm() {
 }
 
 
-function showCardForm() {
-    var cardModalOverlay = document.getElementById('cardModalOverlay');
-    var cardPaymentModal = document.getElementById('cardPaymentModal');
-    cardModalOverlay.style.display = 'block';
-    cardPaymentModal.style.display = 'block';
-}
-function hideCardForm() {
-    var cardModalOverlay = document.getElementById('cardModalOverlay');
-    var cardPaymentModal = document.getElementById('cardPaymentModal');
-    cardModalOverlay.style.display = 'none';
-    cardPaymentModal.style.display = 'none';
-}
 
+// razorpay
 
-function showEMIForm() {
-    var emiModalOverlay = document.getElementById('emiModalOverlay');
-    var emiPaymentModal = document.getElementById('emiPaymentModal');
-    emiModalOverlay.style.display = 'block';
-    emiPaymentModal.style.display = 'block';
-}
-function hideEMIForm() {
-    var emiModalOverlay = document.getElementById('emiModalOverlay');
-    var emiPaymentModal = document.getElementById('emiPaymentModal');
-    emiModalOverlay.style.display = 'none';
-    emiPaymentModal.style.display = 'none';
-}
+document.getElementById('payButton').addEventListener('click', async (event) => {
+    const selectedAddressId = document.getElementById('addressDropdown').value;
+    event.preventDefault();
+    //Adding event.preventDefault(); at the beginning of your click event handler will prevent the default form submission, and only your JavaScript code will handle the form submission.
+    try{
 
+    }catch(error){
+        console.error('Error initiating Razorpay payment:', error);
+        alert('Error initiating payment. Please try again.');
+    }
+    const response = await fetch('/createRazorpayOrder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ selectedAddress: selectedAddressId }),
+    });
+  
+    const responseData = await response.json();
+    const razorpayOrder = responseData.razorpayOrder;
+  
+    const options = {
+        key: 'rzp_test_SR65KtvtbFdCn3',
+        amount: razorpayOrder.amount,
+        currency: razorpayOrder.currency,
+        name: 'Your Company Name',
+        description: 'Test Payment',
+        order_id: razorpayOrder.id,
+        handler: async function (response) {
 
-function showPayLaterForm() {
-    var payLaterModalOverlay = document.getElementById('payLaterModalOverlay');
-    var payLaterModal = document.getElementById('payLaterModal');
-    payLaterModalOverlay.style.display = 'block';
-    payLaterModal.style.display = 'block';
-}
-function hidePayLaterForm() {
-    var payLaterModalOverlay = document.getElementById('payLaterModalOverlay');
-    var payLaterModal = document.getElementById('payLaterModal');
-    payLaterModalOverlay.style.display = 'none';
-    payLaterModal.style.display = 'none';
-}
+            const orderPlacementResponse = await fetch('/createOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    selectedAddress: selectedAddressId,
+                }),
+            });
 
+            const orderPlacementData = await orderPlacementResponse.json();
 
-function showNetBankingForm() {
-    var netBankingModalOverlay = document.getElementById('netBankingModalOverlay');
-    var netBankingModal = document.getElementById('netBankingModal');
-    netBankingModalOverlay.style.display = 'block';
-    netBankingModal.style.display = 'block';
-}
-function hideNetBankingForm() {
-    var netBankingModalOverlay = document.getElementById('netBankingModalOverlay');
-    var netBankingModal = document.getElementById('netBankingModal');
-    netBankingModalOverlay.style.display = 'none';
-    netBankingModal.style.display = 'none';
-}
+            if (orderPlacementData.success) {
+                window.location.href = `/orderPlaced?orderId=${orderPlacementData.orderId}`;
+            } else {
+                alert('Order placement failed. Please try again.');
+            }
+
+         },
+        };
+
+    const paymentObject = new Razorpay(options);
+    paymentObject.open();
+
+  });
+  

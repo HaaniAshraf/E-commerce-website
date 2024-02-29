@@ -158,7 +158,7 @@ module.exports={
 
         filterProductsGet:async(req,res)=>{
           try {
-            const { minPrice ,maxPrice, price, rating, category } = req.query;
+            const { minPrice ,maxPrice, price, rating, category, sort } = req.query;
 
             const banners = await Banner.find();
             let userWishlist = null;
@@ -192,16 +192,18 @@ module.exports={
               else if (price === 'Above 50k') {
               filterQuery.price = { $gt: 50000 };
             } 
-               else if (minPrice || maxPrice) { 
+               else if (minPrice && maxPrice) { 
 
               const parsedMinPrice = parseInt(minPrice);
               const parsedMaxPrice = parseInt(maxPrice);
-  
-              if (!isNaN(parsedMinPrice) && !isNaN(parsedMaxPrice)) {
-                  filterQuery.price = { $gte: parsedMinPrice, $lte: parsedMaxPrice };
-              } else {
-                  console.error('Invalid price range input');
-              }
+
+                if(minPrice !== '2500' || maxPrice !== '7500'){
+                  if (!isNaN(parsedMinPrice) && !isNaN(parsedMaxPrice)) {
+                    filterQuery.price = { $gte: parsedMinPrice, $lte: parsedMaxPrice };
+                } else {
+                    console.error('Invalid price range input');
+                }
+                }            
           }
         
             if (rating) {
@@ -222,9 +224,22 @@ module.exports={
             if (category) {
               filterQuery.category = category; 
             }
+
+            const sortOption = {};
+            if (sort === 'AscendingPrice') {
+                sortOption.price = 1; 
+            } else if 
+             (sort === 'DescendingPrice') {
+                sortOption.price = -1; 
+            }else if 
+              (sort === 'AscendingRating') {
+              sortOption.rating = 1; 
+            }else if 
+              (sort === 'DescendingRating') {
+              sortOption.rating = -1; 
+            }
         
-            const filteredProduct = await Product.find(filterQuery);
-            // console.log('Filtered Products:', filteredProduct);
+            const filteredProduct = await Product.find(filterQuery).sort(sortOption);
 
             res.render('userHome', { banners, products: filteredProduct, userWishlist, wishlistCount,userCart,cartCount });
 

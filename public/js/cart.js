@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Cart Count
 async function updateCartCount() {
     try {
-        console.log('Updating cart count...');
         const response = await fetch('/cart/count');       
    
         if (!response.ok) {
