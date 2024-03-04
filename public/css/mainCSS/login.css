@@ -90,10 +90,16 @@ button{
     border: none;
 }
 .down{
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 a{
     text-decoration: none;
     color: rgb(247, 173, 37);
+}
+.forgot a{
+    color: rgb(111, 111, 111);
 }

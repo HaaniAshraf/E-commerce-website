@@ -213,6 +213,8 @@ function updateQuantity(itemId, change, price, ogPrice) {
 // Coupon Apply
 document.addEventListener('DOMContentLoaded',()=>{
     
+    const couponDiscountElement = document.querySelector('.couponDiscount');
+
     document.querySelector('.apply').addEventListener('click', async () => {
         const couponCode = document.getElementById('couponCode').value;
     
@@ -227,31 +229,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     
             if (response.ok) {
                 const result = await response.json();
+                couponDiscountElement.textContent = '';  // Reset previous messages
     
                 if (result.success) {
                     const couponDiscount = parseFloat(result.discount);
-                    const condition = result.condition;
-    
-                    const couponDiscountElement = document.querySelector('.couponDiscount');
-                    couponDiscountElement.textContent = `${couponDiscount}%`;
-    
                     const totalAmountElement = document.getElementById('totalAmountValue');
-                    const originalPriceElement = document.getElementById('totalCartPrice');
-    
-                    if (originalPriceElement) {
-                        const originalPrice = parseFloat(originalPriceElement.innerText.replace('₹', ''));
-    
-                        if (!isNaN(couponDiscount) && !isNaN(originalPrice)) {   // isNaN() returns true if a value is Not A Number.
-                            const discountedAmount = originalPrice - (originalPrice * (couponDiscount / 100));
 
-                            if(checkCondition(condition,originalPrice)){
-                                totalAmountElement.textContent = `₹ ${discountedAmount.toFixed()}`;
-                                couponDiscountElement.classList.add('coupongreen')
-                            }else{
-                                couponDiscountElement.textContent = `Coupon condition not met!`
-                                couponDiscountElement.classList.add('couponred')
-                            }
-
+                    if (totalAmountElement) {
+                        const totalAmountPrice = parseFloat(totalAmountElement.innerText.replace('₹', ''));
+    
+                        if (!isNaN(couponDiscount) && !isNaN(totalAmountPrice)) {   // isNaN() returns true if a value is Not A Number.
+                                                   
+                            const discountedAmount = totalAmountPrice - (totalAmountPrice * (couponDiscount / 100));
+                            totalAmountElement.textContent = `₹ ${discountedAmount.toFixed()}`;
+                            couponDiscountElement.textContent = `${couponDiscount}%`;
+                            couponDiscountElement.classList.add('coupongreen');                         
+                            
                         } else {
                             console.log('Invalid coupon discount or original price');
                         }
@@ -259,10 +252,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                         console.log('Total price element not found');
                     }
                 } else {
-                    console.log('Invalid coupon code');
+                    couponDiscountElement.textContent = `Coupon condition not met`;
+                    couponDiscountElement.classList.add('couponred');
                 }
     
             } else {
+                couponDiscountElement.textContent = `Invalid Coupon Code`;
+                couponDiscountElement.classList.add('couponred');
                 console.error('Failed to validate coupon:', response.statusText);
             }
         } catch (error) {
@@ -271,25 +267,3 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     
 })
-
-function checkCondition(condition, originalPrice) {
-    // Extract numeric values from the condition
-    const amounts = condition.match(/\d+/g); // amounts is an array with the 2 numbers is condition.
-
-    if (amounts && amounts.length === 2) {
-        const minPurchaseAmount = parseFloat(amounts[0]); // takes the first amount of amounts array
-        const maxPurchaseAmount = parseFloat(amounts[1]); // takes the second amount of amounts array
-
-        if (!isNaN(minPurchaseAmount) && !isNaN(maxPurchaseAmount)) {
-            return originalPrice >= minPurchaseAmount && originalPrice <= maxPurchaseAmount;
-        } else {
-            console.log('Invalid numeric values in condition');
-            return false;
-        }
-    } else {
-        console.log('Invalid condition format');
-        return false;
-    }
-}
-
-

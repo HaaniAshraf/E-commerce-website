@@ -134,7 +134,7 @@
                         <% const discountedAmount = cart.totalPrice - (cart.totalPrice * (parseFloat(coupon.discount) / 100)); %>
                         <p class="amount totalamount" id="totalAmountValue"> ₹ <%= discountedAmount %></p>
                     <% } else { %>
-                        <p class="amount totalamount" id="totalAmountValue"> ₹ <%= cart.totalPrice %></p>
+                        <p class="amount totalamount" id="totalAmountValue"> ₹ <%= cart.totalOrderAmount %></p>
                     <% } %>                    
                 </div>                
                             

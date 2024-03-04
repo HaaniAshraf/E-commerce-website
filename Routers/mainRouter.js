@@ -12,6 +12,12 @@ const {
     otpGet,
     otpPost,
     resendPost,
+    forgotPasswordGet,
+    forgotPasswordPost,
+    passwordOtpGet,
+    passwordOtpPost,
+    newPasswordGet,
+    newPasswordPost,
 
 }=require('../Controller/mainController')
 
@@ -28,6 +34,12 @@ router.get('/mainHeader',headerGet)
       .get('/otp',otpGet)
       .post('/otp',otpPost)
       .post('/resendOtp',resendPost)
+      .get('/inputEmail',forgotPasswordGet)
+      .post('/inputEmail',forgotPasswordPost)
+      .get('/passwordOtp',passwordOtpGet)
+      .post('/passwordOtp',passwordOtpPost)
+      .get('/newPassword',newPasswordGet)
+      .post('/newPassword',newPasswordPost)
 
 
 module.exports=router

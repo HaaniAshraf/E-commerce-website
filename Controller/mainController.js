@@ -1,8 +1,11 @@
 const mongoose=require('mongoose')
-const { User,Product,Wishlist,Cart } = require('../Model/db');
+const { User} = require('../Model/db');
 const { ObjectId } = require('mongoose').Types;
+const bcrypt = require('bcrypt');
 
 const {sendPhoneOtp,verifyPhoneOtp,resendPhoneOtp}=require('../Utilities/twilio')
+const {emailverification}=require('../Utilities/nodemailer')
+const otp = Math.floor(Math.random()*9000)+1000;
 
 const serviceSID="VA8012a02709508a14ff3d218ca1551f98"
 const accountSID="AC21860c8e1af91a58babe5e8d041c8819"
@@ -23,6 +26,7 @@ module.exports={
         },
 
 
+
         proHeadGet:async(req, res) => {
           try{
               res.render('profileHeader');                 
@@ -31,6 +35,7 @@ module.exports={
             res.status(500).send('Internal Server Error');
           }
           },
+
 
 
         loginGet:(req, res) => {
@@ -43,21 +48,27 @@ module.exports={
           },      
         
 
+
           loginPost:async (req, res) => {
+
             const email = req.body.email;
             const user = await User.findOne({ email: email });
             if (!user.otpVerified) {
               return res.render('login', { error: 'User not verified.Please Signup and verify' });
           }
+
             if (user.role) {
               req.session.role = user.role         
               res.redirect('/adminHome');
-          } else {
+          }
+           else {
             req.session.email = user.email;
             req.session.user={userId:user._id}
               res.redirect('/');
           }
+
       },
+
 
 
       logoutPost: (req, res) => {
@@ -71,6 +82,7 @@ module.exports={
     },
     
     
+
       signupGet: (req, res) => {
         if(req.session.email){
           res.redirect('/')
@@ -82,7 +94,9 @@ module.exports={
       },
       
 
+
       signupPost:async(req,res) => {   
+
         const defaultRole = 'user';   
         req.session.role = defaultRole; 
         req.session.phone=req.body.phone
@@ -90,7 +104,9 @@ module.exports={
         .then((resp)=>{
           res.redirect('/otp');
         })
+
       },
+
 
 
       otpGet:async(req,res)=>{
@@ -98,33 +114,148 @@ module.exports={
       },
 
 
+
       otpPost: async (req, res) => {
+
         const { otp } = req.body;
         const phone=req.session.phone
+
         try {   
             if(verifyPhoneOtp(phone,otp)){
               res.redirect('/');
             }else {
               res.render('otp', { errors: 'Invalid OTP' });
           }
+
         } catch (error) {
             console.error('Error during OTP verification:', error);
             res.status(500).send('Internal Server Error');
         }
+
     },
 
 
+
     resendPost:async(req,res)=>{
+
       const phone = req.session.phone;
       try {
         resendPhoneOtp(phone)
         res.render('otp',{errors:err});
+
     } catch (err) {
         console.error(err);
         res.json({ message: 'Error' });
     }
+
     },
 
+
+
+    forgotPasswordGet:async(req,res)=>{
+
+      try{
+        res.render('forgotPassword',{errors:err})
+      } catch(error) {
+
+        console.error('Error fetching input email:', error);
+        res.status(500).send('Internal Server Error');
+      }
+
+    },
+
+
+
+    forgotPasswordPost:async(req,res)=>{
+
+      try{
+        const email = req.body.email
+        emailverification(email,otp)
+
+        const user = await User.findOne({ email: email });
+        req.session.userId=new ObjectId(user._id)
+
+        res.render('passwordOtp',{errors:err})
+      } catch(error) {
+
+        console.error('Error during input email:', error);
+        res.status(500).send('Internal Server Error');
+
+      }
+    },
+
+
+    
+    passwordOtpGet:async(req,res)=>{
+
+      try{
+        res.render('passwordOtp',{errors:err})
+      } catch (error) {
+
+        console.error('Error during forgot password:', error);
+        res.status(500).send('Internal Server Error');
+
+      }
+    },
+
+
+
+    passwordOtpPost:async(req,res)=>{
+      
+      try{
+        const inputOtp = req.body.inputOtp
+  
+        if (inputOtp == otp) {
+          res.render('newPassword',{errors:err})
+        } else {
+          res.render('passwordOtp', { errors: 'OTP does not match.' });
+        }
+        
+      }catch(error){
+
+        console.error('Error during forgot password:', error);
+        res.status(500).send('Internal Server Error');
+      }
+    },
+
+
+
+    newPasswordGet:async(req,res)=>{
+
+      try{
+        res.render('newPassword')
+      }catch(error){
+
+        console.error('Error during new password:', error);
+        res.status(500).send('Internal Server Error');
+      }
+    },
+
+
+
+    newPasswordPost:async(req,res)=>{
+
+      try{
+        const userId = req.session.userId;
+        const { password, confirmPassword } = req.body;
+
+        if (!password || !confirmPassword) {
+          return res.render("newPassword", { error: "Both password fields are required" });
+        }  
+        if (password !== confirmPassword) {
+          return res.render("newPassword", { error: "Passwords do not match" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+        res.render("newPassword", { success: "Password updated successfully" });
+      } catch(error) {
+        
+        console.error('Error during new password:', error);
+        res.status(500).send('Internal Server Error');
+      }
+    },
 
     
 

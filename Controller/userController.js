@@ -745,15 +745,50 @@ module.exports={
                   const discountPercentage = parseFloat(coupon.discount);
                   
                   if (!isNaN(discountPercentage)) {
-                      userCart.totalOrderAmount = (userCart.totalPrice - (userCart.totalPrice * (discountPercentage / 100))) . toFixed() ;
+                    const condition = coupon.conditions;
+                    const totalAmount = userCart.totalOrderAmount;
+
+                    
+                    function checkCondition(condition, originalPrice) {
+                      // Extract numeric values from the condition
+                      const amounts = condition.match(/\d+/g); // amounts is an array with the 2 numbers is condition.
+
+                      if (amounts && amounts.length === 2) {
+                          const minPurchaseAmount = parseFloat(amounts[0]); // takes the first amount of amounts array
+                          const maxPurchaseAmount = parseFloat(amounts[1]); // takes the second amount of amounts array
+
+                          if (!isNaN(minPurchaseAmount) && !isNaN(maxPurchaseAmount)) {
+                              return originalPrice >= minPurchaseAmount && originalPrice <= maxPurchaseAmount;
+                          } else {
+                              console.log('Invalid numeric values in condition');
+                              return false;
+                          }
+                      } else {
+                          console.log('Invalid condition format');
+                          return false;
+                      }
+                    }
+
+
+                    if (checkCondition(condition, totalAmount)) {
+                      userCart.totalOrderAmount = (totalAmount - (totalAmount * (discountPercentage / 100))).toFixed();
                       await userCart.save();
 
                       res.json({
                           success: true,
                           discount: discountPercentage,
-                          condition: coupon.conditions,
+                          condition: condition,
                           totalOrderAmount: userCart.totalOrderAmount,
                       });
+
+                  } else {
+                      res.json({
+                         success: false,
+                         message: 'Coupon condition not met',
+                         condition: condition,
+                      });
+                  }
+
                   } else {
                       res.status(500).json({ success: false, message: 'Invalid coupon discount percentage' });
                   }
