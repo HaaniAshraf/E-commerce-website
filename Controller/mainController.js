@@ -127,6 +127,13 @@ module.exports={
               res.render('otp', { errors: 'Invalid OTP' });
           }
 
+          req.session.destroy((err) => {
+            if (err) {
+                console.error('Error destroying session:', err);
+                return res.status(500).json({ success: false, message: 'Internal Server Error' });
+            }
+        });
+
         } catch (error) {
             console.error('Error during OTP verification:', error);
             res.status(500).send('Internal Server Error');
@@ -250,6 +257,14 @@ module.exports={
         await User.findByIdAndUpdate(userId, { password: hashedPassword });
 
         res.render("newPassword", { success: "Password updated successfully" });
+
+        req.session.destroy((err) => {
+          if (err) {
+              console.error('Error destroying session:', err);
+              return res.status(500).json({ success: false, message: 'Internal Server Error' });
+          }
+      });
+      
       } catch(error) {
         
         console.error('Error during new password:', error);

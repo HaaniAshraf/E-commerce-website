@@ -1,6 +1,9 @@
-const serviceSID="VA8012a02709508a14ff3d218ca1551f98"
-const accountSID="AC21860c8e1af91a58babe5e8d041c8819"
-const authToken="e7cb6710d30101baa75cd7e8b718a2b8"
+
+require('dotenv').config()
+
+const serviceSID=process.env.serviceSID
+const accountSID=process.env.accountSID
+const authToken=process.env.authToken
 const client=require('twilio')(accountSID,authToken)
 
 const { User } = require('../Model/db');

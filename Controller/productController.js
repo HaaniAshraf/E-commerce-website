@@ -4,15 +4,24 @@ const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order,Review } 
 
 module.exports={
 
-    productlistGet:async(req,res)=>{
+      productlistGet: async (req, res) => {
         try {
-          const products = await Product.find();
-              res.render('productlist', { products });
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const skip = (page - 1) * limit;
+
+            const productsCount = await Product.countDocuments();
+            const totalPages = Math.ceil(productsCount / limit);
+
+            const products = await Product.find().skip(skip).limit(limit);
+
+            res.render('productlist', { products, currentPage: page, itemsPerPage: limit, totalPages });
         } catch (error) {
-          console.error('Error fetching products:', error);
-          res.status(500).send('Internal Server Error');
+            console.error('Error fetching products:', error);
+            res.status(500).send('Internal Server Error');
         }
       },
+
 
 
     productDetailsGet:async(req,res)=>{
@@ -36,10 +45,12 @@ module.exports={
       },
 
 
+
       addProductGet:async(req,res)=>{
         res.render('addProduct')
       },
   
+
   
       addProductPost: async (req, res) => {
         const { name, category, description, rating, price, ogPrice } = req.body;
@@ -68,6 +79,7 @@ module.exports={
     },
     
    
+
       updateProductGet:async(req,res)=>{
         const productId = req.params.productId;
     try {
@@ -82,6 +94,7 @@ module.exports={
     }
       },
   
+
   
       updateProductPost: async (req, res) => {
         const productId = req.params.productId;
@@ -112,6 +125,7 @@ module.exports={
         }
       },
       
+
    
       deleteProduct:async(req,res)=>{
         try {
@@ -122,7 +136,6 @@ module.exports={
              console.error('Error deleting product:', error);
         }
         },
-
 
 
 
@@ -152,7 +165,6 @@ module.exports={
           }
 
         },
-
 
 
 

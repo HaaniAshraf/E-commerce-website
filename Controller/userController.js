@@ -2,10 +2,11 @@ const mongoose=require('mongoose')
 const { ObjectId } = require('mongoose').Types;
 const { User,Profile,Address,Product,Banner,Coupon,Wishlist,Cart,Order,Review } = require('../Model/db');
 
+require('dotenv').config()
 const Razorpay = require('razorpay');
 const razorpay = new Razorpay({
-  key_id: 'rzp_test_SR65KtvtbFdCn3',
-  key_secret: 'tR2HhDS0gKdGAuPbwOHPZTZ1',
+  key_id: process.env.key_id,
+  key_secret: process.env.key_secret,
 });
 
 module.exports={
@@ -107,6 +108,8 @@ module.exports={
         const dynamicTitle = 'Privacy';
         res.render('privacy',{title:dynamicTitle})
       },
+
+
 
 
       addressGet:async(req,res)=>{

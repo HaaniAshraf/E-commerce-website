@@ -33,12 +33,7 @@ document.getElementById('payButton').addEventListener('click', async (event) => 
     const selectedAddressId = document.getElementById('addressDropdown').value;
     event.preventDefault();
     //Adding event.preventDefault(); at the beginning of your click event handler will prevent the default form submission, and only your JavaScript code will handle the form submission.
-    try{
 
-    }catch(error){
-        console.error('Error initiating Razorpay payment:', error);
-        alert('Error initiating payment. Please try again.');
-    }
     const response = await fetch('/createRazorpayOrder', {
         method: 'POST',
         headers: {
