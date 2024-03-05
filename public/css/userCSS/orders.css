@@ -64,7 +64,7 @@
 .order-item .orderDate{
   border-bottom: solid 1px rgb(247, 173, 37);
   padding-bottom: 5px;
-  width: 70%;
+  width: 80%;
 }
 .single-product{
   display: flex;

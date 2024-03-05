@@ -8,8 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User List</title>
   <link rel="stylesheet" href="css/adminCSS/userlist.css">
+  <link rel="stylesheet" href="/css/mainCSS/swal.css">
   <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
   <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -41,44 +43,40 @@
           <td><%= user.createdAt.toDateString() %></td>
           <td style="display: flex; gap: 10px;">
             
-         <a href="/userDetails/<%= user._id %>"><button type="submit" class="bt3"><i class="fa-solid fa-info" ></i></button></a> 
-            <form action="/removeUser/<%= user._id %>" method="post"
-              onsubmit="return confirm('Are you sure you want to remove this user?')">
-              <button type="submit" class="bt2"><i class="fa-regular fa-trash-can"></i></button>
-            </form>
+         <a href="/userDetails/<%= user._id %>"><button type="submit" class="bt3"><i class="fa-solid fa-info" ></i></button></a>
+         <% if (user.status === 'blocked') { %>
+          <!-- Display the Unblock button -->
+          <form id="unblockForm<%= user._id %>" action="/unblockUser/<%= user._id %>" method="post">
+            <button type="button" class="bt5" onclick="showUnblockConfirmation('<%= user._id %>')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                </svg>
+            </button>
+        </form>
+    <% } else { %>
+        <!-- Display the Block button with SweetAlert -->
+        <form id="blockForm<%= user._id %>" action="/blockUser/<%= user._id %>" method="post">
+            <button type="button" class="bt4" onclick="showBlockConfirmation('<%= user._id %>')">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+        </form>
+        <% } %>
+        <form id="removeForm<%= user._id %>" action="/removeUser/<%= user._id %>" method="post">
+          <button type="button" class="bt2" onclick="showRemoveConfirmation('<%= user._id %>')"> 
+              <i class="fa-regular fa-trash-can"></i>
+          </button>
+      </form>      
+      
           </td>
         </tr>
         <% }); %>
       </tbody>
     </table>
 
-    <script>
-      async function removeUser(userId) {
-        const confirmation = confirm('Are you sure you want to remove this user?');
-
-        if (confirmation) {
-          try {
-            const response = await fetch(`/removeUser/${userId}`, {
-              method: 'POST',
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-              alert('User removed successfully.');
-            } else {
-              alert('Error removing user. Please try again.');
-            }
-          } catch (error) {
-            console.error('Error removing user:', error);
-            alert('Internal Server Error. Please try again.');
-          }
-        }
-      }
-
-    </script>
-
   </div>
+
+    <script src="/js/blockUser.js"></script>
 
 </body>
 

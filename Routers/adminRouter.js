@@ -6,6 +6,8 @@ const upload = require('../Middleware/multermiddleware')
 const {
     adminhomeGet,
     userlistGet,
+    blockUser,
+    unblockUser,
     removeUser,
     userDetailsGet,
     addBannerGet,
@@ -21,7 +23,7 @@ const {
     orderListGet,
     orderDetailsGet,
     orderStatusPost,
-    reviewListGet
+    reviewListGet,
 
 }=require('../Controller/adminController')
 
@@ -29,6 +31,8 @@ const {
 router.get('/adminHome',adminhomeGet)
       .get('/userlist',userlistGet)
       .get('/userDetails/:userId',userDetailsGet)
+      .post('/blockUser/:userId',blockUser)
+      .post('/unblockUser/:userId',unblockUser)
       .post('/removeUser/:userId',removeUser)  
       .get('/addBanner',addBannerGet)
       .post('/addBanner',upload.single('image'),addBannerPost)

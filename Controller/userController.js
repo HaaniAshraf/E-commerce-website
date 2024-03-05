@@ -185,6 +185,7 @@ module.exports={
       },
 
 
+
       couponGet:async(req,res)=>{
         const dynamicTitle = 'Coupons';
         try {
@@ -196,6 +197,7 @@ module.exports={
         }    
       },
 
+      
 
       menSectionGet:async(req,res)=>{
         try {

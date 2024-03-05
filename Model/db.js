@@ -1,5 +1,7 @@
 const mongoose=require('mongoose')
-const mongoUrl="mongodb://localhost:27017/eCommerce"
+
+require('dotenv').config()
+const mongoUrl=process.env.mongoUrl
 
 //Database Connection
 const startMongoServer=async()=>{
@@ -43,6 +45,10 @@ const signupSchema=new mongoose.Schema({
       type:Boolean,
       default:false,
       required:true
+    },
+    status:{
+      type:String,
+      default:'active'
     }
 })
 
@@ -308,7 +314,7 @@ const orderSchema = new mongoose.Schema({
 
 
 
-
+// Review Schema(reviews collection)
 const reviewSchema = new mongoose.Schema({
   product:{
     type:mongoose.Schema.Types.ObjectId,

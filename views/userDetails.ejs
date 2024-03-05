@@ -90,38 +90,34 @@
 
                 <div class="orderSection">
                     <h2>Orders</h2>
-                    <% order.forEach(orderItem => { %>
-                        <p class="orderId">Order ID - <span><%= orderItem._id %></span></p>
-                        <p>Total Order Amount - <span><%= orderItem.totalOrderAmount %></span></p>
-                        <p>Ordered Date - <span><%= orderItem.orderedDate.toDateString() %></span></p>
-                        <p>Order Status - <span><%= orderItem.orderStatus %></span></p>
-
-                        <ul>
-                            <% orderItem.products.forEach(productItem => { %>
-                                <li>
-                                    <div class="orderProducts">
-                                        <div class="orderProductsLeft">
-                                            <img src="<%= productItem.product.imageUrls[0] %>" alt="">
+                    <div class="singleOrder">
+                        <% order.forEach(orderItem => { %>
+                            <p class="orderId">Order ID - <span><%= orderItem._id %></span></p>
+                            <p>Total Order Amount - <span><%= orderItem.totalOrderAmount %></span></p>
+                            <p>Ordered Date - <span><%= orderItem.orderedDate.toDateString() %></span></p>
+                            <p>Order Status - <span><%= orderItem.orderStatus %></span></p>
+    
+                            <ul>
+                                <% orderItem.products.forEach(productItem => { %>
+                                    <li>
+                                        <div class="orderProducts">
+                                            <div class="orderProductsLeft">
+                                                <img src="<%= productItem.product.imageUrls[0] %>" alt="">
+                                            </div>
+                                            <div class="orderProductRight">
+                                                <p>Product ID - <span><%= productItem.product._id %></span></p>
+                                                <p>Product Name - <span><%= productItem.product.name %></span></p>
+                                                <p>Product Quantity - <span><%= productItem.quantity %></span></p>
+                                            </div>
                                         </div>
-                                        <div class="orderProductRight">
-                                            <p>Product ID - <span><%= productItem.product._id %></span></p>
-                                            <p>Product Name - <span><%= productItem.product.name %></span></p>
-                                            <p>Product Quantity - <span><%= productItem.quantity %></span></p>
-                                        </div>
-                                    </div>
-
-                                </li>
-                            <% }) %>
-                        </ul>
-                    <% }) %>
+    
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </div>  
+                        <% }) %>
                 </div>
                 
-                
-                
-                
-              
-            
-
         </div>
 
         <a href="/userList" class="back"><i class="fa-solid fa-arrow-left"></i>Back to Users</a>

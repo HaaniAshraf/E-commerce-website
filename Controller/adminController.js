@@ -27,8 +27,6 @@ module.exports={
 
 
 
-
-
     userlistGet:async(req,res)=>{
       try {
 
@@ -41,7 +39,6 @@ module.exports={
       }
 
     },
-
 
 
 
@@ -65,6 +62,49 @@ module.exports={
 
 
 
+    blockUser:async(req,res)=>{
+      const userId = req.params.userId;
+
+      try{
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        user.status = 'blocked';
+        await user.save();
+        res.status(200).json({ success: true, message: 'User blocked successfully' });
+
+      } catch (error) {
+        console.error('Error blocking user:', error);
+        res.status(500).send('Internal Server Error');
+      }
+    },
+
+
+
+    unblockUser:async(req,res)=>{
+      const userId = req.params.userId
+
+      try{
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        user.status = 'active';
+        await user.save();
+        res.status(200).json({ success: true, message: 'User unblocked successfully' });
+
+      }catch (error) {
+        console.error('Error unblocking user:', error);
+        res.status(500).send('Internal Server Error');
+      }
+    },
+
+
 
     removeUser:async(req,res)=>{
       const userId = req.params.userId;
@@ -85,7 +125,6 @@ module.exports={
    
 
 
-
       addBannerGet:async(req,res)=>{
         try {
 
@@ -98,8 +137,6 @@ module.exports={
         }
 
       },
-
-
 
 
 
@@ -120,8 +157,6 @@ module.exports={
 
 
 
-
-
       updateBannerGet:async(req,res)=>{
         const bannerId = req.params.bannerId;
         try {
@@ -138,8 +173,6 @@ module.exports={
       }
 
       },
-
-
 
 
 
@@ -166,8 +199,6 @@ module.exports={
 
 
 
-
-
       deleteBanner:async(req,res)=>{
         try {
 
@@ -183,8 +214,6 @@ module.exports={
         
         
 
-
-
         addCouponGet:async(req,res)=>{
           try {
 
@@ -198,7 +227,6 @@ module.exports={
 
         },
   
-
 
   
         addCouponPost: async (req, res) => {
@@ -218,8 +246,6 @@ module.exports={
       
 
 
-
-
         updateCouponGet:async(req,res)=>{
           const couponId = req.params.couponId;
           try {
@@ -236,8 +262,6 @@ module.exports={
         }
 
         },
-
-
 
 
 
@@ -262,7 +286,6 @@ module.exports={
 
 
 
-
         deleteCoupon:async(req,res)=>{
           try {
 
@@ -278,7 +301,6 @@ module.exports={
 
 
 
-
         orderListGet:async(req,res)=>{
           try{
 
@@ -291,7 +313,6 @@ module.exports={
           }       
 
         },
-
 
 
 
@@ -312,7 +333,6 @@ module.exports={
 
 
 
-
         orderStatusPost:async(req,res)=>{
           try {
 
@@ -328,7 +348,6 @@ module.exports={
         }
 
         },
-
 
 
 

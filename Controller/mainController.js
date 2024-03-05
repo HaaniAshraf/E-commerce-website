@@ -56,6 +56,9 @@ module.exports={
             if (!user.otpVerified) {
               return res.render('login', { error: 'User not verified.Please Signup and verify' });
           }
+          if (user.status === 'blocked') {
+            return res.render('login', { error: 'User is blocked.' });
+        }
 
             if (user.role) {
               req.session.role = user.role         
