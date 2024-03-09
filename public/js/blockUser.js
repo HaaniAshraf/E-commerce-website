@@ -1,3 +1,4 @@
+// block user
 async function blockUser(userId) {
     try {
         const response = await fetch(`/blockUser/${userId}`, {
@@ -15,6 +16,7 @@ async function blockUser(userId) {
 }
 
 
+// unblock user
 async function unblockUser(userId) {
     try {
         const response = await fetch(`/unblockUser/${userId}`, {
@@ -33,6 +35,7 @@ async function unblockUser(userId) {
     }
 
 
+// remove user
     async function removeUser(userId) {
         try {
             const response = await fetch(`/removeUser/${userId}`, {
@@ -54,7 +57,8 @@ async function unblockUser(userId) {
         }
     }
 
-    
+
+// block sweet alert
     function showUnblockConfirmation(userId) {
     Swal.fire({
         title: 'Are you sure?',
@@ -74,6 +78,7 @@ async function unblockUser(userId) {
     }
 
 
+ // unblock sweet alert
   function showBlockConfirmation(userId) {
       Swal.fire({
           title: 'Are you sure?',
@@ -93,6 +98,7 @@ async function unblockUser(userId) {
   }
 
 
+// remove sweet alert
   function showRemoveConfirmation(userId) {
     Swal.fire({
         title: 'Are you sure?',
@@ -111,9 +117,7 @@ async function unblockUser(userId) {
     }
 
 
-
-
-
+// form submission
     async function submitForm(formId) {
         const form = document.getElementById(formId);
         await fetch(form.action, {

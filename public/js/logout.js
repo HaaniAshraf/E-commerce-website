@@ -1,3 +1,4 @@
+// logout function
 async function logout() {
     try {
         const response = await fetch('/logout', { method: 'POST' });
@@ -15,6 +16,9 @@ async function logout() {
         console.error('Error:', error.message);
     }
 }
+
+
+// logout sweet alert
 function showLogoutConfirmation() {
 Swal.fire({
 title: "Are you sure?",

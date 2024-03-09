@@ -122,6 +122,8 @@ const addressSchema = new mongoose.Schema({
   }]
 });
 
+
+
 //Product Schema(products collection)
 const productSchema = new mongoose.Schema({
     imageUrls: [{

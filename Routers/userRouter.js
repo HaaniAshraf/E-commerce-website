@@ -4,76 +4,29 @@ const router=express.Router()
 
 const {
     userhomeGet,
-    profileGet,
-    profilePost,
-    privacyGet,
-    addressGet,
-    addressAddPost,
-    addressRemove,
-    couponGet,
     menSectionGet,
     womenSectionGet,
     jewelrySectionGet,
     perfumeSectionGet,
     electronicSectionGet,
-    wishlistGet,
-    wishlistToggle,
-    wishlistCount,
-    addToWishlist,
-    removeFromWishist,
-    cartGet,
-    cartCount,
-    addToCart,
-    updateCart,
-    removeFromCart,
-    validateCoupon,
-    applyGift,
-    checkoutGet,
-    checkoutPost,
-    razorPayPost,
-    orderPost,
-    orderPlacedGet,
-    ordersGet,
-    cancelOrderPost,
-    reviewGet,
-    reviewPost,
+    userlistGet,
+    blockUser,
+    unblockUser,
+    removeUser,
+    userDetailsGet
 }=require('../Controller/userController')
 
 
 router.get('/',userhomeGet)
-      .get('/profile',profileGet)
-      .post('/profile',profilePost)
-      .get('/privacy',privacyGet)
-      .get('/address',addressGet)
-      .post('/address/add',addressAddPost)
-      .post('/address/remove/:addressId',addressRemove)
-      .get('/coupon',couponGet)
       .get('/menSection',menSectionGet)
       .get('/womenSection',womenSectionGet)
       .get('/jewelrySection',jewelrySectionGet)
       .get('/perfumeSection',perfumeSectionGet)
       .get('/electronicSection',electronicSectionGet)
-      .get('/wishlist',wishlistGet)
-      .post('/wishlistToggle/:productId',wishlistToggle)
-      .get('/wishlist/count',wishlistCount)
-      .post('/addToWishlist/:productId',addToWishlist)
-      .post('/removeFromWishlist/:productId',removeFromWishist)
-      .get('/cart',cartGet)
-      .get('/cart/count',cartCount)
-      .post('/addToCart/:productId',addToCart)
-      .post('/updateCartItem',updateCart)
-      .post('/removeFromCart/:productId',removeFromCart)
-      .post('/applyCoupon',validateCoupon)
-      .post('/applyGift',applyGift)
-      .get('/checkout',checkoutGet)
-      .post('/checkout',checkoutPost)
-      .post('/createRazorpayOrder',razorPayPost)
-      .post('/createOrder',orderPost)
-      .get('/orderPlaced',orderPlacedGet)
-      .get('/orders',ordersGet)
-      .post('/cancelOrder/:orderId',cancelOrderPost)
-      .get('/review',reviewGet)
-      .post('/review',reviewPost)
-
+      .get('/userlist',userlistGet)
+      .get('/userDetails/:userId',userDetailsGet)
+      .post('/blockUser/:userId',blockUser)
+      .post('/unblockUser/:userId',unblockUser)
+      .post('/removeUser/:userId',removeUser) 
 
 module.exports=router

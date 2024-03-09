@@ -9,8 +9,14 @@ const flash=require('express-flash')
 //Routers
 const mainRouter=require('./Routers/mainRouter')
 const userRouter=require('./Routers/userRouter')
+const profileRouter=require('./Routers/profileRouter')
 const adminRouter=require('./Routers/adminRouter')
 const productRouter=require('./Routers/productRouter')
+const bannerRouter=require('./Routers/bannerRouter')
+const couponRouter=require('./Routers/couponRouter')
+const wishlistRouter=require('./Routers/wishlistRouter')
+const cartRouter=require('./Routers/cartRouter')
+const orderRouter=require('./Routers/orderRouter')
 
 //Database model
 const { startMongoServer } = require('./Model/db');
@@ -43,10 +49,17 @@ app.use(express.static('public'));
 //Setting View Engine and Routes
 app.set('view engine','ejs')
 app.set('views',"views" )
+
 app.use('/',mainRouter)
 app.use('/',userRouter)
+app.use('/',profileRouter)
 app.use('/',adminRouter)
 app.use('/',productRouter)
+app.use('/',bannerRouter)
+app.use('/',couponRouter)
+app.use('/',wishlistRouter)
+app.use('/',cartRouter)
+app.use('/',orderRouter)
 
 
 app.listen(port, () => {

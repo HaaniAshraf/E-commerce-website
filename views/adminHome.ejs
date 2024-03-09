@@ -14,8 +14,12 @@
     <link rel="stylesheet" href="css/adminCSS/adminHome.css">
     <link rel="stylesheet" href="css/mainCSS/swal.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
-<body>
+<body style="background-color: black;">
     <div class="container">
         <aside>
             <div class="top">
@@ -55,12 +59,15 @@
                     </span>
                 <h3>Orders</h3>
                 </a>            
-                <a href="/reviewList">
+                <a href="/reviewList" style="margin-bottom: 50px;">
                     <span class="material-icons-sharp">
                         rate_review
                         </span>
                     <h3>Reviews</h3>
                 </a> 
+                    <a href="/addProduct"><span class="material-symbols-sharp but1"> add_circle</span><h4>Add Product</h4></a>
+                    <a href="/addCoupon"><span class="material-symbols-sharp but1">add_circle</span><h4>Add Coupon</h4></a>
+                   <a href="/addBanner"><span class="material-symbols-sharp but1">add_circle</span><h4>Add Banner</h4></a>
                 <form action="/logout" method="POST">           
                 <a href="#">
                     <span class="material-icons-sharp logouticon">
@@ -80,101 +87,136 @@
                 <input type="date"  id="currentDate" readonly>
             </div>
             <div>
-                <div class="insights">
-                    <div class="sales">
-                        <span class="material-icons-sharp">
-                            analytics
-                        </span>
-                        <div class="middle">
-                            <div class="left">
-                                <h3>Total Sales</h3>
-                                <h1>$784,014</h1>
-                            </div>
-                            <div class="progress">
-                                <svg>
-                                    <circle cx="38" cy="38" r="36"></circle>
-                                </svg>
-                                <div class="number">
-                                    <p>85%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <small class="text-muted">Last 24 Hours</small>
+                <div class="insights" style="display: flex;gap: 20px;">
+                    <div class="sales" style="width: 250px;">
+                        <div class="up">
+                            <img src="/images/adminHome/sales.png" style="height: 50px;width: 50px;" alt="">
+                            <p>Total Sales</p>
+                        </div>         
+                            <div class="down">
+                                <h1>₹ <%= totalSales %></h1>
+                            </div>                         
                     </div>
                 
                     <!-----------------------END OF SALES----------------------->
                 
-                    <div class="expenses">
-                        <span class="material-icons-sharp">
-                            bar_chart
-                        </span>
-                        <div class="middle">
-                            <div class="left">
-                                <h3>Total Expenses</h3>
-                                <h1>$24,014</h1>
-                            </div>
-                            <div class="progress">
-                                <svg>
-                                    <circle cx="38" cy="38" r="36"></circle>
-                                </svg>
-                                <div class="number">
-                                    <p>59%</p>
-                                </div>
-                            </div>
+                    <div class="users" style="width: 250px;">
+                        <div class="up">
+                            <img src="/images/adminHome/user.png" style="height: 50px;width: 50px;" alt="">
+                            <p>Total Users</p>
+                        </div>                 
+                            <div class="down">
+                                <h1><%= totalUsers %></h1>
                         </div>
-                        <small class="text-muted">Last 24 Hours</small>
                     </div>
                     <!-----------------------END OF EXPENSES----------------------->
                 
-                    <div class="income">
-                        <span class="material-icons-sharp">
-                            stacked_line_chart
-                        </span>
-                        <div class="middle">
-                            <div class="left">
-                                <h3>Total Income</h3>
-                                <h1>$310,014</h1>
-                            </div>
-                            <div class="progress">
-                                <svg>
-                                    <circle cx="38" cy="38" r="36"></circle>
-                                </svg>
-                                <div class="number">
-                                    <p>41%</p>
-                                </div>
-                            </div>
+                    <div class="products" style="width: 250px;">
+                        <div class="up">
+                            <img src="/images/adminHome/shopping-cart.png" style="height: 50px;width: 50px;" alt="">
+                            <p>Total Products</p>
+                        </div>               
+                            <div class="down">
+                                <h1><%= totalProducts %></h1>
                         </div>
-                        <small class="text-muted">Last 24 Hours</small>
                     </div>
                     <!-----------------------END OF INCOME----------------------->
             </div>
-        
-            <div class="btns">
-               <a href="/addProduct"> <button>Add Product</button></a>
-                <a href="/addCoupon"><button>Add Coupon</button></a>
-               <a href="/addBanner"><button>Add Banner</button></a> 
-            </div>
+
+
+            <!------------------GRAPHS------------------>
+            <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">  
+                <h2>SALES ANALYTICS</h2>
+                <div class="pt-6 px-2 pb-0">
+                  <div id="bar-chart"></div>
+                </div>
+              </div>         
+            
+             <!------------------END OF GRAPHS------------------>
 
         </main>
-        <figure class="pie-chart">
-            <div class="adminName">
-                <img src="/images/admin.png" alt="" class="adminImg">
-                <p><%= admin.name %></p>
+       
+        <div class="detailsSection">
+            <h2>STATISTICS</h2>
+            <div class="statistics">
+                <div class="popProduct">
+                    <p>Most Popular Product :</p>
+                    <div class="popAll">
+                        <div class="popLeft">
+                            <img src="" alt="">
+                        </div>
+                        <div class="popRight">
+                            <h4></h4>
+                            <span>Likes</span>
+                            <i class="fa-regular fa-heart"></i>
+                        </div>     
+                    </div>                 
+                </div>
+                <div class="orderProduct">
+                    <p>Most Ordered Product :</p>
+                    <div class="orderAll">
+                        <div class="orderLeft">
+                            <img src="" alt="">
+                        </div>
+                        <div class="orderRight">
+                            <h4></h4>
+                            <span>Orders</span>
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>     
+                    </div>     
+                </div>
+                <div class="activeUser">
+                    <p>Most Active User :</p>
+                    <div class="activeAll">     
+                        <div class="activeUp">
+                            <i class="fa-regular fa-user" style="font-size: 15px;"></i>      
+                            <h3 style="font-size: 15px;"></h3>
+                        </div>
+                        <div class="activeDown">
+                            <h5></h5>
+                            <span>Orders</span>
+                            <i class="fa-solid fa-sack-dollar" style="color: wheat;"></i>
+                        </div>      
+                    </div>  
+                </div>
             </div>
-            <h1>User &nbsp; Tracking</h1>
-            <figcaption>
-                Visited 38<span style="color:#4e79a7"></span><br>
-                Signed 33<span style="color:rgb(230, 230, 26)"></span><br>
-                Logged 20<span style="color:rgb(55, 188, 55)"></span><br>
-                Logout 8<span style="color:#e15759"></span>
-            </figcaption>
-        </figure>
+
+            <div class="recent">
+                <h2>RECENT UPDATES</h2>
+            <ul id="recentUpdatesList">
+                <li class="latestUser"></li>
+                <li class="pendingOrder"></li>
+            </ul>
+            </div>
+
+        </div>
+
         <!-----------------------END OF MAIN----------------------->
     </div>
 
+    <div class="downGraphs">
+
+        <div class="card">
+            <h2>USER TRACKING</h2>
+            <div class="pulse"></div>
+            <div class="area-chart">
+                <div class="grid"></div>
+            </div>
+        </div>
+
+        <div class="pieChart">
+            <h2>PRODUCTS COLLECTION</h2>
+            <canvas id="myChart" style="width:100%;max-width:300px"></canvas>
+        </div>
+
+
+    </div>
+
+
     <script src="js/date.js"></script>
     <script src="js/logout.js"></script>
-
+    <script src="js/graphs.js"></script>
+    <script src="js/statistics.js"></script>
 
 </body>
 </html>
