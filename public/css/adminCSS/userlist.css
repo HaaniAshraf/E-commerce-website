@@ -1,83 +1,123 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-body{
-    background-color: black;
-    color: white;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-.cartlogo{
+body {
+  background-color: black;
+  color: white;
+}
+
+.cartlogo {
   height: 25px;
   width: 25px;
 }
-.smart span{
+
+.smart span {
   color: rgb(247, 173, 37);
 }
-.logo h2{
+
+.logo h2 {
   font-size: 25px;
 }
-a{
-    text-decoration: none;
+
+a {
+  text-decoration: none;
 }
-h1{
-    text-align: center;
-    color: rgb(247, 173, 37);
+
+h1 {
+  text-align: center;
+  color: rgb(247, 173, 37);
 }
+
+.content-container {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: solid 1px rgb(93, 92, 92);
+}
+
+thead {
+  color: rgb(245, 197, 109);
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgb(93, 92, 92);
+}
+
+tbody tr:hover {
+  background-color: rgb(20, 20, 20);
+}
+
+.bt2,
+.bt3,
+.bt4,
+.bt5 {
+  background-color: rgb(247, 173, 37);
+  color: black;
+  height: 24px;
+  width: 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bt2:hover {
+  background-color: #cd4738;
+  color: white;
+}
+.bt3:hover {
+  background-color: rgb(63, 170, 87);
+  color: white;
+}
+.bt4:hover {
+  background-color: rgb(98, 98, 250);
+  color: white;
+}
+.bt5:hover {
+  background-color: rgb(224, 28, 136);
+  color: white;
+}
+.buttonTd{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 51px;
+}
+
+@media only screen and (max-width: 768px) {
   .content-container {
-    max-width: 1000px;
-    margin: 10px auto;
-    padding: 20px;
+    padding: 5px;
+  }
+  h1{
+    font-size: 22px;
+  }
+  table {
+      font-size: 14px;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border: solid 1px rgb(93, 92, 92);
+  th,
+  td {
+      padding: 5px;
   }
-  thead{
-    color: rgb(245, 197, 109);
+  .bt2,.bt4,.bt3{
+    height: 18px;
+    width: 18px;
+    font-size: 10px;
   }
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid rgb(93, 92, 92);  
-  }
-  
-  tbody tr:hover {
-    background-color: rgb(20, 20, 20);
-  }
-  
-  .bt2,.bt3,.bt4,.bt5 {
-    background-color: rgb(247, 173, 37);
-    color: black;
-    height: 24px;
-    width: 24px;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
- 
-  .bt2:hover {
-    background-color: #cd4738;
-    color: white;
-  }
-  .bt3:hover {
-    background-color: rgb(63, 170, 87);
-    color: white;
-  }
-  .bt4:hover {
-    background-color: rgb(98, 98, 250);
-    color: white;
-  }
-  .bt5:hover {
-    background-color: rgb(224, 28, 136);
-    color: white;
-  }
-  
+
+}

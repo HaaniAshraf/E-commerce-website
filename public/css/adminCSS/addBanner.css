@@ -1,127 +1,162 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
-body{
+
+body {
     background-color: black;
     color: white;
 }
-a{
+
+a {
     text-decoration: none;
 }
-/* .logo{
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
-    color: white;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-.logo img{
-    width: 2.3rem;
-    height: 2.2rem;
-} */
-.cartlogo{
+
+.cartlogo {
     height: 25px;
     width: 25px;
 }
-.smart span{
+
+.smart span {
     color: rgb(247, 173, 37);
 }
-.logo h2{
+
+.logo h2 {
     font-size: 25px;
 }
-.content{
+
+.content {
     display: flex;
     margin-top: 30px;
-    padding: 0px 50px;
-    gap: 100px;
-    border: solid 1px rgb(79, 79, 79);
-    margin-left: 300px;
-    width: 800px;
+    padding: 0px 20px; /* Adjust padding for small screens */
 }
-.left{
+
+.left,
+.right {
+    text-align: center;
+    padding: 20px;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    border-right: solid 1px rgb(79, 79, 79);
-    padding-right: 50px;
+    align-items: center;
 }
-.left li{
+.left{
+    border-right: solid 1px rgb(43, 42, 42);
+}
+.left li {
     list-style: none;
 }
-.left li img{
-    width: 300px;
-    height: 120px;
+
+.left li img {
+    width: 35%; /* Make images fill the container width */
+    height: 40%;
 }
-.left li p{
+
+.left li p {
     margin-top: 5px;
-    font-size: 20px;
+    font-size: 16px; /* Adjust font size for small screens */
 }
-.content h1{
-    margin-top: 20px;
+
+.content h1 {
     color: rgb(247, 173, 37);
+    margin-bottom: 20px;
 }
-.btns{
+
+.btns {
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    
 }
-.btns button{
+
+.btns button {
     height: 30px;
-    width: 110px;
-    font-size: 17px;
-    font-weight: bold;
+    font-size: 14px; /* Adjust font size for small screens */
+    width: 100px;
+    cursor: pointer;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
+    font-weight: bold;
 }
 .btns .btn1{
-    background-color: rgb(162, 244, 104);   
+    background-color: rgb(48, 188, 101);
 }
 .btns .btn2{
-    background-color: rgb(249, 114, 114);
+    background-color: rgb(232, 68, 68);
 }
-.right{
-    text-align: center;
-}
+
 .right form{
-    margin-top: 10px;
+    background-color: rgb(18, 18, 18);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: 50%;
+    border-radius: 10px;
+    width: 50%;
+    padding: 20px;
 }
-.right label{
-    font-size: 20px;
-    margin-top: 40px;
+
+.right label {
+    font-size: 20px; /* Adjust font size for small screens */
+    margin-top: 10px;
 }
-.right input{
-    margin-top: 5px;
-    background-color: rgb(30, 30, 30);
-    border: none;
-    height: 30px;
-    width: 300px;
-    border-radius: 5px;
+
+.right input {
     padding-left: 5px;
-    color: white;
-}
-::-webkit-file-upload-button{
-    background-color: rgb(99, 98, 98);
-    border: none;
-}
-::placeholder{
-    color: rgb(89, 88, 88);
-}
-.right button{
+    margin-top: 5px;
     height: 30px;
-    width: 130px;
-    font-size: 17px;
-    font-weight: bold;
     border: none;
-    border-radius: 8px;
-    margin-top: 50px;
+    color: white;
+    background-color: rgb(52, 51, 51);
+    width: 100%; /* Make input fields fill the container width */
+}
+
+.right button {
+    height: 30px;
+    width: 50%;
+    font-size: 14px; /* Adjust font size for small screens */
+    margin-top: 35px;
     background-color: rgb(247, 173, 37);
-    margin-left: 85px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* Media query for screens with a maximum width of 768 pixels (typical tablet size) */
+@media only screen and (max-width: 768px) {
+    .content {
+        margin-left: 0; /* Remove left margin for small screens */
+        display: flex;
+        flex-direction: column;
+    }
+    .btns button{
+        height: 25px;
+        font-size: 12px; 
+        width: 60px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .left li img {
+        width: 50%; /* Make images fill the container width */
+        height: 50%;
+    }
+    .left li p {
+        margin-top: 5px;
+        font-size: 13px; /* Adjust font size for small screens */
+    }
+    .left,
+    .right {
+        text-align: center;
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

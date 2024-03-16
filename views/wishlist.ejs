@@ -3,38 +3,43 @@
 <%- include('mainHeader.ejs') %>
 
 <body>
+  <div class="wishlistContainer">
+    <h1 class="wishlistHead">Your Wishlist</h1>
 
-<div class="wishlistContainer">
-  
-  <h1 class="wishlistHead">Your Wishlist</h1>
-
-  <% if (wishlistProducts.length > 0) { %>
+    <% if (wishlistProducts.length > 0) { %>
     <ul class="wishlistUl">
       <% wishlistProducts.forEach(product => { %>
-        <li class="wishlistList">
-          <img src="<%= product.imageUrls[0] %>" alt="<%= product.name %>" width="100">
-          <h3><%= product.name %></h3>
-          <p>Price: ₹ <%= product.price %></p>
-          <form action="/removeFromWishlist/<%= product._id %>" method="post" onsubmit="return confirm('Are you sure you want to remove this product from your wishlist?')">
-            <input type="hidden" name="source" value="wishlist">
-              <button type="submit" class="remove">Remove</button>
-          </form>        
-          <form action="/addToCart/<%= product._id %>" method="post">
-            <a href="/cart"> <button type="submit" class="addToCart">Add To Cart</button></a> 
+      <li class="wishlistList">
+        <img
+          src="<%= product.imageUrls[0] %>"
+          alt="<%= product.name %>"
+          width="100"
+        />
+        <h3><%= product.name %></h3>
+        <p>Price: ₹ <%= product.price %></p>
+        <form
+          action="/removeFromWishlist/<%= product._id %>"
+          method="post"
+          onsubmit="return confirm('Are you sure you want to remove this product from your wishlist?')"
+        >
+          <input type="hidden" name="source" value="wishlist" />
+          <button type="submit" class="remove">Remove</button>
         </form>
-          </li>
+        <form action="/addToCart/<%= product._id %>" method="post">
+          <a href="/cart">
+            <button type="submit" class="addToCart">Add To Cart</button></a
+          >
+        </form>
+      </li>
       <% }); %>
-    </ul>    
-  <% } else { %>
+    </ul>
+    <% } else { %>
     <div class="nil">
-      <img src="/images/shopping-cart.png" alt="">
+      <img src="/images/shopping-cart.png" alt="" />
       <p class="empty">Your wishlist is empty.</p>
-      <p class="start">Start adding products you like! </p>
+      <p class="start">Start adding products you like!</p>
       <a href="/"><button class="btn">Continue Shopping</button></a>
     </div>
-  <% } %>
-  
-</div>
-
- 
+    <% } %>
+  </div>
 </body>

@@ -2,94 +2,84 @@
 
 <%- include('mainHeader.ejs') %>
 <body>
-
-<div class="productDetailsContainer">
-
+  <div class="productDetailsContainer">
     <div class="product-images product-images-slider">
-        <% if (product.imageUrls && product.imageUrls.length > 0) { %>
-            <% for (let i = 0; i < product.imageUrls.length; i++) { %>
-                <img src="<%= product.imageUrls[i] %>" alt="<%= product.name %>" class="product-img default <%= i === 0 ? 'active' : '' %>">
-            <% } %>
-        <% } %>
+      <% if (product.imageUrls && product.imageUrls.length > 0) { %> <% for (let
+      i = 0; i < product.imageUrls.length; i++) { %>
+      <img
+        src="<%= product.imageUrls[i] %>"
+        alt="<%= product.name %>"
+        class="product-img default <%= i === 0 ? 'active' : '' %>"
+      />
+      <% } %> <% } %>
     </div>
 
     <div class="detailsRight">
-        <h1 class="productName"><%= product.name %></h1>
-        <div class="productPrices">
-            <p>₹ <%= product.price %></p>
-            <% if (product.ogPrice !== undefined) { %>
-                <del>₹ <%= product.ogPrice.toFixed(2) %></del>
-              <% } %>
-              <h6 style="color: gray;" >( Inclusive of all taxes )</h6>
+      <h1 class="productName"><%= product.name %></h1>
+      <div class="productPrices">
+        <p>₹ <%= product.price %></p>
+        <% if (product.ogPrice !== undefined) { %>
+        <del>₹ <%= product.ogPrice.toFixed(2) %></del>
+        <% } %>
+        <h6 style="color: gray">( Inclusive of all taxes )</h6>
+      </div>
+      <div class="showcase-rating">
+        <% for (let i = 0; i < product.rating; i++) { %>
+        <i class="fa-solid fa-star"></i>
+        <% } %>
+      </div>
+      <div class="btns">
+        <form action="/addToCart/<%= product._id %>" method="post">
+          <a href="/cart">
+            <button type="submit" class="addToCart">Add To Cart</button></a
+          >
+        </form>
+        <form action="/addToWishlist/<%= product._id %>" method="post">
+          <a href="/wishlist">
+            <button type="submit" class="wishlist">Add To Wishlist</button></a
+          >
+        </form>
+      </div>
+      <p class="desc"><b>Description:</b> <%= product.description %></p>
+
+      <div class="pngs">
+        <div class="png1">
+          <img src="/images/cash-on-delivery.png" alt="" />Pay on delivery available
         </div>
+        <div class="png1">
+          <img src="/images/arrows.png" alt="" />Easy 14 days return & exchange available
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-Section">
+    <% if (productReview) { %>
+    <h2>Customer Reviews</h2>
+
+    <div class="review-grid">
+      <% productReview.reviews.forEach(review => { %>
+      <div class="review-item">
+        <div class="reviewtop">
+          <img src="/images/user.png" alt="" />
+          <p class="userName"><%= review.user.name %></p>
+          <p class="reviewDate"><%= review.postedAt.toDateString() %></p>
+        </div>
+        <p class="userReview">"<%= review.review %>"</p>
         <div class="showcase-rating">
-            <% for (let i = 0; i < product.rating; i++) { %>
-                <i class="fa-solid fa-star"></i>
-            <% } %>
-          </div>
-        <div class="btns">
-            <form action="/addToCart/<%= product._id %>" method="post">
-                <a href="/cart"> <button type="submit" class="addToCart">Add To Cart</button></a> 
-            </form>
-           <form action="/addToWishlist/<%= product._id %>" method="post">
-           <a href="/wishlist"> <button type="submit" class="wishlist">Add To Wishlist</button></a>
-        </form>     
-          </div>    
-        <p class="desc"><b>Description:</b> <%= product.description %></p>    
-
-        <div class="pngs">
-           <div class="png1"><img src="/images/cash-on-delivery.png" alt="">Pay on delivery available</div>
-           <div class="png1"><img src="/images/arrows.png" alt="">Easy 14 days return & exchange available</div> 
+          <% for (let i = 0; i < review.rating; i++) { %>
+          <i class="fa-solid fa-star"></i>
+          <% } %>
         </div>
-    </div>  
-    
-</div>
+      </div>
+      <% }); %>
+    </div>
 
-            <div class="review-Section">
-                <% if (productReview) { %>
-                    <h2>Customer Reviews</h2>
+    <% } %>
+  </div>
 
-                    <div class="review-grid">
-                        <% productReview.reviews.forEach(review => { %>
-                            <div class="review-item">
-                                <div class="reviewtop">
-                                    <img src="/images/user.png" alt="">
-                                    <p class="userName"><%= review.user.name %></p> 
-                                    <p class="reviewDate"><%= review.postedAt.toDateString() %></p>
-                                </div>                                                                                 
-                                <p class="userReview">"<%= review.review %>"</p>
-                                <div class="showcase-rating">
-                                    <% for (let i = 0; i < review.rating; i++) { %>
-                                        <i class="fa-solid fa-star"></i>
-                                    <% } %>
-                                </div>                               
-                            </div>
-                        <% }); %>
-                    </div>
-                    
-                <% } %>
-            </div>
+  <%- include('footer.ejs') %>
 
+  <script src="/js/productSlide.js"></script>
 
-<%- include('footer.ejs') %>
-     
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                let currentImageIndex = 0;
-                const images = document.querySelectorAll('.product-images-slider .product-img');
-                const totalImages = images.length;       
-                function showImage(index) {
-                    images.forEach((img, i) => {
-                        img.classList.toggle('active', i === index);
-                    });
-                }       
-                function nextImage() {
-                    currentImageIndex = (currentImageIndex + 1) % totalImages;
-                    showImage(currentImageIndex);
-                }       
-                setInterval(nextImage, 4000);
-            });
-        </script>
-        
-        
 </body>

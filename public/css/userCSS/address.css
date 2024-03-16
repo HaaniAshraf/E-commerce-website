@@ -1,84 +1,122 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins',sans-serif;
-}
-body{
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
     background-color: black;
     color: white;
-}
-.addresspage{
-    padding: 0 60px;
+  }
+  
+  .addresspage {
+    padding: 0 50px; /* Adjust padding for smaller screens */
     display: flex;
-    gap: 300px;
-}
-.addresspage h2{
+    justify-content: center;
+    gap: 80px;
+  }
+  
+  .addresspage h2 {
     color: rgb(247, 173, 37);
     text-align: center;
-}
-.saved{
+  }
+  
+  .saved,
+  .new {
     background-color: rgb(14, 13, 13);
+    padding: 20px; /* Adjust padding for smaller screens */
+    border-radius: 10px;
+  }
+  
+  .saved {
+    width: 20%;
+  }
+  .saved ul{
+    margin-top: 20px;
+  }
+  .saved button{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(245, 64, 64);
+  }
+
+
+
+
+  .new{
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    width: 250px;
-    padding-top: 8px;
-    border-radius: 10px;
-}
-.saved button{
-    background-color: rgb(243, 73, 73);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    height: 25px;
-    width: 120px;
-    margin-top: 8px;
-}
-.saved button:hover{
-    background-color: rgb(248, 85, 85);
-}
-
-.new .addressform{
+  }
+  .new .addressform {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(14, 13, 13);
-    box-shadow: 0 0 8px 2px rgb(111, 110, 110);
-    border-radius: 10px;
-    height: 450px;
-    width: 420px;
-    box-sizing: border-box;
-}
-.new form label{
+    width: 80%;
+  }
+  
+  .new form label {
     margin-top: 10px;
-}
-.new form input{
-    border: solid 1px rgb(180, 179, 179);
-    background-color: rgba(255, 255, 255, 0.215);
+    font-size: 20px;
+  }
+  
+  .new form input {
+    width: 70%;
+    margin: 5px;
+    background-color: rgb(51, 51, 51);
     color: white;
-    height: 25px;
-    width: 300px;
     padding-left: 5px;
-}
-
-.new form button{
-    background-color: rgb(247, 173, 37);
-    color: black;
-    font-size: 17px;
-    font-weight: bold;
-    width: 300px;
-    height: 28px;
-    margin-top: 25px;
+    border: none;
+    height: 25px;
+  }
+  
+  .new form button {
+    width: 70%; 
+    margin-top: 20px;
+    margin-bottom: 10px;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+    background-color: rgb(247, 173, 37);
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+  }
+  
+  /* Media queries for responsiveness */
+  @media only screen and (max-width: 600px) {
+    .addresspage {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+    }
+    
+    .saved {
+        width: 100%;
+    }
+    
+    .new {
+        width: 100%;
+    }
+  }
+
+  @media only screen and (max-width:1500px) {
+    .addresspage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 40px;
+        margin-top: 20px;
+      }
+      
+      .saved {
+          width: 50%;
+      }
+      
+      .new {
+          width: 80%;
+      }
+  }
+  

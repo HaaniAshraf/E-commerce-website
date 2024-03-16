@@ -30,26 +30,6 @@
         <button type="button" class="resend">Resend OTP</button>
     </form>
 
+    <script src="/js/resendOtp.js"></script>
     
-    <script>
-        document.querySelector('.resend').addEventListener('click', function() {
-            fetch('/resendOtp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    // Include any necessary data in the request body
-                }),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                alert('OTP resent successfully!');
-            })
-            .catch((error) => {
-                console.error('Error during resend:', error);
-            });
-        });
-    </script>
 </body

@@ -1,79 +1,96 @@
-*{
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.otpForm{
-    margin-top: 150px;
-    background-color:rgb(14, 13, 13);
-    height: 260px;
-    width: 260px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow:  0 0 8px 2px rgb(111, 110, 110); 
-    border-radius: 10px;
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
-.left{
-    /* width: 100%; */
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    /* justify-content: center; */
-  }
-  .logo {
-    height: 17px; 
-    width: 19px; 
-  }
-  
-  .SHOPON {
-    display: flex;
-    font-size: 18px;
-    font-weight: 700;
-  }
-  
-  .SHOPON .on {
-    color: rgb(247, 173, 37);
-  }
-input{
-    margin-top: 40px;
-    height: 30px;
-    width: 200px;
-    background-color: rgba(255, 255, 255, 0.215);
-    border: none;
-    color: white;
-    font-size: 18px;
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-::placeholder{
-    font-size: 15px;
+
+.otpForm {
+  margin-top: 150px;
+  background-color: rgb(14, 13, 13);
+  height: 260px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 8px 2px rgb(111, 110, 110);
+  border-radius: 10px;
 }
-.verify{
-    margin-top: 30px;
-    background-color: rgb(247, 173, 37);
-    border-radius: 5px;
-    border: none;
-    height: 32px;
-    width: 200px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+
+.left {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
-.resend{
-    margin-top: 15px;
-    color: rgb(247, 173, 37);
-    background-color: rgb(33, 33, 33);
-    border-radius: 5px;
-    border: none;
-    height: 32px;
-    width: 200px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+
+.logo {
+  height: 17px;
+  width: 19px;
+}
+
+.SHOPON {
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.SHOPON .on {
+  color: rgb(247, 173, 37);
+}
+
+input {
+  margin-top: 40px;
+  height: 30px;
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.215);
+  border: none;
+  color: white;
+  font-size: 18px;
+}
+
+::placeholder {
+  font-size: 15px;
+}
+
+.verify,
+.resend {
+  margin-top: 15px;
+  height: 32px;
+  width: 200px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.verify {
+  margin-top: 30px;
+  background-color: rgb(247, 173, 37);
+  border-radius: 5px;
+  border: none;
+}
+
+.resend {
+  color: rgb(247, 173, 37);
+  background-color: rgb(33, 33, 33);
+  border-radius: 5px;
+  border: none;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 600px) {
+  .otpForm {
+      width: 50%; /* Adjust as needed for smaller screens */
+  }
+
+  input,
+  .verify,
+  .resend {
+      width: 70%; /* Make elements full-width on smaller screens */
+  }
 }

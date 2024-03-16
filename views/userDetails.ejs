@@ -1,128 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Details</title>
-    <link rel="shortcut icon" href="/images/cartlogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/adminCSS/userDetails.css">
-    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    
+    <link rel="shortcut icon" href="/images/cartlogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/adminCSS/userDetails.css" />
+    <script
+      src="https://kit.fontawesome.com/ce01cf2811.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <a href="/adminHome">
-        <div class="logo">
-          <img src="/images/cartlogo.png" alt="Avatar" class="avatar">
-          <h2 class="smart">SHOP <span class="on">ON</span></h2>
+      <div class="logo">
+        <img src="/images/cartlogo.png" alt="Avatar" class="avatar" />
+        <h2 class="smart">SHOP <span class="on">ON</span></h2>
+      </div>
+    </a>
+
+    <div class="userDetailsContent">
+      <h1>User Details</h1>
+
+      <div class="userCard">
+        <div class="userCardLeft">
+          <div class="userSection">
+            <h2>User</h2>
+            <p>Name : <span>&nbsp; <%= user.name %></span></p>
+            <p>User Id : <span>&nbsp; <%= user._id %></span></p>
+            <p>Email : <span>&nbsp; <%= user.email %></span></p>
+            <p>Phone : <span>&nbsp;<%= user.phone %></span></p>
+            <p>
+              Signed At :
+              <span>&nbsp; <%= user.createdAt.toDateString() %></span>
+            </p>
+            <p>
+              Alternate Number :
+              <span>&nbsp; <%= profile.alternateMobile %></span>
+            </p>
+            <p>Date of Birth : <span>&nbsp; <%= profile.dob %></span></p>
+            <p>Gender : <span>&nbsp; <%= profile.gender %></span></p>
+          </div>
+
+          <div class="addressSection">
+            <h2>Addresses</h2>
+            <ul>
+              <% address.addresses.forEach(addr => { %>
+              <li>
+                <p>House Number - <span> <%= addr.houseNumber %></span></p>
+                <p>Locality : <span><%= addr.locality %></span></p>
+                <p>City : <span><%= addr.city %></span></p>
+                <p>State : <span><%= addr.state %></span></p>
+                <p>Pin Code : <span><%= addr.pinCode %></span></p>
+              </li>
+              <% }); %>
+            </ul>
+          </div>
         </div>
-      </a>
 
-      <div class="userDetailsContent">
-
-        <h1>User Details</h1>
-
-        <div class="userCard">
-
-            <div class="userCardLeft">
-                <div class="userSection">
-                    <h2>User</h2>
-                    <p>Name : <span>&nbsp; <%= user.name %></span></p>
-                    <p>User Id : <span>&nbsp; <%= user._id %></span></p>
-                    <p>Email : <span>&nbsp; <%= user.email %></span></p>
-                    <p>Phone : <span>&nbsp;<%= user.phone %></span></p>
-                    <p>Signed At : <span>&nbsp; <%= user.createdAt.toDateString() %></span></p>
-                    <p>Alternate Number : <span>&nbsp; <%= profile.alternateMobile %></span></p>
-                    <p>Date of Birth : <span>&nbsp; <%= profile.dob %></span></p>
-                    <p>Gender : <span>&nbsp; <%= profile.gender %></span></p>
-                </div>
-    
-                    <div class="addressSection">
-                        <h2>Addresses</h2>
-                        <ul>
-                            <% address.addresses.forEach(addr => { %>
-                                <li>
-                                    <p>House Number - <span> <%= addr.houseNumber %></span></p>
-                                    <p>Locality : <span><%= addr.locality %></span></p>
-                                    <p>City : <span><%= addr.city %></span></p>
-                                    <p>State : <span><%= addr.state %></span></p>
-                                    <p>Pin Code : <span><%= addr.pinCode %></span></p>
-                                </li>
-                            <% }); %>
-                        </ul>
-                    </div>
+        <div class="wishlistSection">
+          <h2>Wishlist</h2>
+          <% if (wishlist && wishlist.products) { %> <%
+          wishlist.products.forEach(product => { %>
+          <div class="wishlistProduct">
+            <div class="wishlistProductLeft">
+              <img src="<%= product.imageUrls[0] %>" alt="" />
             </div>
-      
-
-                <div class="wishlistSection">
-                    <h2>Wishlist</h2>
-                    <% if (wishlist && wishlist.products) { %>
-                        <% wishlist.products.forEach(product => { %>
-                            <div class="wishlistProduct">
-                                <div class="wishlistProductLeft">
-                                    <img src="<%= product.imageUrls[0] %>" alt="">
-                                </div>
-                                <div class="wishlistProductRight">
-                                    <p>Product Name : <span><%= product.name %></span></p>
-                                    <p>Product ID - <span><%= product._id %></span></p>
-                                </div>
-                            </div>
-                        <% }) %>
-                        <% } %>
-                </div>
-
-                <div class="cartSection">
-                    <h2>Cart</h2>
-                    <% if (cart && cart.products) { %>
-                        <% cart.products.forEach(cartItem => { %>
-                            <div class="cartProduct">
-                                <div class="cartProductLeft">
-                                    <img src="<%= cartItem.product.imageUrls[0] %>" alt="">  
-                                </div>
-                                <div class="cartProductRight">
-                                    <p>Product Name: <span><%= cartItem.product.name %></span></p>
-                                    <p>Product ID - <span><%= cartItem.product._id %></span></p>
-                                    <p>Quantity: <span><%= cartItem.quantity %></span></p>
-                                </div>
-                            </div>
-                        <% }) %>
-                    <% } %>  
-                </div>
-
-                <div class="orderSection">
-                    <h2>Orders</h2>
-                    <div class="singleOrder">
-                        <% order.forEach(orderItem => { %>
-                            <p class="orderId">Order ID - <span><%= orderItem._id %></span></p>
-                            <p>Total Order Amount - <span><%= orderItem.totalOrderAmount %></span></p>
-                            <p>Ordered Date - <span><%= orderItem.orderedDate.toDateString() %></span></p>
-                            <p>Order Status - <span><%= orderItem.orderStatus %></span></p>
-    
-                            <ul>
-                                <% orderItem.products.forEach(productItem => { %>
-                                    <li>
-                                        <div class="orderProducts">
-                                            <div class="orderProductsLeft">
-                                                <img src="<%= productItem.product.imageUrls[0] %>" alt="">
-                                            </div>
-                                            <div class="orderProductRight">
-                                                <p>Product ID - <span><%= productItem.product._id %></span></p>
-                                                <p>Product Name - <span><%= productItem.product.name %></span></p>
-                                                <p>Product Quantity - <span><%= productItem.quantity %></span></p>
-                                            </div>
-                                        </div>
-    
-                                    </li>
-                                <% }) %>
-                            </ul>
-                        </div>  
-                        <% }) %>
-                </div>
-                
+            <div class="wishlistProductRight">
+              <p>Product Name : <span><%= product.name %></span></p>
+              <p>Product ID - <span><%= product._id %></span></p>
+            </div>
+          </div>
+          <% }) %> <% } %>
         </div>
 
-        <a href="/userList" class="back"><i class="fa-solid fa-arrow-left"></i>Back to Users</a>
+        <div class="cartSection">
+          <h2>Cart</h2>
+          <% if (cart && cart.products) { %> 
+             <% cart.products.forEach(cartItem => { %>
+          <div class="cartProduct">
+            <div class="cartProductLeft">
+              <img src="<%= cartItem.product.imageUrls[0] %>" alt="" />
+            </div>
+            <div class="cartProductRight">
+              <p>Product Name: <span><%= cartItem.product.name %></span></p>
+              <p>Product ID - <span><%= cartItem.product._id %></span></p>
+              <p>Quantity: <span><%= cartItem.quantity %></span></p>
+            </div>
+          </div>
+          <% }) %>
+        <% } %>
+        </div>
 
+        <div class="orderSection">
+          <h2>Orders</h2>
+          <% order.forEach(orderItem => { %>
+            <div class="singleOrder">
+            <p class="orderId">Order ID - <span><%= orderItem._id %></span></p>
+            <p>
+              Total Order Amount -
+              <span><%= orderItem.totalOrderAmount %></span>
+            </p>
+            <p>
+              Ordered Date -
+              <span><%= orderItem.orderedDate.toDateString() %></span>
+            </p>
+            <p>Order Status - <span><%= orderItem.orderStatus %></span></p>
+
+            <ul>
+              <% orderItem.products.forEach(productItem => { %>
+              <li style="list-style: none;">
+                <div class="orderProducts">
+                  <div class="orderProductsLeft">
+                    <img src="<%= productItem.product.imageUrls[0] %>" alt="" />
+                  </div>
+                  <div class="orderProductRight">
+                    <p>
+                      Product ID - <span><%= productItem.product._id %></span>
+                    </p>
+                    <p>
+                      Product Name -
+                      <span><%= productItem.product.name %></span>
+                    </p>
+                    <p>
+                      Product Quantity -
+                      <span><%= productItem.quantity %></span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+          <% }) %>
+        </div>
       </div>
 
-</body>
+      <a href="/userList" class="back"
+        ><i class="fa-solid fa-arrow-left"></i>Back to Users</a
+      >
+    </div>
+  </body>
 </html>

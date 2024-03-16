@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Review List</title>
-    <link rel="stylesheet" href="/css/adminCSS/reviewList.css">
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-</head>
-<body>
-
-    <a href="/adminHome" style="color: white;">
-        <div class="logo" style="display: flex;gap: 5px; margin-top: 15px;margin-left: 15px;">
-          <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
-          <h2 class="smart">SHOP <span>ON</span></h2>
+    <link rel="stylesheet" href="/css/adminCSS/reviewList.css" />
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <a href="/adminHome" style="color: white">
+      <div
+        class="logo"
+        style="display: flex; gap: 5px; margin-top: 15px; margin-left: 15px"
+      >
+        <img src="/images/cartlogo.png" alt="cart" class="cartlogo" />
+        <h2 class="smart">SHOP <span>ON</span></h2>
       </div>
-      </a>
+    </a>
 
-      <div class="reviewsContainer">
-        <h1>Reviews</h1>
-    
-        <table class="reviewsTable">
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>User ID</th>
-                    <th>Review</th>
-                    <th>Rating</th>
-                    <th>Posted At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% productReviews.forEach(productReview => { %>
-                    <% productReview.reviews.forEach(review => { %>
-                        <tr>
-                            <td><%= productReview.product %></td>
-                            <td><%= review.user %></td>
-                            <td><%= review.review %></td>
-                            <td><%= review.rating %></td>
-                            <td><%= review.postedAt.toDateString() %></td>
-                        </tr>
-                    <% }); %>
-                <% }); %>
-            </tbody>
-        </table>
+    <div class="reviewsContainer">
+      <h1>Reviews</h1>
 
+      <table class="reviewsTable">
+        <thead>
+          <tr>
+            <th>Product ID</th>
+            <th>User ID</th>
+            <th>Review</th>
+            <th>Rating</th>
+            <th>Posted At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% productReviews.forEach(productReview => { %> <%
+          productReview.reviews.forEach(review => { %>
+          <tr>
+            <td><%= productReview.product %></td>
+            <td><%= review.user %></td>
+            <td><%= review.review %></td>
+            <td><%= review.rating %></td>
+            <td><%= review.postedAt.toDateString() %></td>
+          </tr>
+          <% }); %> <% }); %>
+        </tbody>
+      </table>
     </div>
-    
-
-</body>
+  </body>
 </html>

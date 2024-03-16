@@ -1,30 +1,36 @@
 <title><%= title %></title>
 
-<%- include('mainHeader.ejs') %>
-
-<%- include('profileHeader.ejs') %>
+<%- include('mainHeader.ejs') %> <%- include('profileHeader.ejs') %>
 <body>
   <h1>Coupons</h1>
 
-<div class="couponContent">
-  <ul class="couponUl">
-    <% coupons.forEach(coupon => { %>
+  <div class="couponContent">
+    <ul class="couponUl">
+      <% coupons.forEach(coupon => { %>
       <li class="couponLi">
         <div class="couponLiUp">
           <div class="couponLiUp1">
-            <span> <%= coupon.discount %> <br> OFF</span>
-          </div>        
+            <span>
+              <%= coupon.discount %> <br />
+              OFF</span
+            >
+          </div>
           <div class="couponLiUp2">
             <span> Code: <b><%= coupon.couponCode %></b> </span>
-            <span style="color: gray;"> <%= coupon.conditions %></span>
-          </div>        
+            <span style="color: gray"> <%= coupon.conditions %></span>
+          </div>
         </div>
         <div class="couponLiDown">
-          <span>Expiry Date: <%= coupon.expiry.toDateString() %></span>   
+          <% if (coupon.expiry < new Date()) { %>
+            <span style="color: rgb(247, 82, 82);">Expired</span>
+          <% } else { %>
+            <span>Expiry Date: <%= coupon.expiry.toDateString() %></span>
+          <% } %>
         </div>
-        </li>
-    <% }); %>
-  </ul>
-</div>
-
+        
+        
+      </li>
+      <% }); %>
+    </ul>
+  </div>
 </body>

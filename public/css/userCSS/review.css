@@ -20,7 +20,7 @@ body{
 .review-container form{
     display: flex;
     flex-direction: column;
-    background-color: rgb(8, 8, 8);
+    background-color: rgb(26, 25, 25);
     border-radius: 10px;
     width: 30%;
     height: 340px;
@@ -179,3 +179,41 @@ body{
     margin-top: 8px;
   }
   
+
+  @media only screen and (max-width: 1500px) {
+    .review-container {
+        margin-top: 100px; /* Adjusted margin for smaller screens */
+    }
+    
+    .review-container form {
+        padding: 15px; /* Adjusted padding for smaller screens */
+        width: 60%;
+    }
+    
+    .submitReview {
+        margin-top: 30px; /* Adjusted margin for smaller screens */
+    }
+    .reviewArea textarea{
+      width: 95%;
+      margin-top: 5px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+  .review-container {
+      margin-top: 100px; /* Adjusted margin for smaller screens */
+  }
+  
+  .review-container form {
+      padding: 15px; /* Adjusted padding for smaller screens */
+      width: 80%;
+  }
+  
+  .submitReview {
+      margin-top: 30px; /* Adjusted margin for smaller screens */
+  }
+  .reviewArea textarea{
+    width: 95%;
+    margin-top: 5px;
+  }
+}

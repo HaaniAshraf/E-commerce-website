@@ -7,18 +7,7 @@
 a{
     text-decoration: none;
 }
-/* .logo{
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
-    color: white;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-.logo img{
-    width: 2.3rem;
-    height: 2.2rem;
-} */
+
 .cartlogo{
     height: 25px;
     width: 25px;
@@ -107,3 +96,33 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@media only screen and (max-width: 768px) {
+    .content-container {
+      max-width: 80%; /* Form takes full width */
+      padding: 15px;
+    }
+  
+    .inp1 {
+      display: flex;
+      text-align: left;
+      width: 100%;
+      align-items: center;
+    }
+  
+    label {
+      font-size: 15px;
+      width: 50%; /* Labels take full width */
+    }
+  
+    input,
+    select,
+    textarea {
+      width: 50%; /* Inputs take full width */
+    }
+    button{
+        height: 7%;
+        width: 30%;
+        font-size: 15px;
+    }
+  }

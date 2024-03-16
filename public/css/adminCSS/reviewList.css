@@ -1,36 +1,43 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
-body{
+
+body {
     background-color: black;
     color: white;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.cartlogo{
+
+.cartlogo {
     height: 25px;
     width: 25px;
 }
-.smart span{
+
+.smart span {
     color: rgb(247, 173, 37);
 }
-.logo h2{
+
+.logo h2 {
     font-size: 25px;
 }
 
-.reviewsContainer{
+.reviewsContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
-    padding: 0px 50px;
+    padding: 0px 5%; /* Adjusted padding for smaller screens */
 }
-.reviewsContainer h1{
+
+.reviewsContainer h1 {
     color: rgb(247, 173, 37);
 }
+
 .reviewsTable {
     width: 100%;
     border-collapse: collapse;
@@ -38,7 +45,8 @@ a{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.reviewsTable th, .reviewsTable td {
+.reviewsTable th,
+.reviewsTable td {
     border: 1px solid #575656;
     padding: 10px;
     text-align: left;
@@ -46,4 +54,20 @@ a{
 
 .reviewsTable th {
     background-color: rgb(34, 34, 34);
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 768px) {
+    .reviewsContainer {
+        padding: 0px 20px; /* Adjusted padding for smaller screens */
+        width: 100%;
+    }
+    .reviewsContainer h1{
+        font-size: 23px;
+    }
+    .reviewsTable th,
+    .reviewsTable td {
+        font-size: 10px; /* Adjusted font size for smaller screens */
+        padding: 5px;
+    }
 }

@@ -1,8 +1,10 @@
-*{
-  font-family: 'Poppins',sans-serif;
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
-.noOrders{
+/* Default styles */
+
+.noOrders {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,15 +12,18 @@
   gap: 20px;
   margin-top: 50px;
 }
-.noOrders img{
+
+.noOrders img {
   height: 150px;
   width: 150px;
 }
-.noOrders .oops{
+
+.noOrders .oops {
   color: gray;
   font-size: 18px;
 }
-.noOrders .startShopping{
+
+.noOrders .startShopping {
   height: 38px;
   width: 170px;
   background-color: rgb(14, 13, 13);
@@ -30,9 +35,8 @@
   cursor: pointer;
 }
 
-.orders-content{
-  height: 100%;
-  width: 70%;
+.orders-content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,51 +44,60 @@
   margin-bottom: 100px;
 }
 
-.order-list{
+.order-list {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 75%;
-}
-.order-item{
-  border: solid 1px rgb(50, 50, 50);
   width: 100%;
+}
+
+.order-item {
+  border: solid 1px rgb(50, 50, 50);
   padding: 20px;
   border-radius: 10px;
   background-color: rgb(14, 13, 13);
   display: flex;
+  flex-direction: column;
 }
-.order-item .order-item-left{
-  width: 40%;
+
+.order-item .order-item-left {
+  width: 100%;
 }
-.product-item img{
+
+.product-item img {
   height: 100px;
   width: 100px;
 }
-.order-item .orderDate{
+
+.order-item .orderDate {
   border-bottom: solid 1px rgb(247, 173, 37);
   padding-bottom: 5px;
   width: 80%;
 }
-.single-product{
+
+.single-product {
   display: flex;
   gap: 8px;
   margin-top: 15px;
 }
-.single-productRight{
+
+.single-productRight {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-top: 5px;
 }
-.single-productRight .productName{
+
+.single-productRight .productName {
   color: rgb(216, 215, 215);
   font-size: 18px;
   font-weight: bold;
 }
-.single-productRight .productQuantity{
+
+.single-productRight .productQuantity {
   color: gray;
 }
+
 .single-productRight .productReview{
   background-color: rgb(14, 13, 13);
   height: 30px;
@@ -116,16 +129,17 @@
   justify-content: center;
 }
 
-.order-item-right{
-  width: 60%;
+.order-item-right {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 50px;
+  margin-top: 20px;
 }
 
-.order-item-rightUp {
+.order-item-rightUp,
+.order-item-rightDown {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,56 +147,54 @@
   gap: 10px;
   width: 100%;
 }
-.order-item-rightUp .orderId{
+
+.order-item-rightUp .orderId {
   color: wheat;
   font-weight: bold;
 }
-.deliveryAddress{
+
+.deliveryAddress {
   display: flex;
-  width: 80%;
+  width: 100%;
   gap: 10px;
   margin-top: 30px;
   color: rgb(162, 161, 161);
   justify-content: center;
 }
-.deliveryAddress span{
+
+.deliveryAddress span {
   text-align: center;
   width: 50%;
 }
-.order-item-rightUp .orderAmount{
+
+.order-item-rightUp .orderAmount {
   color: rgb(247, 173, 37);
   font-size: 20px;
   font-weight: bold;
   margin-top: 30px;
 }
-.order-item-rightUp .paymentMethod{
+
+.order-item-rightUp .paymentMethod {
   margin-top: 10px;
   color: rgb(159, 158, 158);
 }
 
-
-.order-item-rightDown{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 50px;
-}
-.order-item-rightDown .deliveryDate{
+.order-item-rightDown .deliveryDate {
   color: rgb(35, 172, 88);
   font-size: 18px;
   font-weight: bold;
 }
-.orderStatus{
+
+.orderStatus {
   font-weight: bold;
   font-size: 18px;
 }
-.orderStatus span{
+
+.orderStatus span {
   color: yellow;
 }
-.order-item-rightDown .cancelOrder{
+
+.order-item-rightDown .cancelOrder {
   background-color: rgb(14, 13, 13);
   height: 35px;
   width: 140px;
@@ -191,6 +203,57 @@
   color: rgb(245, 58, 58);
   cursor: pointer;
 }
-.order-item-rightDown .cancelOrder:hover{
-  background-color: rgb(19, 18, 18);
+
+/* Media Queries for responsiveness */
+
+@media only screen and (min-width: 768px) {
+  .orders-content {
+    width: 70%;
+  }
+
+  .order-item {
+    flex-direction: row;
+  }
+
+  .order-item .order-item-left {
+    width: 40%;
+  }
+
+  .order-item-right {
+    width: 60%;
+    margin-left: 50px;
+  }
+
+  .deliveryAddress {
+    width: 80%;
+  }
+
+  .deliveryAddress span {
+    width: unset;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .orders-content {
+    width: 90%;
+  }
+
+  .order-item .order-item-left {
+    width: 100%;
+  }
+
+  .order-item-right {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .deliveryAddress{
+    width: 100%;
+  }
+  .deliveryAddress span {
+    width: 75%;
+  }
+  .deliveryDate{
+    margin-top: 10px;
+  }
 }

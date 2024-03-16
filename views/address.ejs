@@ -1,55 +1,59 @@
-<title><%= title %></title>
-
-<%- include('mainHeader.ejs') %>
-
-<%- include('profileHeader.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<div class="addresspage">
-
+  <%- include('mainHeader.ejs') %> 
+  <%- include('profileHeader.ejs') %>
+  <div class="addresspage">
     <div class="saved">
-        <h2>Saved Addresses:</h2>
-        <ul>
-            <% userAddresses.forEach(user => { %>
-                <% user.addresses.forEach(address => { %>
-                    <li>
-                        <%= user.username %>:  <br>House Number - <%= address.houseNumber %>, <br>
-                        <%= address.locality %>, <br> <%= address.city %>,
-                        <%= address.state %>  <br>PIN - <%= address.pinCode %>
-                        <form action="/address/remove/<%= address._id %>" method="post">
-                            
-                            <button type="submit">Remove</button>
-                            <br><br>
-                        </form>
-                    </li>
-                <% }); %>
-            <% }); %>
-        </ul>
+      <h2>Saved Addresses:</h2>
+      <ul>
+        <% userAddresses.forEach(user => { %>
+          <% user.addresses.forEach(address => { %>
+            <li>
+              <%= user.username %>: <br />
+              House Number - <%= address.houseNumber %>, <br />
+              <%= address.locality %>, <br />
+              <%= address.city %>, <%= address.state %> <br />
+              PIN - <%= address.pinCode %>
+              <form action="/address/remove/<%= address._id %>" method="post">
+                <button type="submit">Remove</button>
+                <br /><br />
+              </form>
+            </li>
+          <% }); %>
+        <% }); %>
+      </ul>      
     </div>
-      
+
     <div class="new">
-        <form action="/address/add" method="post" class="addressform">
-            <h2 class="newaddress">New Address:</h2>
-            <br>
-            <label for="houseNumber">House Number:</label>
-            <input type="text" id="houseNumber" name="houseNumber" required>
-    
-            <label for="locality">Locality:</label>
-            <input type="text" id="locality" name="locality" required>
-    
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city" required>
-    
-            <label for="state">State:</label>
-            <input type="text" id="state" name="state" required>
-    
-            <label for="pinCode">Pin Code:</label>
-            <input type="number" id="pinCode" name="pinCode" required>
-    
-            <button type="submit" class="addbtn">Add Address</button>
-        </form>
-    
+      <form action="/address/add" method="post" class="addressform">
+        <h2 class="newaddress">New Address:</h2>
+        <br />
+        <label for="houseNumber">House Number:</label>
+        <input type="text" id="houseNumber" name="houseNumber" required />
+
+        <label for="locality">Locality:</label>
+        <input type="text" id="locality" name="locality" required />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required />
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required />
+
+        <label for="pinCode">Pin Code:</label>
+        <input type="number" id="pinCode" name="pinCode" required />
+
+        <button type="submit" class="addbtn">Add Address</button>
+      </form>
     </div>
-        
-</div>
-   
+  </div>
 </body>
+</html>

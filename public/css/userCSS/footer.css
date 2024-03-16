@@ -180,3 +180,57 @@ li{
     align-items: center;
     justify-content: center
   }
+
+
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .categoryContainer {
+    width: 100%;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .footer-nav-list {
+    margin-bottom: 30px;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 12px;
+  }
+
+  .footer-nav-item {
+    padding: 5px 0;
+  }
+
+  .footer-nav-item .nav-title{
+    font-size: 12px;
+  }
+  .footer-nav-item .footer-nav-link{
+    font-size: 10px;
+  }
+
+  .footer-nav .nav-title::before {
+    width: 100%;
+  }
+
+  .footer-nav-item .icon-box ion-icon {
+    font-size: 18px;
+  }
+
+  .footer-bottom {
+    margin-bottom: 30px;
+  }
+
+  .payment-img {
+    max-width: 180px;
+    margin-top: 10px;
+  }
+
+  .copyright {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}

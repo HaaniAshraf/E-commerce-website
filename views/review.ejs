@@ -1,56 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Review</title>
-    <link rel="stylesheet" href="/css/userCSS/review.css">
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezspNjgEAAm6scOzFJt1yoVBU6BqAfnUD5Zqgq5CcDLUwM7jUUGFIjWJ5iS42Kcz" crossorigin="anonymous">
-
-</head>
-<body>
-
+    <link rel="stylesheet" href="/css/userCSS/review.css" />
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha384-ezspNjgEAAm6scOzFJt1yoVBU6BqAfnUD5Zqgq5CcDLUwM7jUUGFIjWJ5iS42Kcz"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
     <%- include('mainHeader.ejs') %>
 
-
     <div class="review-container">
-        <h1>Post a Review</h1>
+      <h1>Post a Review</h1>
 
-        <form action="/review" method="POST">
+      <form action="/review" method="POST">
+        <input type="hidden" name="productId" value="<%= productId %>" />
 
-          <input type="hidden" name="productId" value="<%= productId %>">
-                  
-            <fieldset class="star-rating">
-                <legend style="font-size: 1.3rem;">Your Rating:</legend>
-                <div class="star-Rating">
-                  <input type="radio" name="rating" value="1" id="rating1" />
-                  <label for="rating1" title="Very Bad"><span>1</span></label>
-                  <input type="radio" name="rating" value="2" id="rating2" />
-                  <label for="rating2"><span>2</span></label>
-                  <input type="radio" name="rating" value="3" id="rating3" />
-                  <label for="rating3"><span>3</span></label>
-                  <input type="radio" name="rating" value="4" id="rating4" />
-                  <label for="rating4"><span>4</span></label>
-                  <input type="radio" name="rating" value="5" id="rating5" />
-                  <label for="rating5"><span>5</span></label>
-                </div>
-              
-              </fieldset>
-              <p class="star-value">
-                Rating: 0
-              </p>
+        <fieldset class="star-rating">
+          <legend style="font-size: 1.3rem">Your Rating:</legend>
+          <div class="star-Rating">
+            <input type="radio" name="rating" value="1" id="rating1" />
+            <label for="rating1" title="Very Bad"><span>1</span></label>
+            <input type="radio" name="rating" value="2" id="rating2" />
+            <label for="rating2"><span>2</span></label>
+            <input type="radio" name="rating" value="3" id="rating3" />
+            <label for="rating3"><span>3</span></label>
+            <input type="radio" name="rating" value="4" id="rating4" />
+            <label for="rating4"><span>4</span></label>
+            <input type="radio" name="rating" value="5" id="rating5" />
+            <label for="rating5"><span>5</span></label>
+          </div>
+        </fieldset>
+        <p class="star-value">Rating: 0</p>
 
-              <div class="reviewArea">
-                <label for="review">Your Review:</label>
-                <textarea id="review" name="review" rows="4" cols="50" required></textarea>
-              </div>       
+        <div class="reviewArea">
+          <label for="review">Your Review:</label>
+          <textarea
+            id="review"
+            name="review"
+            rows="4"
+            cols="50"
+            required
+          ></textarea>
+        </div>
 
-            <button type="submit" class="submitReview">Submit Review</button>
-        </form>
+        <button type="submit" class="submitReview">Submit Review</button>
+      </form>
     </div>
-    
-<script src="/js/rating.js"></script>
 
-</body>
+    <script src="/js/rating.js"></script>
+  </body>
 </html>

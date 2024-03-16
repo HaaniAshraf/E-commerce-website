@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Update Banner</title>
-    <link rel="stylesheet" href="/css/adminCSS/updateBanner.css">
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
-</head>
+    <link rel="stylesheet" href="/css/adminCSS/updateBanner.css" />
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/ce01cf2811.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
   <body>
-    <a href="/adminHome" style="color: white;">
-      <div class="logo" style="display: flex;gap: 5px; margin-top: 15px;margin-left: 15px;">
-        <img src="/images/cartlogo.png" alt="cart" class="cartlogo">
+    <a href="/adminHome" style="color: white">
+      <div
+        class="logo"
+        style="display: flex; gap: 5px; margin-top: 15px; margin-left: 15px"
+      >
+        <img src="/images/cartlogo.png" alt="cart" class="cartlogo" />
         <h2 class="smart">SHOP <span>ON</span></h2>
-    </div>
+      </div>
     </a>
     <div class="content">
       <h1>Update Banner</h1>
 
       <form action="/updateBanner/<%= banner._id %>" method="post">
         <label for="imageUrl">Image URL:</label>
-        <input type="text" id="imageUrl" name="imageUrl" value="<%= banner.imageUrl %>">
+        <input
+          type="text"
+          id="imageUrl"
+          name="imageUrl"
+          value="<%= banner.imageUrl %>"
+        />
         <label for="newImageUrl">New Image URL (Optional):</label>
-        <input type="file" accept="image/*"  id="newImageUrl" name="newImageUrl">
+        <input
+          type="file"
+          accept="image/*"
+          id="newImageUrl"
+          name="newImageUrl"
+        />
         <label for="content">Content:</label>
-        <input type="text" id="content" name="content" value="<%= banner.content %>">
-    
+        <input
+          type="text"
+          id="content"
+          name="content"
+          value="<%= banner.content %>"
+        />
+
         <button type="submit">Update Banner</button>
       </form>
-    <br>
-      <a href="/addBanner"><i class="fa-solid fa-arrow-left"></i> &nbsp; Go Back to Banner Lists</a>
+      <br/>
+      <a href="/addBanner"
+        ><i class="fa-solid fa-arrow-left"></i> &nbsp; Go Back to Banner
+        Lists</a>
     </div>
-  
-</body>
+  </body>
 </html>

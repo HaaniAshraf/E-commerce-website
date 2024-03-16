@@ -1,66 +1,83 @@
-
-*{
+* {
     box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
-body{
+
+body {
     background-color: black;
     color: white;
     display: flex;
     flex-direction: column;
 }
-.main{
+
+.main {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 350px;
+    gap: 20px; /* Adjusted gap for smaller screens */
 }
-h1{
+
+h1 {
     text-align: center;
     color: rgb(247, 173, 37);
-    font-size: 30px;
+    font-size: 2rem; /* Adjusted font size for smaller screens */
 }
-.profilehead{
+
+.profilehead {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 0px;
+    font-size: 1.5rem; /* Adjusted font size for smaller screens */
 }
-.forms{
-    margin-left: 500px;
+
+.forms {
+    margin: 5px auto; /* Center the form */
     background-color: rgb(16, 16, 16);
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 510px;
+    width: 90%; /* Adjusted width for smaller screens */
+    max-width: 500px; /* Added max-width for smaller screens */
     border-radius: 10px;
-    padding: 0px 70px;
-    box-shadow:  0 0 8px 2px rgb(111, 110, 110); 
+    padding: 15px; /* Adjusted padding for smaller screens */
 }
-.forms input,select{
+
+.forms input,
+.forms select {
     background-color: rgba(255, 255, 255, 0.215);
-    width: 350px;
-    height: 30px;
+    width: 100%; /* Adjusted width for smaller screens */
+    height: 28px; /* Adjusted height for smaller screens */
     border: none;
     color: white;
     border-radius: 8px;
-    padding:0 10px;
+    padding: 0 10px;
+    margin-top: 5px;
 }
-label{
+
+label {
     margin-top: 15px;
 }
-option{
+
+option {
     color: black;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.update{
-    width: 350px;
-    height: 33px;
+
+.update {
+    width: 100%; /* Adjusted width for smaller screens */
+    height: 35px; /* Adjusted height for smaller screens */
     margin-top: 20px;
-    background-color:rgb(247, 173, 37) ;
+    background-color: rgb(247, 173, 37);
     border: none;
     font-weight: bold;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem; /* Adjusted font size for smaller screens */
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .main {
+        margin-top: 0px; /* Adjusted margin for smaller screens */
+    }
+
+    .forms {
+        padding: 15px; /* Adjusted padding for smaller screens */
+    }
 }

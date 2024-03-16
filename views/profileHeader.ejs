@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Header</title>
-    <link rel="stylesheet" href="css/userCSS/profileHeader.css">
-    <link rel="stylesheet" href="css/userCSS/address.css">
-    <link rel="stylesheet" href="css/userCSS/coupon.css">
-    <link rel="stylesheet" href="/css/userCSS/privacy.css">
-    <link rel="stylesheet" href="/css/mainCSS/swal.css">
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-</head>
-<body>
+    <link rel="stylesheet" href="css/userCSS/profileHeader.css" />
+    <link rel="stylesheet" href="css/userCSS/address.css" />
+    <link rel="stylesheet" href="css/userCSS/coupon.css" />
+    <link rel="stylesheet" href="/css/userCSS/privacy.css" />
+    <link rel="stylesheet" href="/css/mainCSS/swal.css" />
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+  </head>
+  <body>
     <div class="part">
-        <div><a href="/profile" class="sec1">Profile Details</a></div>
-        <div><a href="/orders" class="sec1">Orders</a></div>
-        <div><a href="/coupon" class="sec1">Coupons</a></div>
-        <div><a href="/address" class="sec1">Addresses</a></div>
-        <div><a href="/privacy" class="sec1">Privacy Policy</a></div>
-        <div> <form id="logoutForm" action="/logout" method="POST">
-            <input type="hidden" name="_method" value="POST">
-            <a href="#" class="sec1 logout" onclick="logout()">LOGOUT</a>
+      <div><a href="/profile" class="sec1">Profile Details</a></div>
+      <div><a href="/orders" class="sec1">Orders</a></div>
+      <div><a href="/coupon" class="sec1">Coupons</a></div>
+      <div><a href="/address" class="sec1">Addresses</a></div>
+      <div><a href="/privacy" class="sec1">Privacy Policy</a></div>
+      <div>
+        <form id="logoutForm" action="/logout" method="POST">
+          <input type="hidden" name="_method" value="POST" />
+          <a href="#" class="sec1 logout" onclick="logout()">LOGOUT</a>
         </form>
-    </div>
+      </div>
     </div>
 
     <script src="/js/logout.js"></script>
-
-</body>
+  </body>
 </html>

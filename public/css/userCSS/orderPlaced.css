@@ -180,3 +180,42 @@
     }
   }
   
+
+  @media only screen and (max-width: 768px) {
+    .orderPlaced-Content {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+    }
+    
+    .orderPlaced-left {
+      width: 100%;
+      border-right: none;
+      padding: 20px;
+    }
+    
+    .orderPlaced-right {
+      width: 100%;
+      margin-top: 30px;
+      padding-left: 0;
+    }
+    .orderProduct{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .orderPriceDetails{
+      margin-bottom: 50px;
+    }
+    .orderPlaced-left-btns {
+      gap: 50px;
+      margin-top: 5px;
+    }
+    
+    .orderPlaced-left-btns button {
+      height: 35px;
+      width: 110%;
+    }
+  }
+  

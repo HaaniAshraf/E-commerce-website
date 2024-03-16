@@ -13,7 +13,7 @@
     padding: 5px 20px;
     display: flex;
     align-items: center;
-    z-index: 1;
+    z-index: 5;
     box-shadow: 0 0 8px 2px rgb(86, 86, 86);
 }
 .left{
@@ -82,4 +82,56 @@ a{
 .wishlist-count{
     color: white;
     background-color: red;
+}
+
+
+/* Responsive adjustments */
+@media only screen and (max-width: 1500px) {
+    .header {
+      padding: 5px 10px;
+    }
+  
+    .left {
+      margin-left: 10px; 
+    }
+  
+    .searchForm input {
+      margin-left: 50px; 
+      width: 90%; 
+    }
+  
+    .right {
+      margin-left: 100px;
+    }
+  
+    .right a {
+      font-size: 20px; 
+    }
+  }
+
+  @media screen and (max-width:600px) {
+    .header {
+        padding: 5px 10px;
+        width: 100%;
+      }
+
+      .left{
+        margin-left: 5px;
+      }
+   .SHOPON{
+    width: 150px;
+   }
+    
+      .searchForm input {
+        margin-left: 0px; 
+        width: 170px; 
+      }
+    
+      .right {
+        margin-left: 5px;
+      } 
+    
+      .right a {
+        font-size: 20px; 
+      }
 }

@@ -144,3 +144,31 @@ input {
     width: 80%;
     margin-left: 50px;
 }
+
+/* For screens less than 768px wide */
+@media only screen and (max-width: 768px) {
+    .content {
+      flex-direction: column; /* Stack elements vertically */
+      width: 100%; /* Content takes full width */
+      margin: 0; /* Remove left margin */
+      gap: 20px;
+    }
+  
+    .left,
+    .right {
+      width: 100%; /* Elements take full width */
+      border: none; /* Remove borders */
+    }
+    .left ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .left li {
+      width: 80%; /* List items adjust to content */
+      margin: 10px; /* Adjust margins */
+    }
+    li span{
+        font-size: 14px;
+    }
+  }

@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Placed</title>
-    <link rel="stylesheet" href="/css/userCSS/orderPlaced.css">
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-</head>
-<body class="orderPlacedBody">
+    <link rel="stylesheet" href="/css/userCSS/orderPlaced.css" />
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+  </head>
+  <body class="orderPlacedBody">
+    <%- include('mainHeader.ejs') %>
 
-  <%- include('mainHeader.ejs') %>
-
-  <div class="orderPlaced-Content">
-
+    <div class="orderPlaced-Content">
       <div class="orderPlaced-left">
-
-         <div class="demo-wrapper">
-            <div class="svg-wrapper">
-              <svg class="svg" version="1.1"      id="tick"	 viewBox="6 5 26 26">
-                 <polyline class="path" points="
-                    11.6,20 15.9,24.2 26.4,13.8 "/>
-               </svg>
-            </div>
-        </div>
-              <div class="order-text">
-               ORDER PLACED SUCCESSFULLY !!
-              </div>
-              <div class="orderDetails">
-                <h4>ORDER SUMMARY :</h4>
-                <p>Order ID : <%= order._id %></p>
-                <p class="addressDetails">Will be delivered to: House Number - <%= deliveryAddress.houseNumber %>, <%= deliveryAddress.locality %>, <%= deliveryAddress.city %>, <%= deliveryAddress.state %> - <%= deliveryAddress.pinCode %> </p>
-                <p>Delivery Date : <%= order.deliveryDate.toDateString() %></p>
-                <p>Payment Method : <%= order.paymentMethod %></p>
-              </div>
-              <div class="orderPlaced-left-btns">
-              <a href="/orders"><button>Your Orders</button></a>  
-              <a href="/"><button>Continue Shopping</button></a>  
-              </div>
-
+        <div class="demo-wrapper">
+          <div class="svg-wrapper">
+            <svg class="svg" version="1.1" id="tick" viewBox="6 5 26 26">
+              <polyline
+                class="path"
+                points="
+                    11.6,20 15.9,24.2 26.4,13.8 "
+              />
+            </svg>
           </div>
+        </div>
+        <div class="order-text">ORDER PLACED SUCCESSFULLY !!</div>
+        <div class="orderDetails">
+          <h4>ORDER SUMMARY :</h4>
+          <p>Order ID : <%= order._id %></p>
+          <p class="addressDetails">
+            Will be delivered to: House Number - <%= deliveryAddress.houseNumber %>,
+            <%= deliveryAddress.locality %>, <%= deliveryAddress.city %>,
+            <%= deliveryAddress.state %> - <%= deliveryAddress.pinCode %>
+          </p>
+          <p>Delivery Date : <%= order.deliveryDate.toDateString() %></p>
+          <p>Payment Method : <%= order.paymentMethod %></p>
+        </div>
+        <div class="orderPlaced-left-btns">
+          <a href="/orders"><button>Your Orders</button></a>
+          <a href="/"><button>Continue Shopping</button></a>
+        </div>
+      </div>
 
-
-          <div class="orderPlaced-right">
-
-            <h3 >PRODUCTS</h3>
-            <div class="orderProduct">
-                <% if (order && order.products && order.products.length > 0) { %>
-                    <% order.products.forEach(item => { %>
-                      <div class="orderedProducts">
-                        <div class="orderedProductLeft">
-                          <img src="<%= item.product.imageUrls[0] %>" alt="">
-                        </div>
-                        <div class="orderedProductRight">
-                          <p><%= item.product.name %></p>
-                          <p class="orderedProductRightQuantity">Quantity: <%= item.quantity %></p>
-                          <p class="orderedProductRightPrice">₹ <%= item.product.price %></p>
-                        </div>  
-                      </div>                                  
-                    <% }); %>
-                <% } else { %>
-                    <p>No products found.</p>
-                <% } %>
+      <div class="orderPlaced-right">
+        <div class="orderProduct">
+          <h3>PRODUCTS</h3>
+          <% if (order && order.products && order.products.length > 0) { %> <%
+          order.products.forEach(item => { %>
+          <div class="orderedProducts">
+            <div class="orderedProductLeft">
+              <img src="<%= item.product.imageUrls[0] %>" alt="" />
             </div>
-
-
-            <div class="priceDetails">
-              <div class="pricetext">
-               
-              </div>
+            <div class="orderedProductRight">
+              <p><%= item.product.name %></p>
+              <p class="orderedProductRightQuantity">
+                Quantity: <%= item.quantity %>
+              </p>
+              <p class="orderedProductRightPrice">
+                ₹ <%= item.product.price %>
+              </p>
             </div>
-
-            <div class="orderPriceDetails">
-              <h3>PRICE DETAILS</h3>
-              <% cart.forEach(cartItem => { %>
-                <div class="line1">
-                  <p>Total MRP :</p>
-                  <p class="mrp"> ₹ <%= cartItem.totalOgPrice %></p>
-                </div>
-                <div class="line1">
-                  <p>Discount :</p>
-                  <p class="discount"> ₹ <%= cartItem.discount %></p>
-                </div>
-                <div class="line1">
-                  <p>Our Price :</p>
-                  <p class="price"> ₹ <%= cartItem.totalPrice %></p>
-                </div>
-                <div class="line1">
-                  <p class="totalamount">Total Amount :</p>
-                  <p class="amount totalamount" id="totalAmountValue"> ₹ <%= order.totalOrderAmount %></p>
-                </div>
-              <% }); %>
-            </div>
-            
+          </div>
+          <% }); %> <% } else { %>
+          <p>No products found.</p>
+          <% } %>
         </div>
 
+        <div class="priceDetails">
+          <div class="pricetext"></div>
+        </div>
 
-  </div>
-
-
-
-</body>
+        <div class="orderPriceDetails">
+          <h3>PRICE DETAILS</h3>
+          <% cart.forEach(cartItem => { %>
+          <div class="line1">
+            <p>Total MRP :</p>
+            <p class="mrp">₹ <%= cartItem.totalOgPrice %></p>
+          </div>
+          <div class="line1">
+            <p>Discount :</p>
+            <p class="discount">₹ <%= cartItem.discount %></p>
+          </div>
+          <div class="line1">
+            <p>Our Price :</p>
+            <p class="price">₹ <%= cartItem.totalPrice %></p>
+          </div>
+          <div class="line1">
+            <p class="totalamount">Total Amount :</p>
+            <p class="amount totalamount" id="totalAmountValue">
+              ₹ <%= order.totalOrderAmount %>
+            </p>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

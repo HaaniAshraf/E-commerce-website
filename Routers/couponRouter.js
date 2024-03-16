@@ -1,23 +1,21 @@
-const express=require('express')
-const router=express.Router()
-
+const express = require("express");
+const router = express.Router();
 
 const {
-    couponGet,
-    addCouponGet,
-    addCouponPost,
-    updateCouponGet,
-    updateCouponPost,
-    deleteCoupon,
+  couponGet,
+  addCouponGet,
+  addCouponPost,
+  updateCouponGet,
+  updateCouponPost,
+  deleteCoupon,
+} = require("../Controller/couponController");
 
-}=require('../Controller/couponController')
+router
+  .get("/coupon", couponGet)
+  .get("/addCoupon", addCouponGet)
+  .post("/addCoupon", addCouponPost)
+  .get("/updateCoupon/:couponId", updateCouponGet)
+  .post("/updateCoupon/:couponId", updateCouponPost)
+  .post("/deleteCoupon/:couponId", deleteCoupon);
 
-
-router.get('/coupon',couponGet)
-      .get('/addCoupon',addCouponGet)
-      .post('/addCoupon',addCouponPost)
-      .get('/updateCoupon/:couponId',updateCouponGet)
-      .post('/updateCoupon/:couponId',updateCouponPost)
-      .post('/deleteCoupon/:couponId',deleteCoupon)
-
-module.exports=router
+module.exports = router;

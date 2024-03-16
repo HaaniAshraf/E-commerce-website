@@ -1,50 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/mainCSS/signup.css">
-</head>
-<body>
-    <form action="/signup" method="post"> 
-        
-        <div class="left">
-            <img class="logo" src="images/cartlogo.png" alt="">
-            <div class="SHOPON">
-                <span class="shop">&nbsp;SHOP</span>
-                <span class="on">ON</span>
-            </div>
-                    </div>
-        <h3>SIGN-UP</h3>
-  
-        <label for="username">Username</label>
-        <input type="text" placeholder="Your Name" id="username" name="username">
-  
-        <label for="mail" id="email">Gmail</label>
-        <input type="text" placeholder="xyz@gmail.com" id="email" name="email">
-  
-        <label for="phone">Phone</label>
-        <input type="number" placeholder="Your phone no." id="phone" name="phone">
-  
-        <label for="password" id="password">Password</label>
-        <input type="password" placeholder="********" id="password" name="password">
-  
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" placeholder="********" id="confirmPassword" name="confirmPassword">
-  
-        <% if (error) { %>
-          <p style="color: rgb(235, 80, 80);"><%= error %></p>
-        <% } %>
-  
-        <button type="submit">Sign Up</button>
-  
-        <div class="down">
-          <div class="login">Already have an account? <a href="/login">Login</a></div>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/mainCSS/signup.css" />
+  </head>
+  <body>
+    <form action="/signup" method="post">
+      <div class="left">
+        <img class="logo" src="images/cartlogo.png" alt="" />
+        <div class="SHOPON">
+          <span class="shop">&nbsp;SHOP</span>
+          <span class="on">ON</span>
         </div>
-        
-      </form>
-      <script src="js/extras.js"></script>
-</body>
+      </div>
+      <h3>SIGN-UP</h3>
+
+      <label for="username">Username</label>
+      <input
+        type="text"
+        placeholder="Your Name"
+        id="username"
+        name="username"
+      />
+
+      <label for="mail" id="email">Gmail</label>
+      <input type="text" placeholder="xyz@gmail.com" id="email" name="email" />
+
+      <label for="phone">Phone</label>
+      <input
+        type="number"
+        placeholder="Your phone no."
+        id="phone"
+        name="phone"
+      />
+
+      <label for="password" id="password">Password</label>
+      <input
+        type="password"
+        placeholder="********"
+        id="password"
+        name="password"
+      />
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        placeholder="********"
+        id="confirmPassword"
+        name="confirmPassword"
+      />
+
+      <% if (error) { %>
+      <p style="color: rgb(235, 80, 80)"><%= error %></p>
+      <% } %>
+
+      <button type="submit">Sign Up</button>
+
+      <div class="down">
+        <div class="login">
+          Already have an account? <a href="/login">Login</a>
+        </div>
+      </div>
+    </form>
+    <script src="js/extras.js"></script>
+  </body>
 </html>

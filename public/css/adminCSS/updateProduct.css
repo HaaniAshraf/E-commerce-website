@@ -16,19 +16,6 @@ a {
     text-decoration: none;
 }
 
-/* .logo {
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
-    color: white;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.logo img {
-    width: 2.3rem;
-    height: 2.2rem;
-} */
 .cartlogo{
     height: 25px;
     width: 25px;
@@ -45,7 +32,7 @@ a {
     padding: 20px;
     background-color: #0e0e0e;
     border-radius: 10px;
-    height: 580px;
+    height: 550px;
 }
 
 h1 {
@@ -105,7 +92,7 @@ select {
 
 button {
     height: 38px;
-    width: 160px;
+    width: 90%;
     font-size: 17px;
     font-weight: bold;
     border: none;
@@ -113,4 +100,46 @@ button {
     margin-top: 30px;
     background-color: rgb(247, 173, 37);
     cursor: pointer;
+}
+a {
+    text-decoration: none;
+    color: rgb(239, 191, 102);
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .content-container {
+        margin-top: 30px;
+        width: 90%;
+        height: 70%;
+    }
+    h1{
+        font-size: 23px;
+    }
+
+    form {
+        width: 100%; /* Adjusted width for small screens */
+    }
+    .inp1{
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    label {
+        width: 100%; /* Adjusted width for small screens */
+        font-size: 15px;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%; /* Adjusted width for small screens */
+    }
+
+    button {
+        width: 90%; /* Adjusted width for small screens */
+        margin-top: 10px;
+    }
 }

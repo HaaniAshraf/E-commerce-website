@@ -1,197 +1,299 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-}
-body{
+  }
+  
+  body {
     background-color: black;
     color: white;
-}
-a{
+  }
+  
+  a {
     text-decoration: none;
-}
-.logo{
+  }
+  
+  .logo {
     display: flex;
     gap: 0.5rem;
     align-items: center;
     color: white;
     margin-top: 20px;
     margin-left: 20px;
-}
-.cartlogo{
+  }
+  
+  .cartlogo {
     height: 25px;
     width: 25px;
-}
-.smart span{
+  }
+  
+  .smart span {
     color: rgb(247, 173, 37);
-}
-.logo h2{
+  }
+  
+  .logo h2 {
     font-size: 25px;
-}
-
-
-.orderDetailsContent{
-    padding: 20px 60px;
+  }
+  
+  .orderDetailsContent {
+    padding: 20px 5%; /* Adjusted padding for smaller screens */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.orderDetailsContent h1{
+  }
+  
+  .orderDetailsContent h1 {
     text-align: center;
     color: rgb(247, 173, 37);
-}
-
-
-/* orderCard */
-.orderCard{
+  }
+  
+  /* orderCard */
+  .orderCard {
     background-color: rgb(16, 16, 16);
-    padding: 30px 10px;
+    padding: 30px;
     margin-top: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    width: 80%;
-}
-
-.orderCardLeft{
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 70%; /* Full width for smaller screens */
+    /* gap: 10px; */
+  }
+  
+  .orderCardLeft{
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-.orderCardMiddle{
+  }
+  .orderCardMiddle{
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-.orderCardRight{
+    padding-left: 10px;
+  }
+  .orderCardRight{
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-.orderCard h2{
+  }
+  
+  .orderCard h2 {
     border-bottom: solid 2px rgb(247, 173, 37);
     padding-bottom: 5px;
     text-align: center;
-}
-
-
-/* productSection */
-.productSection{
+    width: 23%;
+  }
+  
+  /* productSection */
+  .productSection {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     margin-top: 20px;
-}
-.productSection img{
+  }
+  
+  .productSection img {
     height: 100px;
     width: 100px;
-}
-.productSectionMain{
+  }
+  
+  .productSectionMain {
     display: flex;
     gap: 10px;
-}
-.productSectionRight{
+  }
+  
+  .productSectionRight {
     display: flex;
     flex-direction: column;
-}
-.productSectionRight .productName{
+  }
+  
+  .productSectionRight .productName {
     color: rgb(218, 217, 217);
     font-weight: bold;
     font-size: 18px;
     margin-top: 5px;
-}
-.productSectionRight .productQuantity{
+  }
+  
+  .productSectionRight .productQuantity {
     color: rgb(144, 144, 144);
     margin-top: 5px;
-}
-.productSectionRight .productId{
+  }
+  
+  .productSectionRight .productId {
     color: wheat;
     margin-top: 5px;
-}
+  }
+  
 
+  .orderCardMiddle{
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+  }
 
-
-/* userSection */
-.userSection{
+  /* userSection */
+  .userSection {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 20px;
-}
-.userSection p{
+  }
+  
+  .userSection p {
     font-size: 18px;
-}
-
-
-/* addressSection */
-.addressSection{
+  }
+  
+  /* addressSection */
+  .addressSection {
     margin-top: 30px;
     line-height: 22px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-.addressSection .deliveryAddress{
+    width: 70%;
+  }
+  .addressSection h2{
+    width: 45%;
+    text-align: center;
+  }
+  
+  .addressSection .deliveryAddress {
     margin-top: 10px;
-}
-.deliveryAddress span
-{
+  }
+  
+  .deliveryAddress span {
     display: flex;
     flex-direction: column;
-}
-
-
-/* dateSection */
-.dateSection{
+  }
+  
+  /* dateSection */
+  .dateSection {
     margin-top: 20px;
-    border:  solid 1px rgb(83, 83, 83);
+    border: solid 1px rgb(83, 83, 83);
     padding: 10px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-}
-
-.orderDetails{
+  }
+  
+  .orderDetails {
     margin-top: 60px;
-}
-.orderDetails .orderId{
+  }
+  
+  .orderDetails .orderId {
     color: wheat;
     font-weight: bold;
-}
-.orderDetails .orderStatus{   
+  }
+  
+  .orderDetails .orderStatus {
     font-weight: bold;
     font-size: 18px;
     margin-top: 10px;
-}
-.orderCardRight .priceSection{
+  }
+  
+  .orderCardRight .priceSection {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
-}
-.priceSection .totalAmount{
+  }
+  
+  .priceSection .totalAmount {
     color: rgb(247, 173, 37);
     font-size: 20px;
     font-weight: bold;
-}
-.priceSection .paymentMethod{
+  }
+  
+  .priceSection .paymentMethod {
     color: rgb(158, 157, 157);
-}
-
-.back{
+  }
+  
+  .back {
     text-decoration: none;
     color: rgb(241, 182, 73);
     margin-top: 40px;
     font-size: 20px;
-}
-.back i{
+  }
+  
+  .back i {
     margin-right: 8px;
-}
+  }
+  
+  /* Media queries for responsiveness */
+  @media only screen and (max-width: 768px) {
+    .orderDetailsContent{
+        padding: 10px 40px;
+        margin-top: 20px;
+    }
+
+    .orderCard {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .orderCardLeft,
+    .orderCardMiddle,
+    .orderCardRight {
+      width: 100%;
+    }
+    .orderCardLeft img{
+        height: 80px;
+        width: 80px;
+    }
+    .orderCardLeft .productSectionMain{
+        display: flex;
+        align-items: center;
+    }
+    .orderCardLeft .productName{
+        font-size: 15px;
+    }
+    .orderCardLeft .productQuantity{
+        font-size: 13px;
+    }
+    .orderCardLeft .productId{
+        font-size: 15px;
+    }
+
+    .orderCardMiddle{
+        margin-top: 15px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+    .orderCardMiddle .userSection{
+        width: 50%;
+    }
+    .orderCardMiddle .userSection p{
+        font-size: 15px;
+    }
+    .orderCardMiddle .userSection h2{
+        width: 40%;
+    }
+    .orderCardMiddle .addressSection{
+        font-size: 15px;
+    }
+
+    .orderCardRight{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .orderCardRight .priceSection {
+        margin-top: 30px;
+      }
+      .orderDetails {
+        margin-top: 30px;
+      }
+      .back{
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+  }
+  

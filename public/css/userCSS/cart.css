@@ -20,9 +20,10 @@ body{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 90px;
+    margin-top: 50px;
     position: absolute;
-    left: 660px;
+    left: 50%; 
+    transform: translateX(-50%); 
 }
 .null img{
     height: 120px;
@@ -347,4 +348,76 @@ body{
 .price-section button:hover{
     background-color: rgb(30, 30, 30);
     color: rgb(249, 195, 44);
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .cartContainer{
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .carthead {
+        margin-top: 30px; /* Adjusted for smaller screens */
+    }
+
+    .null {
+        margin-top: 30px; /* Adjusted for smaller screens */
+    }
+
+    .cartContent {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        margin-top: 20px; /* Adjusted for smaller screens */
+    }
+
+    .cartLeft {
+        width: 100%;
+        padding: 10px;
+        border: none;
+    }
+
+    .item-sectionleft img{
+        height: 180px;
+        width: 170px;
+    }
+    .item-sectionright{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .item-sectionright h3{
+        font-size: 18px;
+    }
+    .leftdownText{
+        width: 600px;
+    }
+    .leftdownarrow{
+        margin-left: 100px;
+    }
+
+    .cartRight{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .item-section {
+        margin-top: 20px; /* Adjusted for smaller screens */
+    }
+
+    .price-section {
+        margin-top: 20px; /* Adjusted for smaller screens */
+    }
+    .null {
+        margin-top: 30px; /* Adjusted for smaller screens */
+    }
+
+    .null button {
+        width: 200px; /* Adjusted button width for smaller screens */
+    }
+
 }

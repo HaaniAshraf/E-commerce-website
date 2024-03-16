@@ -1,158 +1,221 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Male_Fashion Template" />
+    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Perfume Section</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
-    <script src="https://kit.fontawesome.com/ce01cf2811.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/ce01cf2811.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="images/cartlogo.png" type="image/x-icon" />
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/menSectionCSS/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/menSectionCSS/menSection.css" type="text/css">
-</head>
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/bootstrap.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/font-awesome.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/elegant-icons.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/magnific-popup.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/nice-select.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/owl.carousel.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/slicknav.min.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="css/menSectionCSS/menSection.css"
+      type="text/css"
+    />
+  </head>
 
-<body>
+  <body>
     <%- include('mainHeader.ejs') %>
 
     <!-- Hero Section Begin -->
     <section class="hero">
-        <div class="hero__slider owl-carousel">
-                <div class="herocontainer">
-                    <div class="herobg"><img src="images/hero/perfume.png" alt="" class="perfumeimg"></div>
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Blowing Collection</h6>
-                                <h2>Executive Collections 2024</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                commitment to exceptional quality.</p>
-                                <a href="#productsGrid" class="primary-btn" onclick="scrollToProductsGrid()">Shop now <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-         
+      <div class="hero__slider owl-carousel">
+        <div class="herocontainer">
+          <div class="herobg">
+            <img src="images/hero/perfume.png" alt="" class="perfumeimg" />
+          </div>
+          <div class="row">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+              <div class="hero__text">
+                <h6>Blowing Collection</h6>
+                <h2>Executive Collections 2024</h2>
+                <p>
+                  A specialist label creating luxury essentials. Ethically
+                  crafted with an unwavering commitment to exceptional quality.
+                </p>
+                <a
+                  href="#productsGrid"
+                  class="primary-btn"
+                  onclick="scrollToProductsGrid()"
+                  >Shop now <i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
     <section class="product spad" id="productsGrid">
-        <div class="container">
-            <div class="row product__filter">
-                <% products.forEach(product => { %>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
-                        <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="<%= product.imageUrls[0] %>">
-                                <ul class="product__hover">
-                                    <button id="wishlistButton" class="btn-action" data-product-id="<%= product._id %>"
-                                        data-action="<%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'removeFromWishlist' : 'addToWishlist' %>"
-                                        onclick="toggleWishlist(event)">
-                                    <i class="fa-solid fa-heart buttonAction <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>"></i>
-                                </button>   
-                                <button type="button" class="btn-action" id="addToCartButton">
-                                    <i class="fa-solid fa-cart-shopping buttonAction <%= userCart && userCart.products.some(item => item.product.toString() === product._id.toString()) ? 'orangeColor' : '' %>" id="cartIcon" data-product-id="<%= product._id %>"></i>
-                                </button>                            
-                                  <button type="submit" class="btn-action" id="infoButton" data-product-id="<%= product._id %>">
-                                   <a href="/details/<%= product._id %>"><i class="fa-solid fa-circle-info buttonAction"></i></a> 
-                                </button> 
-                                </ul>
-                            </div>
-                            <div class="product__item__text">
-                                <a href="/details/<%= product._id %>">
-                                <h4><%= product.name %></h4>
-                            </a>
-                                <div class="price-box">
-                                    <p class="price">₹ <%= product.price.toFixed(2) %></p>
-                                    <% if (product.ogPrice !== undefined) { %>
-                                      <del>₹ <%= product.ogPrice.toFixed(2) %></del>
-                                    <% } %>
-                                  </div>
-                                <div class="showcase-rating">
-                                    <% for (let i = 0; i < product.rating; i++) { %>
-                                        <i class="fa-solid fa-star"></i>
-                                    <% } %>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                <% }); %>
+      <div class="container">
+        <div class="row product__filter">
+          <% products.forEach(product => { %>
+          <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix">
+            <div class="product__item">
+              <div
+                class="product__item__pic set-bg"
+                data-setbg="<%= product.imageUrls[0] %>"
+              >
+                <ul class="product__hover">
+                  <button
+                    id="wishlistButton"
+                    class="btn-action"
+                    data-product-id="<%= product._id %>"
+                    data-action="<%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'removeFromWishlist' : 'addToWishlist' %>"
+                    onclick="toggleWishlist(event)"
+                  >
+                    <i
+                      class="fa-solid fa-heart buttonAction <%= userWishlist && userWishlist.products.includes(product._id.toString()) ? 'redcolor' : '' %>"
+                    ></i>
+                  </button>
+                  <button type="button" class="btn-action" id="addToCartButton">
+                    <i
+                      class="fa-solid fa-cart-shopping buttonAction <%= userCart && userCart.products.some(item => item.product.toString() === product._id.toString()) ? 'orangeColor' : '' %>"
+                      id="cartIcon"
+                      data-product-id="<%= product._id %>"
+                    ></i>
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn-action"
+                    id="infoButton"
+                    data-product-id="<%= product._id %>"
+                  >
+                    <a href="/details/<%= product._id %>"
+                      ><i class="fa-solid fa-circle-info buttonAction"></i
+                    ></a>
+                  </button>
+                </ul>
+              </div>
+              <div class="product__item__text">
+                <a href="/details/<%= product._id %>">
+                  <h4><%= product.name %></h4>
+                </a>
+                <div class="price-box">
+                  <p class="price">₹ <%= product.price.toFixed(2) %></p>
+                  <% if (product.ogPrice !== undefined) { %>
+                  <del>₹ <%= product.ogPrice.toFixed(2) %></del>
+                  <% } %>
+                </div>
+                <div class="showcase-rating">
+                  <% for (let i = 0; i < product.rating; i++) { %>
+                  <i class="fa-solid fa-star"></i>
+                  <% } %>
+                </div>
+              </div>
             </div>
+          </div>
+          <% }); %>
         </div>
+      </div>
     </section>
     <!-- Product Section End -->
 
     <!-- Categories Section Begin -->
     <section class="categories spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="categories__text">
-                        <h2> <br><span>Long-Lasting Perfume</span></h2>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="categories__hot__deal hotperfume">
-                        <img src="images/perfume.png" alt="" class="perfumeimg">
-                    </div>
-                </div>
-                <div class="col-lg-4 offset-lg-1">
-                    <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Red Diamond Perfume for Women</h2>
-                        <div class="categories__deal__countdown__timer" id="countdown">
-                            <div class="cd-item">
-                                <span>3</span>
-                                <p>Days</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>1</span>
-                                <p>Hours</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>50</span>
-                                <p>Minutes</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>18</span>
-                                <p>Seconds</p>
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">Shop now</a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="categories__text">
+              <h2><br /><span>Long-Lasting Perfume</span></h2>
             </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="categories__hot__deal hotperfume">
+              <img src="images/perfume.png" alt="" class="perfumeimg" />
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1">
+            <div class="categories__deal__countdown">
+              <span>Deal Of The Week</span>
+              <h2>Red Diamond Perfume for Women</h2>
+              <div class="categories__deal__countdown__timer" id="countdown">
+                <div class="cd-item">
+                  <span>3</span>
+                  <p>Days</p>
+                </div>
+                <div class="cd-item">
+                  <span>1</span>
+                  <p>Hours</p>
+                </div>
+                <div class="cd-item">
+                  <span>50</span>
+                  <p>Minutes</p>
+                </div>
+                <div class="cd-item">
+                  <span>18</span>
+                  <p>Seconds</p>
+                </div>
+              </div>
+              <a href="#" class="primary-btn">Shop now</a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- Categories Section End -->
 
     <%- include('footer.ejs') %>
 
     <script>
-        function scrollToProductsGrid() {
-            const productsGrid = document.getElementById('productsGrid');
-            if (productsGrid) {
-                productsGrid.scrollIntoView({ behavior: 'smooth' });
-            }
+      function scrollToProductsGrid() {
+        const productsGrid = document.getElementById("productsGrid");
+        if (productsGrid) {
+          productsGrid.scrollIntoView({ behavior: "smooth" });
         }
+      }
     </script>
-            <script src="/js/heart.js"></script>
-            <script src="/js/cart.js"></script>
+    <script src="/js/heart.js"></script>
+    <script src="/js/cart.js"></script>
 
     <!-- Js Plugins -->
     <script src="js/menSectionJS/jquery-3.3.1.min.js"></script>
@@ -165,6 +228,5 @@
     <script src="js/menSectionJS/mixitup.min.js"></script>
     <script src="js/menSectionJS/owl.carousel.min.js"></script>
     <script src="js/menSectionJS/main.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,61 +1,55 @@
 // Wishlist Toggling
 async function toggleWishlist(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const heart = event.currentTarget.querySelector('.fa-heart');
-    const productId = event.currentTarget.getAttribute('data-product-id');
-    const isRedColor = heart.classList.contains('redcolor');
+  const heart = event.currentTarget.querySelector(".fa-heart");
+  const productId = event.currentTarget.getAttribute("data-product-id");
+  const isRedColor = heart.classList.contains("redcolor");
 
-    if (productId) {
-        try {
-            const response = await fetch(`/wishlistToggle/${productId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ isRedColor: isRedColor.toString() }),
-            });
+  if (productId) {
+    try {
+      const response = await fetch(`/wishlistToggle/${productId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ isRedColor: isRedColor.toString() }),
+      });
 
-            if (response.status === 401) {
-                window.location.href = '/login';
-                return;
-            }
+      if (response.status === 401) {
+        window.location.href = "/login";
+        return;
+      }
 
-            if (response.ok) {
-                heart.classList.toggle('redcolor');
-                updateWishlistCount();
-
-            } else {
-                console.log(`Error toggling wishlist: ${response.statusText}`);
-            }
-
-        } catch (error) {
-            console.error('Error toggling wishlist:', error);
-        }
-        
+      if (response.ok) {
+        heart.classList.toggle("redcolor");
+        updateWishlistCount();
+      } else {
+        console.log(`Error toggling wishlist: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error("Error toggling wishlist:", error);
     }
+  }
 }
-
-
 
 
 // Wishlist Count
 async function updateWishlistCount() {
-    try {
-        const response = await fetch('/wishlist/count');
-      
-        if (!response.ok) {
-            console.error(`Server responded with status: ${response.status}`);
-        }
+  try {
+    const response = await fetch("/wishlist/count");
 
-            const data = await response.json();
-            const wishlistCountSpan = document.getElementById('wishlistCount');
-            if (wishlistCountSpan) {
-                wishlistCountSpan.textContent = data.wishlistCount;
-            } 
-
-    } catch (error) {
-        console.error('Error updating wishlist count:', error);
+    if (!response.ok) {
+      console.error(`Server responded with status: ${response.status}`);
     }
+
+    const data = await response.json();
+    const wishlistCountSpan = document.getElementById("wishlistCount");
+    if (wishlistCountSpan) {
+      wishlistCountSpan.textContent = data.wishlistCount;
+    }
+  } catch (error) {
+    console.error("Error updating wishlist count:", error);
+  }
 }
 updateWishlistCount();

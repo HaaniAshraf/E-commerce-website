@@ -1,16 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
-body{
+
+body {
     background-color: black;
     color: white;
 }
-a{
+
+a {
     text-decoration: none;
 }
-.logo{
+
+.logo {
     display: flex;
     gap: 0.5rem;
     align-items: center;
@@ -18,199 +21,179 @@ a{
     margin-top: 20px;
     margin-left: 20px;
 }
-.logo img{
+
+.logo img {
     width: 1.5rem;
     height: 1.5rem;
 }
-.logo .on{
+
+.logo .on {
     color: rgb(247, 173, 37);
 }
 
-.userDetailsContent{
-    /* padding: 20px 40px; */
+.userDetailsContent {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
-.userDetailsContent h1{
+
+.userDetailsContent h1 {
     text-align: center;
     color: rgb(247, 173, 37);
 }
 
-.userDetailsContent .userCard{
-    background-color:rgb(16, 16, 16) ;
+.userDetailsContent .userCard {
+    background-color: rgb(16, 16, 16);
     display: flex;
-    margin-top: 10px;
-    padding: 20px 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding: 10px 10px;
+    width: 85%;
 }
 
-
-.userCardLeft{
+.userCardLeft {
+    /* background-color: blue; */
     display: flex;
     flex-direction: column;
-    width: 33%;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
 
-.userSection{
+.userSection,
+.addressSection,
+.wishlistSection,
+.cartSection,
+.orderSection {
     border: solid 1px rgb(83, 82, 82);
-    display: flex;
-    flex-direction: column;
-    height: 45%;
     padding: 10px;
     border-radius: 5px;
-    gap: 5px;
-    font-size: 18px;
-    /* justify-content: center; */
+    margin: 10px;
+    /* width: calc(33% - 20px); */
 }
-.userSection h2{
+.userCardLeft{
+    width: 20%;
+}
+.wishlistSection{
+    width: 20%;
+}
+.cartSection{
+    width: 20%;
+}
+.orderSection{
+    width: 30%;
+}
+.singleOrder{
+    margin-top: 20px;
+    border-bottom: solid 1px rgb(49, 49, 49);
+    padding-bottom: 10px;
+}
+
+
+.userSection h2,
+.addressSection h2,
+.wishlistSection h2,
+.cartSection h2,
+.orderSection h2 {
     text-align: center;
     color: wheat;
 }
-.userSection p{
-    color: rgb(143, 142, 142);
-    display: flex;
+
+
+
+.userSection p,
+.addressSection p,
+.addressSection li,
+.wishlistSection p,
+.cartSection p,
+.orderSection p,
+.orderSection .orderId,
+.orderSection span,
+.userSection span {
+    color: gray;
 }
-.userSection span{
+
+.userSection span,
+.addressSection span,
+.wishlistSection span,
+.cartSection span,
+.orderSection span {
     color: white;
 }
 
-.addressSection{
-    border: solid 1px rgb(83, 82, 82);
-    display: flex;
-    flex-direction: column;
-    height: 44%;
-    padding: 10px;
-    border-radius: 5px;
-    gap: 5px;
-}
-.addressSection h2{
-    text-align: center;
-    color: wheat;
-}
-.addressSection ul{
+.addressSection ul {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-.addressSection li{
-    list-style: none;
-}
-.addressSection p{
-    color: gray;
-}
-.addressSection span{
-    color: white;
-}
 
-
-.wishlistSection{
-    border: solid 1px rgb(83, 82, 82);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-}
-.wishlistSection h2{
-    text-align: center;
-    color: wheat;
-}
-.wishlistSection img{
-    height: 60px;
-    width: 60px;
-}
-.wishlistSection span{
-    font-weight: bold;
-    color: rgb(213, 211, 211);
-}
-.wishlistProduct{
-    display: flex;
-    gap: 5px;
-    font-size: 13px;
-    color: rgb(151, 149, 149);
-    margin-top: 10px;
-}
-
-
-.cartSection{
-    border:solid 1px rgb(83, 82, 82) ;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    color: rgb(151, 149, 149);
-}
-.cartSection h2{
-    text-align: center;
-    color: wheat;
-}
-.cartSection img{
-    height: 60px;
-    width: 60px;
-}
-.cartSection span{
-    font-weight: bold;
-    color: rgb(213, 211, 211);
-}
-.cartProduct{
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-    align-items: center;
-    font-size: 13px;
-}
-
-
-
-.orderSection{
-    border:solid 1px rgb(83, 82, 82) ;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    color: rgb(151, 149, 149);
-    align-items: center;
-}
-.orderSection .singleOrder{
-    border-bottom: solid 1px rgb(61, 60, 60);
-    padding-bottom: 10px;
-}
-.orderSection h2{
-    text-align: center;
-    color: wheat;
-}
-.orderSection .orderId{
-    display: flex;
-    margin-top: 10px;
-}
-.orderSection img{
-    height: 60px;
-    width: 60px;
-}
-.orderSection span{
-    font-weight: bold;
-    color: rgb(213, 211, 211);
-}
-.orderProducts{
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-    align-items: center;
-    font-size: 13px;
-}
-.orderSection li{
+.addressSection li {
     list-style: none;
 }
 
-.back{
+.wishlistSection img,
+.cartSection img,
+.orderSection img {
+    height: 60px;
+    width: 60px;
+}
+
+.wishlistProduct,
+.cartProduct,
+.orderProducts {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: rgb(151, 149, 149);
+    margin-top: 10px;
+}
+
+.back {
     position: absolute;
     top: 25px;
     right: 50px;
     color: wheat;
     font-size: 18px;
 }
-.back i{
+
+.back i {
     margin-right: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .userCardLeft {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    .userCardLeft .userSection{
+        width: 90%;
+        font-size: 15px;
+        line-height: 18px;
+    }
+    .userCardLeft .addressSection{
+        width: 90%;
+        font-size: 15px;
+    }
+    .userDetailsContent h1{
+        margin-top: 20px;
+        font-size: 25px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    
+
+    .userSection,
+    .addressSection,
+    .wishlistSection,
+    .cartSection,
+    .orderSection {
+        width: 100%;
+    }
 }
