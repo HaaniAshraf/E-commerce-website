@@ -1,4 +1,4 @@
-const { User } = require("../Model/db");
+const { User,Wishlist,Cart } = require("../Model/db");
 const { ObjectId } = require("mongoose").Types;
 const bcrypt = require("bcrypt");
 
@@ -15,26 +15,6 @@ const client = require("twilio")(accountSID, authToken);
 let err = "";
 
 module.exports = {
-
-  headerGet: async (req, res) => {
-    try {
-      res.render("mainHeader");
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      res.status(500).send("Internal Server Error");
-    }
-  },
-
-
-  proHeadGet: async (req, res) => {
-    try {
-      res.render("profileHeader");
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      res.status(500).send("Internal Server Error");
-    }
-  },
-
 
   loginGet: (req, res) => {
     if (req.session.email) {

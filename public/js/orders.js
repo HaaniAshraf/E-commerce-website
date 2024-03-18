@@ -34,28 +34,14 @@ document.addEventListener("DOMContentLoaded", function () {
           const data = await response.json();
 
           if (data.success) {
-            Swal.fire({
-              title: "Cancelled!",
-              text: "Your Order has been cancelled.",
-              icon: "success",
-              backdrop: "rgba(0,0,0,0.8)",
-            });
 
-            const orderStatusElements = document.querySelectorAll(
-              `.order-item-right[data-order-id="${orderId}"] .orderStatus span`
-            );
-            const updatedOrderStatus = data.updatedOrderStatus || "Cancelled";
+            const orderStatus = document.querySelector('.orderStatus span')
+            orderStatus.innerText =  "Cancelled"
+            orderStatus.style.color = "rgb(249, 57, 57)";
+            const deliveryDate = document.querySelector('.deliveryDate')
+            deliveryDate.style.display = "none"
+            button.style.display = "none";
 
-            orderStatusElements.forEach((statusElement) => {
-              statusElement.style.color = "rgb(249, 57, 57)";
-              statusElement.innerText = updatedOrderStatus;
-              button.style.display = "none";
-
-              const deliveryDateElement = document.querySelector(
-                `.order-item-right[data-order-id="${orderId}"] .deliveryDate`
-              );
-              deliveryDateElement.style.display = "none";
-            });
           } else {
             Swal.fire({
               title: "Error",

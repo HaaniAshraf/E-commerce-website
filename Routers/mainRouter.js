@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  headerGet,
-  proHeadGet,
   loginGet,
   loginPost,
   logoutPost,
@@ -23,8 +21,6 @@ const {
 const { logVerify, signVerify } = require("../Middleware/auth");
 
 router
-  .get("/mainHeader", headerGet)
-  .get("/profileHeader", proHeadGet)
   .get("/login", loginGet)
   .post("/login", logVerify, loginPost)
   .post("/logout", logoutPost)

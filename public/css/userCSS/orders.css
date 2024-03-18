@@ -183,6 +183,7 @@
   color: rgb(35, 172, 88);
   font-size: 18px;
   font-weight: bold;
+  margin-top: 8px;
 }
 
 .orderStatus {
@@ -202,6 +203,7 @@
   font-weight: bold;
   color: rgb(245, 58, 58);
   cursor: pointer;
+  margin-top: 8px;
 }
 
 /* Media Queries for responsiveness */

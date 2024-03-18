@@ -197,7 +197,6 @@ module.exports = {
           orderStatus: orderStatus,
           paymentMethod: paymentMethod,
         });
-        console.log('userOrder:',userOrder);
         await userOrder.save();
 
         res.status(200).json({ success: true, orderId: userOrder._id });
@@ -240,7 +239,7 @@ module.exports = {
 
             // Delete the user's cart after rendering the orderPlaced page
             await Cart.deleteOne({ user: userId });
-          } else {
+          }        else {
             res.redirect("/cart");
           }
         } else {

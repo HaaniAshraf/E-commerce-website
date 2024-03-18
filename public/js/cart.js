@@ -3,21 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", async (event) => {
      // Check if the clicked element is the "Add to Cart" button
     const addToCartButton = event.target.closest("#addToCartButton");
-    const cartIcon = document.getElementById("cartIcon")
-
+    const cartIcon = addToCartButton.querySelector("#cartIcon");
+    
     if (addToCartButton && cartIcon) {
       try {
         // Extract the product ID from the data-product-id attribute
-        const productId = addToCartButton
-          .querySelector("[data-product-id]")
-          .getAttribute("data-product-id");
+        const productId = addToCartButton.querySelector("[data-product-id]").getAttribute("data-product-id");
 
-          // Check if the product is already in the cart
-          const productInCart = cartIcon.classList.contains("orangeColor");
-          if (productInCart){
-            window.location.href = "/cart";
-          }
-          else{
             const cartResponse = await fetch(`/addToCart/${productId}`, {
               method: "POST",
               headers: {
@@ -25,18 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
               },
             });
     
-            if (cartResponse.ok) {
-              if (cartIcon.classList.contains("orangeColor")) {
-                // If the product is already in the cart, redirect to the cart page
-                window.location.href = "/cart";
-               }else{
-                 cartIcon.classList.add("orangeColor");
+            if (cartResponse.ok) {        
+                 cartIcon.style.color="orange"
                  updateCartCount();
-               }
+               
             } else {
               console.error("Failed to add to cart");
             }
-          }
+          
       } catch (error) {
         console.error("Error:", error);
       }

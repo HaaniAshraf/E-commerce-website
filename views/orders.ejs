@@ -91,38 +91,38 @@
               <% if (order.orderStatus === 'Pending') { %>
               <p class="orderStatus">
                 Order Status:
-                <span style="color: rgb(166, 165, 165)"
-                  ><%= order.orderStatus %></span
-                >
+                <span style="color: rgb(166, 165, 165)">
+                   <%= order.orderStatus %></span>
               </p>
               <button class="cancelOrder" data-order-id="<%= order._id %>">
                 Cancel Order
               </button>
+
               <% } else if (order.orderStatus === 'Shipped') { %>
               <p class="orderStatus">
                 Order Status:
-                <span style="color: rgb(197, 194, 15)"
-                  ><%= order.orderStatus %></span
-                >
+                <span style="color: rgb(197, 194, 15)">
+                   <%= order.orderStatus %></span>
               </p>
               <button class="cancelOrder" data-order-id="<%= order._id %>">
                 Cancel Order
               </button>
+
               <% } else if (order.orderStatus === 'Delivered') { %>
               <p class="orderStatus">
                 Order Status:
                 <span style="color: rgb(24, 170, 75)"
-                  ><%= order.orderStatus %></span
-                >
+                  ><%= order.orderStatus %></span>
               </p>
+
               <% } else { %>
               <p class="orderStatus">
                 Order Status:
                 <span style="color: rgb(249, 57, 57)"
-                  ><%= order.orderStatus %></span
-                >
+                  ><%= order.orderStatus %></span>
               </p>
               <% } %>
+
             </div>
           </div>
         </div>
@@ -139,5 +139,7 @@
     </div>
 
     <script src="/js/orders.js"></script>
+    <script src="/js/count.js"></script>
+
   </body>
 </html>

@@ -42,8 +42,8 @@
       </div>
 
       <div class="orderPlaced-right">
+        <h3>PRODUCTS</h3>
         <div class="orderProduct">
-          <h3>PRODUCTS</h3>
           <% if (order && order.products && order.products.length > 0) { %> <%
           order.products.forEach(item => { %>
           <div class="orderedProducts">
@@ -94,5 +94,8 @@
         </div>
       </div>
     </div>
+
+    <script src="/js/count.js"></script>
+
   </body>
 </html>
