@@ -249,7 +249,7 @@ module.exports = {
         
         // The ObjectId contains a timestamp representing the creation time of the ObjectId. 
         // Retrives the latest signed User from the sorted docs.
-        const latestSignup = await User.findOne().sort({ _id: -1 }).limit(1);
+        const latestSignup = await User.findOne({ otpVerified: true }).sort({ _id: -1 }).limit(1);
         // Retrives the latest added Product from the sorted docs.
         const latestProduct = await Product.findOne().sort({ _id: -1 }).limit(1);
         // Count orders with orderStatus Pending
