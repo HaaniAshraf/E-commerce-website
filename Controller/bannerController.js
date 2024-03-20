@@ -1,6 +1,6 @@
 const { Banner } = require("../Model/db");
 
-module.exports = {
+module.exports = {  
   
   addBannerGet: async (req, res) => {
     if(req.session.role === true){
