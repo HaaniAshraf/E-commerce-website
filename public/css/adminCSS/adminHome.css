@@ -595,18 +595,16 @@ body .apexcharts-tooltip.apexcharts-theme-light {
 }
 
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px) {
     .container {
         grid-template-columns: 1fr;
     }
-
-    aside {
-        display: none; /* You may need to adjust this based on your responsive design needs */
+    .sidebar{
+        width: 30%;
     }
-
     main {
         margin-top: 2rem;
-        padding: 10px 20px;
+        padding: 10px 10px;
         width: 90%;
         display: flex;
         flex-direction: column;
@@ -620,7 +618,7 @@ body .apexcharts-tooltip.apexcharts-theme-light {
         align-items: center;
     }
     .show .up{
-        margin-left: 30px;
+        /* margin-left: 30px; */
         display: flex;
         gap: 10;
         font-size: 20px;
@@ -638,9 +636,9 @@ body .apexcharts-tooltip.apexcharts-theme-light {
 
     .detailsSection{
         display: flex;
-        flex-direction: row;
         width: 100%;
         border: none;
+        margin-left: -80px;
     }
     .detailsSection .statistics{
         width: 50%;  
@@ -671,15 +669,13 @@ body .apexcharts-tooltip.apexcharts-theme-light {
     /* Add more responsive styles as needed */
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
     .container {
         grid-template-columns: 1fr;
     }
 
     aside {
-        position: fixed;
-        left: -100%;
-        width: 100%;
+        width: 90%;
         padding-right: 1rem;
     }
 
@@ -719,17 +715,18 @@ body .apexcharts-tooltip.apexcharts-theme-light {
     .detailsSection{
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 100%;
         border: none;
+        margin-left: -220px;
     }
     .detailsSection .statistics{
-        /* width: 50%;   */
+        width: 50%;  
         display: flex;
         flex-direction: column;
         /* align-items: center; */
     }
     .detailsSection .recent{
-        /* width: 50%;       */
+        width: 50%;      
         display: flex;
         flex-direction: column;
         /* align-items: center; */
